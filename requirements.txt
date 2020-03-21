@@ -1,0 +1,4 @@
+pandas>=1.0.3
+numpy>=1.18.2
+fingertips_py>=0.2
+requests>=2.23.0

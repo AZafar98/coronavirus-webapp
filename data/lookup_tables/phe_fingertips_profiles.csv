@@ -1,0 +1,55 @@
+,Id,Name,Key,GroupIds
+0,18,Local Tobacco Control Profiles,tobacco-control,"[1938132885, 1938132886, 1938132900, 1938132887, 1938132888, 1938132889, 1938132890]"
+1,19,Public Health Outcomes Framework,public-health-outcomes-framework,"[1000049, 1000041, 1000042, 1000043, 1000044, 1938132983]"
+2,20,National General Practice Profiles,general-practice,"[2000005, 1938132829, 1938133086, 3000008, 3000007, 3000009, 3000010, 2000002, 2000003, 2000009, 2000006, 1938132970, 2000004]"
+3,21,National General Practice Profiles (supporting indicators),practice-profiles-supporting-indicators,[1200006]
+4,26,Local Authority Health Profiles,health-profiles,"[1938132696, 1938132695, 1938132694, 8000073, 1938133217, 3007000, 1938133216, 1938132701, 1938132974]"
+5,29,Inhale - INteractive Health Atlas of Lung conditions in England,inhale,"[8000003, 8000005, 8000008, 8000009, 1938133300]"
+6,30,Health Protection,health-protection,"[1000002, 1938133209, 1938132804, 1938133210, 1938133211, 1938133212, 1938133214, 1938132818]"
+7,32,NCMP and Child Obesity Profile,national-child-measurement-programme,"[8000011, 8000022, 1938133288, 1938133219]"
+8,36,"Mental Health, Dementia and Neurology",mental-health,[8000017]
+9,37,Modelled Prevalence Estimates,prevalence,"[1938133099, 8000020]"
+10,40,Common Mental Health Disorders,common-mental-disorders,"[1938132720, 8000041, 8000026, 8000042, 8000043, 1938132954, 1938132955, 1938133302]"
+11,41,Severe Mental Illness,severe-mental-illness,"[1938132719, 8000027, 8000030, 8000031, 8000039]"
+12,45,Sexual and Reproductive Health Profiles,sexualhealth,"[8000057, 8000035, 1938133286, 8000059, 8000036, 8000037, 8000058]"
+13,46,Atlas of Variation,atlas-of-variation,[8000038]
+14,52,Local Authority Health Profiles Supporting Indicators,health-profiles-supporting,[8000060]
+15,55,Liver Disease Profiles,liver-disease,[8000063]
+16,58,Learning Disability Profiles,learning-disabilities,"[1938132702, 1938132703, 1938132704, 1938132705]"
+17,65,NHS Health Check,nhs-health-check-detailed,"[1938132726, 1938132768, 1938132770, 1938132767]"
+18,76,Musculoskeletal Conditions,msk,"[1938133186, 1938133152, 1938133151, 1938133218, 1938132773, 1938133148, 1938133149, 1938133150]"
+19,79,Co-occurring substance misuse and mental health issues,drugsandmentalhealth,"[1938132935, 1938132790, 1938132791, 1938132792, 1938132936, 1938133084]"
+20,84,Dementia Profile,dementia,"[1938133052, 1938132811, 1938132859, 1938132891, 1938132897, 1938132893, 1938132894]"
+21,86,TB Strategy Monitoring Indicators,tb-monitoring,[1938132814]
+22,87,Local Alcohol Profiles for England,local-alcohol-profiles,"[1938132984, 1938132832, 1938132833, 1938132982, 1938132848, 1938132835, 1938132895, 1938133118]"
+23,91,Suicide Prevention Profile,suicide,"[1938132828, 1938132831, 1938132834]"
+24,92,Cancer Services,cancerservices,"[1938132830, 1938133085]"
+25,95,Palliative and End of Life Care Profiles,end-of-life,"[1938132883, 1938132902, 1938132882, 1938132901, 1938133060, 1938133338, 1938132951, 1938132916]"
+26,98,Mental Health and Wellbeing JSNA,mh-jsna,"[1938132922, 1938132920, 1938132921, 1938132923, 1938132924]"
+27,99,Physical Activity,physical-activity,"[1938132899, 1938133001, 1938133004]"
+28,101,AMR local indicators,amr-local-indicators,"[1938133070, 1938132908, 1938132909, 1938132910, 1938132917, 1938132929, 1938132967, 1938132968]"
+29,102,Perinatal Mental Health,perinatal-mental-health,"[1938132960, 1938132915, 1938132957, 1938132975]"
+30,103,INLIQ test profile,inliq,[1938133101]
+31,105,Child and Maternal Health,child-health-profiles,"[1938133228, 1938133222, 1938133223, 1938133257, 1938133224, 1938133258, 1938133259, 1938133260, 1938133225, 1938133261, 1938133226, 1938133229, 1938133230, 1938133231, 1938133232, 1938133263, 1938133236, 1938133237, 1938133238]"
+32,106,Crisis Care Profile,crisis-care,"[1938132962, 1938133121, 1938132963, 1938132964, 1938132965, 1938132966]"
+33,109,Marmot Indicators for Local Authorities,marmot-indicators,[1938132973]
+34,110,Healthy life expectancy and life expectancy around the 2011 Census: Marmot Indicators,marmot-healthy-life-expectancy,[1938132980]
+35,111,Marmot Indicators,marmot,[1938132981]
+36,125,Mortality Profile,mortality-profile,"[1938133009, 1938133056, 1938133058]"
+37,130,Wider Determinants of Health,wider-determinants,"[1938133043, 1938133042, 1938133044, 1938133045, 1938133073, 1938133071, 1938133119, 1938133080, 1938133262]"
+38,132,Populations,populations,[1938133081]
+39,133,Children and Young People's Mental Health and Wellbeing,cypmh,"[1938133090, 1938133089, 1938133095, 1938133096, 1938133094, 1938133292]"
+40,135,Cardiovascular Disease,cardiovascular,"[1938133106, 1938133107, 1938133108, 1938133109, 1938133110]"
+41,137,Technical Guidance,guidance,[1938133128]
+42,139,Diabetes,diabetes-ft,"[1938133138, 1938133136, 1938133158, 1938133135, 1938133137, 1938133181]"
+43,140,Public Health Dashboard - Longer Lives,public-health-dashboard,"[1938133162, 1938133145, 1938133161, 1938133163, 1938133155, 1938133144, 1938133159, 1938133160, 1938133221]"
+44,141,Public Health Dashboard,public-health-dashboard-ft,"[1938133143, 1938133156, 1938133197, 1938133154, 1938133142, 1938133198, 1938133157, 1938133220]"
+45,143,Local Health,local-health,"[1938133180, 1938133183, 1938133184, 1938133185]"
+46,146,Productive Healthy Ageing Profile,healthy-ageing,"[1938133280, 1938133250, 1938133251, 1938133252, 1938133253]"
+47,147,"Cardiovascular Disease, Diabetes and Kidney Disease",cardiovascular-disease-diabetes-kidney-disease,[1938133264]
+48,148,Diabetes Footcare,diabetes-footcare,[1938133265]
+49,150,Cardiovascular Disease Primary Care Intelligence,cardiovascular-disease-primary-care,[1938133266]
+50,152,Public Health Dashboard - Longer Lives (Supporting Indicators),public-health-dashboard-supporting-indicators,[1938132706]
+51,154,Inequality Tools,inequality-tools,[1938133282]
+52,155,SPOT - Spend and Outcomes Tool,spot,"[1938133283, 1938133284, 1938133285, 1938133299]"
+53,156,Development Profile for Testing fingertipsR,development-profile-for-testing-fingertipsr,"[1938133293, 1938133294, 1938133301]"

@@ -1,0 +1,87 @@
+,Area type ID,Name,Short,IsSearchable,CanBeDisplayedOnMap
+1,1,Local Authority District,LA,False,False
+2,2,Primary Care Trust,Primary Care Trust,True,False
+3,3,Middle Super Output Area,MSOA,True,True
+4,4,Lower Super Output Area,LSOA,False,False
+5,5,Strategic Health Authority,SHA,False,False
+6,6,Government Office Region,Region,True,True
+7,7,General Practice,GP,False,True
+8,8,Ward,Ward,True,True
+9,9,County ,County,False,False
+14,14,Acute Trust,Acute Trust,False,False
+15,15,England,England,False,False
+16,16,Unitary Authority,UA,False,False
+18,18,GP classification by shapes from YHPHO,GP Shape Classification,False,False
+20,20,Mental Health Trust,Mental Health Trust,False,False
+21,21,"Rurality (based on popDensity of PCarea,01 census)",GP rurality,False,False
+22,22,SHA Cluster (from 2011/12),SHA Cluster,False,False
+40,40,Care Trust,Care Trust,False,False
+41,41,Ambulance Trust,Ambulance Trust,True,False
+42,42,2013 PHE Regions (4),PHE Region ,False,False
+43,43,2013 PHE Centres (15),PHE Centre,False,False
+44,44,"E40, former commissioning regions",NHS region,False,False
+46,46,"E39, former sub-region, former Local area teams)",NHS region - local office,True,True
+47,47,Local commissioning group,LCG,False,False
+48,48,"PHE Centres, not continued from 2015 onwards (11)",PHE Centre 2013-2015,False,False
+49,49,"PHE Centres, new 2015 (5)",PHE Centre from 2015,False,False
+50,50,"PHE Centres 2013, unchanged (4)",PHE Centre from 2013,False,False
+51,51,CCG unchanged (April 2017),CCG unchanged 17,False,False
+52,52,CCG introduced April 2017 (exc. Morecambe Bay old code),CCG new 17 (exc.Morecambe),False,False
+53,53,CCG superseded April 2017,CCG old 17,False,False
+54,54,CCG introduced April 2018,CCG new 18,False,False
+55,55,CCG superseded April 2018,CCGs old 2018,False,False
+56,56,CCG still unchanged April 2019,CCGs unchanged 2019,False,False
+57,57,CCG new 4/17 obsolete 4/18 (Morecambe Bay old code),CCG new 4/17 obsolete 4/18,False,False
+58,58,CCGs introduced April 2019,CCGs new 4/2019,False,False
+59,59,CCGs sup,CCGs old 2019,False,False
+101,101,Local authority districts and Unitary Authorities,District & UA (pre 4/19),True,True
+102,102,Counties and Unitary Authorities,County & UA (pre 4/19),True,True
+103,103,PHEC 2013 only plus PHEC unchanged,PHE Centres (2013),True,False
+104,104,PHEC 2015 new plus PHEC 2013 unchanged,PHE Centres (2015),True,True
+105,105,Dummy SHA e.g. add Milton Keynes to East Mids,Dummy SHA,False,False
+106,106,Dummy region e.g. add Milton Keynes to East Mids,Dummy region,False,False
+109,109,ONS statistical neighbour cluster - top level,ONS 2001 cluster supergroup,False,False
+110,110,ONS statistical neighbour cluster - middle level,ONS 2001 cluster group,False,False
+111,111,ONS statistical neighbour cluster - bottom level,ONS 2001 cluster subgroup,False,False
+112,112,Strategic Clinical Network,Strategic Clinical Network,True,True
+113,113,Parliamentary constituency (2014),Parliamentary constituency,False,False
+114,114,ONS statistical neighbour cluster 2011 - top level,ONS 2011 supergroup (superseded),False,False
+115,115,ONS statistical neighbour cluster 2011 - middle level,ONS 2011 group (superseded),False,False
+116,116,ONS statistical neighbour cluster 2011 - bottom level,ONS 2011 subgroup (superseded),False,False
+117,117,Mental Health and Acute Trust combined,MH and Acute Trust,False,False
+118,118,Acute Trusts (incl.combined MH+Acute),Acute Trusts,True,False
+119,119,Mental Health Trusts (incl.combined MH+Acute),Mental Health Trusts,True,False
+120,120,Sustainability and Transformation Footprints,STP,True,True
+121,121,Abdominal aortic aneurysm screening cohort,AAA Screening Cohorts,True,False
+122,122,Bowel Cancer Screening Centres,Bowel Cancer Screening Centres,True,False
+123,123,Diabetic Eye Screening Programmes,Diabetic Eye Screening Programmes,True,False
+124,124,Newborn Screening Sites,Newborn Screening Sites,True,False
+125,125,Maternity Services,Maternity Services,True,False
+126,126,Combined authorities,Combined authorities,True,False
+127,127,Police Force Area,Police Force Area,True,False
+128,128,GP cluster groups,GP cluster groups,True,False
+129,129,Laboratory,Laboratory,True,False
+130,130,Breast Screening Service,Breast Screening Service,True,False
+152,152,CCG unchanged plus new 2017,CCGs (2017/18),True,True
+153,153,CCG unchanged plus old 2017,CCGs (pre 4/2017),False,True
+154,154,CCG unchanged plus new 2018,CCGs (2018/19),True,True
+155,155,ONS 2011 supergroup (revised),ONS 2011 supergroup,False,False
+156,156,ONS 2011 group (revised),ONS 2011 group,False,False
+157,157,ONS 2011 subgroup (revised),ONS 2011 subgroup,False,False
+158,158,Hospital trust type,Trust type,True,False
+159,159,United Kingdom,UK,False,False
+160,160,LA unchanged,LA unchanged,False,False
+161,161,LA new 2019,LA new 2019,False,False
+162,162,LA old 2019,LA obsolete 2019,False,False
+165,165,CCGs unchanged plus new 2019,CCGs (since 4/19),True,True
+170,170,UA unchanged,UA unchanged,False,False
+171,171,UA new 2019,UA new 2019,False,False
+172,172,UA old 2019,UA obsolete 2019,False,False
+173,173,future UAs,UA future areas,False,False
+180,180,County unchanged,County unchanged,False,False
+182,182,County old 2019,County obsolete 2019,False,False
+201,201,LTLA (post 4/19),District & UA,True,True
+202,202,UTLA (post 4/19),County & UA,True,True
+203,203,IAPT services,IAPT services,True,False
+204,204,Primary Care Network (provisional),PCN (provisional),True,False
+205,205,Local Maternity System,Local Maternity System,True,False
