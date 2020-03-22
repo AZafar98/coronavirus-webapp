@@ -68,6 +68,23 @@ def extract_summary_figure(data):
 
     return max_counts
 
+def explore_profile_data(profile_id):
+
+    """
+    This is an easier way to find some interesting indicators to explore.
+    :param profile_id: PHE Fingertips profile ID
+    :return: Unique indicators IDs and Names for a given profile
+    """
+
+    # Some useful profile IDs
+    # 40 - Common mental health disorders
+    # 135 - Cardiovascular disease
+
+    profile_data = ftp.retrieve_data.get_all_data_for_profile(profile_id)
+
+    unique = profile_data.drop_duplicates('Indicator ID').sort_values(by='Indicator ID')
+
+    return unique
 
 heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True)
 summary_heart = extract_summary_figure(heart_data)
@@ -75,3 +92,4 @@ summary_heart = extract_summary_figure(heart_data)
 depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True)
 summary_depression = extract_summary_figure(depression_data)
 
+profile_test = explore_profile_data(40)
