@@ -46,7 +46,7 @@ def get_data(indicator, england_only = True, keep_cols = None, dev = False):
     return get_data, meta, all_data
 
 
-def extract_summary_figure(data):
+def extract_summary_figure(data, json = False):
     time_periods = data['Time period'].unique()
 
     # There seems to be a summary figure for the metrics with no category for each time period, so extract this and ignore
@@ -66,7 +66,10 @@ def extract_summary_figure(data):
 
     max_counts = max_counts.reset_index(drop=True)
 
-    return max_counts
+    if json is True:
+        return max_counts.to_json()
+    else:
+        return max_counts
 
 def explore_profile_data(profile_id):
 
@@ -87,9 +90,9 @@ def explore_profile_data(profile_id):
     return unique
 
 heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True)
-summary_heart = extract_summary_figure(heart_data)
+summary_heart = extract_summary_figure(heart_data, json=False)
 
 depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True)
-summary_depression = extract_summary_figure(depression_data)
+summary_depression = extract_summary_figure(depression_data, json=False)
 
 profile_test = explore_profile_data(40)
