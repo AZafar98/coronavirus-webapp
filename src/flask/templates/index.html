@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{%block title %} COVID-19 Live {% endblock %}
+
+{% block content %}
+<h1>COVID-19 Live</h1>
+
+<div id="container">
+
+    <div id="covid-container">
+        <div id="covid-count">
+            {{ latest_data }}
+        </div>
+
+        <div id="covid-count-strapline">
+            UNITED KINGDOM CORONAVIRUS CASES
+        </div>
+    </div>
+    <h3 id="other-subtitle">Thinking about other issues</h3>
+</div>
+
+{% endblock %}

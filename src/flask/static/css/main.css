@@ -1,0 +1,117 @@
+body {
+    background: #F5E4E1;
+}
+
+#container{
+    position: absolute;
+    float: left;
+    top: 0;
+    z-index: 1;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#covid-container{
+    position: absolute;
+    float: left;
+    width: 50%;
+    height: 25%;
+    left: 25%;
+    top: 25%;
+}
+
+#covid-count {
+    position: absolute;
+    width: 50%;
+    height: 0;
+    left: 0;
+    top: 20%;
+
+    font-family: 'Michroma';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 75px;
+    line-height: 0;
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+
+    color: #D02F46;
+
+}
+
+#covid-count-strapline {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    left: 0;
+    top: 50%;
+
+    font-family: Michroma;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 0;
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: #ED8182;
+}
+
+#other-subtitle {
+    position: absolute;
+    /*width: 737px;*/
+    /*height: 31px;*/
+    left: 2%;
+    top: 45%;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 0px;
+    /* or 0% */
+
+    /*display: flex;*/
+    align-items: center;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: #000000;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #F5E4E1;
+    font-family: Roboto;
+}
+
+.topnav a {
+  float: left;
+  color: #ED8182;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+    background-color: #F5E4E1;
+    color: #ED8182;
+    text-decoration: underline;
+    text-underline-style: thick;
+}
+
+#nav-float{
+    float: right;
+}
