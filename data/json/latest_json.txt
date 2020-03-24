@@ -1,0 +1,1 @@
+{"latest": {"confirmed": 336004, "deaths": 14643, "recovered": 98334}}
