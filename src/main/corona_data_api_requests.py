@@ -26,3 +26,4 @@ def total(country_code):
     api_response = requests.get('https://api.xapix.dev/coronavirus-data/covid-19-api-repository/v2/total/{}'.format(country_code))
 
     return api_response.text
+

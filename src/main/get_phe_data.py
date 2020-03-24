@@ -85,6 +85,9 @@ def explore_profile_data(profile_id):
 
     profile_data = ftp.retrieve_data.get_all_data_for_profile(profile_id)
 
+    if profile_data.empty:
+        raise ValueError("Data returned by Fingertips is empty. Possible profile_id is invalid.")
+
     unique = profile_data.drop_duplicates('Indicator ID').sort_values(by='Indicator ID')
 
     return unique
@@ -95,4 +98,4 @@ summary_heart = extract_summary_figure(heart_data, json=False)
 depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True)
 summary_depression = extract_summary_figure(depression_data, json=False)
 
-profile_test = explore_profile_data(40)
+profile_test = explore_profile_data(41001)
