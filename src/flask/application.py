@@ -7,7 +7,6 @@ footer_text = '</body>\n</html>'
 # EB looks for an 'application' callable by default
 application = Flask(__name__)
 
-
 def index():
     return render_template('index.html', latest_data=get_cases_from_json(),
                            heart_data=get_heart_data())
