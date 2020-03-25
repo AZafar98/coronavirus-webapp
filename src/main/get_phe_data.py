@@ -92,10 +92,41 @@ def explore_profile_data(profile_id):
 
     return unique
 
-heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True)
-summary_heart = extract_summary_figure(heart_data, json=False)
+def get_figure_for_flask(data):
+    """
+    Get the single figure we want to display on the webpage.
+    Pass the result of extract_summary_figure() into this function.
+    :param data: return from extract_summary_figure()
+    :return: Most recent figure for data
+    """
 
-depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True)
-summary_depression = extract_summary_figure(depression_data, json=False)
+    def sort_fn(elem):
+        """
+        Function to use as key in sorting data to ensure we can get the latest data
+        :param elem:
+        :return:
+        """
+        return elem.split('/')[1]
 
-profile_test = explore_profile_data(41001)
+    # Make sure the data is sorted by year, so we can then assume the last element is the most recent
+    time_periods = sorted(data['Time period'].tolist(), key=sort_fn)
+    most_recent_year = time_periods[-1]
+
+    most_recent_data = data.loc[data['Time period'] == most_recent_year, :]
+
+    return most_recent_data.iloc[0].loc['Count']
+
+
+def get_heart_data():
+
+    heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True)
+    summary_heart = extract_summary_figure(heart_data, json=False)
+    return get_figure_for_flask(summary_heart)
+
+get_heart_data()
+
+# depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True)
+# summary_depression = extract_summary_figure(depression_data, json=False)
+#
+# profile_test = explore_profile_data(41001)
+#
