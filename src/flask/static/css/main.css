@@ -82,6 +82,7 @@ body {
     overflow: hidden;
     background-color: #F5E4E1;
     font-family: Roboto;
+    text-transform: uppercase;
 }
 
 .topnav a {
