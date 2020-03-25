@@ -70,4 +70,4 @@ def get_cases_from_json():
 
     # TODO: For simplicity, just return confirmed cases for now. Might be useful to return other data later.
     # return confirmed, deaths, latest
-    return confirmed
+    return f'{confirmed:,}'

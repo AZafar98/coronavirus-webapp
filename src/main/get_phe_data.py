@@ -114,7 +114,7 @@ def get_figure_for_flask(data):
 
     most_recent_data = data.loc[data['Time period'] == most_recent_year, :]
 
-    return most_recent_data.iloc[0].loc['Count']
+    return f"{int(most_recent_data.iloc[0].loc['Count']):,}"
 
 
 def get_heart_data():
