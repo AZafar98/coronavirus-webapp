@@ -36,8 +36,8 @@ def save_corona_data():
     global_timeline_json = global_timeline()
     latest_json = latest()
     locations_json = locations()
-    timelines_json = timeline('UK')
-    total_json = total('UK')
+    timelines_json = timeline('GB')
+    total_json = total('GB')
 
     write_json(global_timeline_json, "global_timeline_json.txt")
     write_json(latest_json, "latest_json.txt")
@@ -47,7 +47,7 @@ def save_corona_data():
 
     return 0
 
-GET_DATA=True
+# GET_DATA=True
 if GET_DATA is True:
     save_corona_data()
 
@@ -70,4 +70,5 @@ def get_cases_from_json():
 
     # TODO: For simplicity, just return confirmed cases for now. Might be useful to return other data later.
     # return confirmed, deaths, latest
-    return f'{confirmed:,}'
+    return f'{confirmed:,}'.strip()
+

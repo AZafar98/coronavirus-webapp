@@ -2,126 +2,55 @@ body {
     background: #F5E4E1;
 }
 
-#container{
-    position: absolute;
-    float: left;
-    top: 0;
-    z-index: 1;
-    right: 0;
-    width: 98%;
-    height: 100%;
-}
-
-#covid-container{
-    position: absolute;
-    text-align: center;
-    float: left;
-    width: 50%;
-    height: 25%;
-    left: 25%;
-    top: 25%;
+#covid-number {
+    font-size: clamp(25px, 10vw, 125px);
+    text-align-last: center;
 }
 
 #covid-count {
     display: inline-block;
-    margin: 0 auto;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
     font-family: 'Michroma';
     font-style: normal;
     font-weight: bold;
-    font-size: 100px;
+    font-size: 10vw;
     line-height: 0;
     align-items: center;
     text-align: center;
     letter-spacing: 0.02em;
     color: #D02F46;
+    /*background: #edcfca;*/
 
 }
 
 #covid-count-strapline {
-    position: relative;
-    display: inline-flex;
-    /* width: 100%; */
-    height: 75%;
-    left: 0;
-    top: 0;
+    position: inherit;
+    display: block;
+    margin-top: min(40px,10vh);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    font-size: 25px;
-    line-height: 0;
-    align-items: center;
-    text-align: center;
+    font-size: 2vw;
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: #ED8182;
+    text-align: left;
+    float: none;
+    width: auto;
+    height: auto;
 }
 
 #other-subtitle {
-
-    /* position: relative; */
-    text-align: left;
-    float: left;
-    width: auto;
-    height: auto;
-    left: 0;
-    top: 0;
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #F5E4E1;
-    font-family: Roboto;
-    text-transform: uppercase;
-}
-
-.topnav a {
-  float: left;
-  color: #ED8182;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-    font-family: Roboto;
-    background-color: #F5E4E1;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
     color: #ED8182;
-    text-decoration: underline;
-    text-underline-style: thick;
 }
 
-#nav-float{
-    float: right;
-}
-
-#time-range-container {
-    position: absolute;
-    width: 100%;
-    height: 10%;
-    left: 0;
-    top: 70%;
-    display: inline-block;
-}
 
 #time-range-button {
-    display: inline-grid;
-    flex-direction: row;
-    padding: 0px 5px;
-    width: auto;
-    height: 150%;
-    left: 0;
-    top: 0;
+    padding: 1vh 1vw;
     border: 1.5px solid #D02F46;
     border-radius: 4px;
     text-align: center;
@@ -129,8 +58,9 @@ body {
     color: #ED8182;
     cursor: auto;
     text-transform: uppercase;
-    font-size: 50%;
-    margin-right: 2%;
+    font-size: 1.25vw;
+    margin-right: 2vw;
+    margin-top: min(2vh, 100px);
 }
 
 #time-range-button:hover{
@@ -142,39 +72,48 @@ body {
     color: #D02F46
 }
 
-#other-factors{
-        position: absolute;
+#other-factors {
+    position: absolute;
     width: auto;
     height: 0;
-    /*left: 2%;*/
-    top: 45%;
+    top: 45vh;
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 2.25vw;
     line-height: 0px;
     display: flex;
     align-items: center;
     letter-spacing: -0.02em;
     text-transform: capitalize;
     color: #ED8182;
-
 }
 
 #factor{
     display: inline-grid;
-    /* margin: 0 auto; */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 100%;
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 1.5vw;
     line-height: 4;
     text-align: left;
     letter-spacing: 0.02em;
     color: #D02F46;
+}
+
+#disease-title {
+    position: inherit;
+    display: block;
+    margin-top: min(40px,10vh);
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    /*font-size: 2vw;*/
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #ED8182;
+    text-align: left;
+    float: none;
+    width: auto;
+    height: auto;
 }

@@ -4,47 +4,44 @@
 
 {% block content %}
 
-<div id="container">
+<div class="container-fluid text-center">
 
-    <div id="covid-container">
-        <div id="covid-count">
-            {{ latest_data }}
-
-            <div id="covid-count-strapline">
-                UNITED KINGDOM CORONAVIRUS CASES
-
-                <div id="time-range-container">
-                    <button id="time-range-button">
-                        Total
-                    </button>
-                    <button id="time-range-button">
-                        5 Days
-                    </button>
-                    <button id="time-range-button">
-                        24 Hours
-                    </button>
-                </div>
-
+    <div class="row content text-center align-items-center">
+        <div class="col-md-8 col-md-offset-2" id="covid-count">
+            <h1 id="covid-number">
+                {{- latest_data -}}
+                <small id="covid-count-strapline">United Kingdom coronavirus cases</small>
+            </h1>
+        </div>
+        <div class="row content text-center">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <button type="button" class="btn btn-primary" id="time-range-button">
+                    Total
+                </button>
+                <button type="button" class="btn btn-primary" id="time-range-button">
+                    5 Days
+                </button>
+                <button type="button" class="btn btn-primary" id="time-range-button">
+                    24 Hours
+                </button>
             </div>
         </div>
 
+        <div class="w-100"></div>
+        <div class="w-100"></div>
+        <div class="row"></div>
 
+        <div class="row content text-left">
 
-    </div>
+            <h2 class="col-md-offset-1" id="other-subtitle">
+                Other causes of death in the UK:
+            </h2>
 
-    <div id="other-factors">
-
-        <div id="other-subtitle">
-            Other causes of death in the UK:
-
-
-            <div id="factor">
-                HEART DISEASE:
-                {{ heart_data }}
+            <h3 class="col-md-offset-1" id="disease-title">Heart Disease</h3>
+            <div class="col-md-8 col-md-offset-1" id="factor">
+                {{- heart_data -}}
             </div>
-
         </div>
-
     </div>
 </div>
 
