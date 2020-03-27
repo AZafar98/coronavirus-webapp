@@ -1,6 +1,5 @@
 from src.main.corona_data_api_requests import global_timeline, latest, locations, timeline, total
 import json
-from pprint import pprint
 import pandas as pd
 import os
 import warnings
@@ -12,6 +11,7 @@ import re
 # read from that instead
 
 GET_DATA = False
+
 
 def write_json(in_json, filename):
     """
@@ -30,6 +30,7 @@ def write_json(in_json, filename):
         json.dump(out_json, outfile)
 
     return 0
+
 
 def save_corona_data():
     """
@@ -50,6 +51,7 @@ def save_corona_data():
     write_json(total_json, "total_json.txt")
 
     return 0
+
 
 # GET_DATA=True
 if GET_DATA is True:
@@ -102,6 +104,7 @@ def download_corona_data():
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
 
 # download_corona_data()
+
 
 def get_corona_data():
     """
@@ -185,7 +188,7 @@ def get_latest_figures(data, period='TOTAL'):
 
     if period.upper() == "TOTAL":
         dates = [date_cols[-1]]
-        total_df = data.loc[:,dates]
+        total_df = data.loc[:, dates]
 
         cases_sum = total_df.sum(axis=0)
         cases = cases_sum.iat[0]
@@ -224,7 +227,7 @@ def get_latest_figures(data, period='TOTAL'):
         return new_cases_sum, dates_used
 
 
-def display_covid_cases(cases = True, period = 'Total'):
+def display_covid_cases(cases=True, period='Total'):
     """
 
     :param bool cases: If True, return number of cases in period. If False, return dates used for that period.
@@ -246,4 +249,3 @@ def display_covid_cases(cases = True, period = 'Total'):
         return uk_cases
     else:
         return dates
-
