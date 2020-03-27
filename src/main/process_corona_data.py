@@ -126,10 +126,6 @@ def get_corona_data():
 confirmed, recovered, deaths = get_corona_data()
 
 
-
-print(confirmed.columns)
-
-
 def data_for_country(data, country, province = None):
     """
     Get the data for specified country and (optional) province.
