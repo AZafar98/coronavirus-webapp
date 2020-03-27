@@ -7,7 +7,7 @@ body {
     text-align-last: center;
 }
 
-#covid-count {
+#covidCount {
     display: inline-block;
     font-family: 'Michroma';
     font-style: normal;
@@ -22,10 +22,10 @@ body {
 
 }
 
-#covid-count-strapline {
+#covidCountStrapline {
     position: inherit;
     display: block;
-    margin-top: max(10px,1vh);
+    margin-top: max(10px, 1vh);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
@@ -39,7 +39,7 @@ body {
     height: auto;
 }
 
-#other-subtitle {
+#otherSubtitle {
     font-size: clamp(15px, 3vw, 125px);
     font-family: Inter;
     font-style: normal;
@@ -50,8 +50,8 @@ body {
 }
 
 
-#time-range-button {
-padding: 1vh 1vw;
+.timeRangeButton {
+    padding: 1vh 1vw;
     border: 1.5px solid #D02F46;
     border-radius: 4px;
     text-align: center;
@@ -64,16 +64,16 @@ padding: 1vh 1vw;
     margin-top: min(5px, 1vh);
 }
 
-#time-range-button:hover{
+.timeRangeButton:hover {
     background-color: #D02F46;
     color: white
 }
 
-#time-range-button:focus{
+.timeRangeButton:focus {
     color: #D02F46
 }
 
-#other-factors {
+#otherFactors {
     position: absolute;
     width: auto;
     height: 0;
@@ -90,7 +90,7 @@ padding: 1vh 1vw;
     color: #ED8182;
 }
 
-#factor{
+#factor {
     /*display: inline-grid;*/
     font-family: Inter;
     font-style: normal;
@@ -102,7 +102,7 @@ padding: 1vh 1vw;
     color: #D02F46;
 }
 
-#disease-title {
+#diseaseTitle {
     font-size: clamp(10px, 2vw, 100px);
     font-family: Inter;
     font-style: normal;
@@ -111,4 +111,5 @@ padding: 1vh 1vw;
     text-transform: capitalize;
     color: #ED8182;
 }
+
 }

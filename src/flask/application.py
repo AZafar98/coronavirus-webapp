@@ -4,7 +4,7 @@ from src.main.get_phe_data import get_heart_data
 
 footer_text = '</body>\n</html>'
 
-# EB looks for an 'application' callable by default,
+# EB looks for an 'application' callable by default.
 application = Flask(__name__)
 
 def index():
