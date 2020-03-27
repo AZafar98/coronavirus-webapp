@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from src.main.process_corona_data import get_cases_from_json
+from src.main.process_corona_data import display_covid_cases
 from src.main.get_phe_data import get_heart_data
 
 footer_text = '</body>\n</html>'
@@ -8,8 +8,13 @@ footer_text = '</body>\n</html>'
 application = Flask(__name__)
 
 def index():
-    return render_template('index.html', latest_data=get_cases_from_json(),
-                           heart_data=get_heart_data())
+    return render_template('index.html', total_cases = display_covid_cases(cases=True, period='Total'),
+                           total_cases_dates = display_covid_cases(cases=False, period='Total'),
+                           cases_24h = display_covid_cases(cases=True, period='24h'),
+                           cases_24h_dates = display_covid_cases(cases=False, period='24h'),
+                           cases_7days = display_covid_cases(cases=True, period='7days'),
+                           cases_7days_dates = display_covid_cases(cases=False, period='7days'),
+                            heart_data = get_heart_data())
 
 application.add_url_rule('/', 'index', index)
 
