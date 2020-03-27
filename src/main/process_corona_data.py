@@ -3,6 +3,7 @@ import json
 from pprint import pprint
 import pandas as pd
 import os
+import warnings
 
 # We need to do some stuff with the data returned by the API calls to display the relevant info
 
@@ -123,3 +124,34 @@ def get_corona_data():
 
 confirmed, recovered, deaths = get_corona_data()
 
+
+
+print(confirmed.columns)
+
+
+def data_for_country(data, country, province = None):
+
+    country_data = data.loc[data['Country/Region'].str.upper() == country.upper(),:].reset_index(drop=True)
+    if len(country_data) == 0:
+        countries = data['Country/Region'].unique().tolist()
+        raise ValueError("Invalid country '{}' specified. Available countries are \n {}.".format(country, countries))
+
+    # Some countries have a Python None value for province. Replace these with string so we can still find them
+    country_data['Province/State'] = country_data['Province/State'].fillna('None')
+
+    if province is not None:
+        country_data = country_data.loc[country_data['Province/State'].str.upper() == province.upper(), :]
+
+        # Invalid province specified
+        if len(country_data) == 0:
+            raise ValueError("Invalid province '{}' specified for country '{}'.".format(province, country))
+
+    if len(country_data) > 1:
+        provinces = country_data['Province/State'].unique().tolist()
+        warnings.warn("More than one province available for {}. Please specify province from {}, or all will be used."
+                      .format(country, provinces))
+
+    return country_data
+
+
+test = data_for_country(confirmed, 'United Kingdom', province='None')
