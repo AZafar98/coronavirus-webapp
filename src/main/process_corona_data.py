@@ -1,6 +1,8 @@
 from src.main.corona_data_api_requests import global_timeline, latest, locations, timeline, total
 import json
 from pprint import pprint
+import pandas as pd
+import os
 
 # We need to do some stuff with the data returned by the API calls to display the relevant info
 
@@ -71,4 +73,53 @@ def get_cases_from_json():
     # TODO: For simplicity, just return confirmed cases for now. Might be useful to return other data later.
     # return confirmed, deaths, latest
     return f'{confirmed:,}'.strip()
+
+
+def download_corona_data():
+    """
+    Get the data straight from the Git repo, since the API has stopped working
+
+    The data is updated once per day, so this function should be run daily.
+    :return:
+    """
+
+    OUT_PATH = "../../data/json/{}"
+
+    CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+    DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+    RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
+
+    confirmed_data = pd.read_csv(CONFIRMED_URL)
+    deaths_data = pd.read_csv(DEATHS_URL)
+    recovered_data = pd.read_csv(RECOVERED_URL)
+
+    # Save the data locally so it doesn't have to be accessed from GitHub every time.
+
+    confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
+    deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
+    recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
+
+# download_corona_data()
+
+def get_corona_data():
+    """
+    Get the data to use for analysis. If it is not saved locally, download it
+    :return:
+    """
+
+    if not (os.path.exists("../../data/json/confirmed_cases.txt") or
+            os.path.exists("../../data/json/deaths_cases.txt") or
+            os.path.exists("../../data/json/recovered_cases.txt")):
+
+        print("error")
+        download_corona_data()
+
+    else:
+        confirmed_df = pd.read_json("../../data/json/confirmed_cases.txt")
+        recovered_df = pd.read_json("../../data/json/recovered_cases.txt")
+        deaths_df = pd.read_json("../../data/json/deaths_cases.txt")
+
+    return confirmed_df, recovered_df, deaths_df
+
+confirmed, recovered, deaths = get_corona_data()
 
