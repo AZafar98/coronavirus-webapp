@@ -2,7 +2,7 @@ body {
     background: #F5E4E1;
 }
 
-#covid-number {
+#covidNumber {
     font-size: clamp(25px, 10vw, 125px);
     text-align-last: center;
 }
@@ -25,7 +25,7 @@ body {
 #covid-count-strapline {
     position: inherit;
     display: block;
-    margin-top: min(40px,10vh);
+    margin-top: max(10px,1vh);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
@@ -40,6 +40,7 @@ body {
 }
 
 #other-subtitle {
+    font-size: clamp(15px, 3vw, 125px);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
@@ -50,7 +51,7 @@ body {
 
 
 #time-range-button {
-    padding: 1vh 1vw;
+padding: 1vh 1vw;
     border: 1.5px solid #D02F46;
     border-radius: 4px;
     text-align: center;
@@ -60,7 +61,7 @@ body {
     text-transform: uppercase;
     font-size: 1.25vw;
     margin-right: 2vw;
-    margin-top: min(2vh, 100px);
+    margin-top: min(5px, 1vh);
 }
 
 #time-range-button:hover{
@@ -90,30 +91,24 @@ body {
 }
 
 #factor{
-    display: inline-grid;
+    /*display: inline-grid;*/
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
     font-size: 1.5vw;
-    line-height: 4;
-    text-align: left;
+    /*line-height: 4;*/
+    /*text-align: left;*/
     letter-spacing: 0.02em;
     color: #D02F46;
 }
 
 #disease-title {
-    position: inherit;
-    display: block;
-    margin-top: min(40px,10vh);
+    font-size: clamp(10px, 2vw, 100px);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    /*font-size: 2vw;*/
     letter-spacing: -0.02em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ED8182;
-    text-align: left;
-    float: none;
-    width: auto;
-    height: auto;
+}
 }

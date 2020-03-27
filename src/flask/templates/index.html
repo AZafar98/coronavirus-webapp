@@ -7,42 +7,50 @@
 <div class="container-fluid text-center">
 
     <div class="row content text-center align-items-center">
-        <div class="col-md-8 col-md-offset-2" id="covid-count">
-            <h1 id="covid-number">
+        <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3" id="covid-count">
+            <h1 id="covidNumber">
                 {{- total_cases -}}
                 <small id="covid-count-strapline">United Kingdom coronavirus cases</small>
             </h1>
         </div>
-        <div class="row content text-center">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <button type="button" class="btn btn-primary" id="time-range-button">
-                    Total
-                </button>
-                <button type="button" class="btn btn-primary" id="time-range-button">
-                    5 Days
-                </button>
-                <button type="button" class="btn btn-primary" id="time-range-button">
-                    24 Hours
-                </button>
-            </div>
+    </div>
+
+    <div class="row content text-center align-items-center">
+        <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3 text-center">
+            <button type="button" class="btn btn-primary" id="time-range-button">
+                Total
+            </button>
+            <button type="button" class="btn btn-primary" id="time-range-button">
+                5 Days
+            </button>
+            <button type="button" class="btn btn-primary" id="time-range-button">
+                24 Hours
+            </button>
         </div>
+    </div>
 
-        <div class="w-100"></div>
-        <div class="w-100"></div>
-        <div class="row"></div>
+    <div class="row content text-center align-items-center">
+        <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3 text-center my-2">
+            <p><small>
+                As of &nbsp {{- total_cases_dates -}}
+            </small></p>
+        </div>
+    </div>
 
-        <div class="row content text-left">
 
-            <h2 class="col-md-offset-1" id="other-subtitle">
-                Other causes of death in the UK:
-            </h2>
-
-            <h3 class="col-md-offset-1" id="disease-title">Heart Disease</h3>
-            <div class="col-md-8 col-md-offset-1" id="factor">
+    <div class="row content text-left">
+        <div class="col-md-10 offset-md-1 col-sm-10 offset-sm-1 mt-5" id="other-subtitle">
+            Other causes of death in the UK:
+        </div>
+        <div class="col-md-10 offset-md-1 col-sm-10 offset-sm-1" id="disease-title">
+            Heart Disease
+            <div class="col-md-8 offset-md-2" id="factor">
                 {{- heart_data -}}
             </div>
         </div>
+
     </div>
 </div>
+
 
 {% endblock %}

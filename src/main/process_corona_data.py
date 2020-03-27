@@ -170,6 +170,7 @@ def display_covid_cases(cases=True, period='Total'):
     uk_cases, dates = get_latest_figures(uk_data, period=period)
 
     if cases is True:
-        return f'{uk_cases:,}'.strip()
+        # return f'{uk_cases:,}'.strip()
+        return uk_cases
     else:
         return dates
