@@ -173,4 +173,4 @@ def display_covid_cases(cases=True, period='Total'):
         # return f'{uk_cases:,}'.strip()
         return uk_cases
     else:
-        return dates
+        return str(dates)

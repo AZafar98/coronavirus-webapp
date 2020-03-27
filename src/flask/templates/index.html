@@ -8,8 +8,8 @@
 
     <div class="row content text-center align-items-center">
         <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3" id="covidCount">
-            <h1 id="covidNumber">
-
+            <h1 id="covidNumberTitle">
+                <span id="covidNumber"></span>
                 <small id="covidCountStrapline">United Kingdom coronavirus cases</small>
             </h1>
         </div>
@@ -32,7 +32,7 @@
     <div class="row content text-center align-items-center">
         <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3 text-center my-2">
             <p><small>
-                As of &nbsp {{- total_cases_dates -}}
+                For period <span id="dataDate"></span>
             </small></p>
         </div>
     </div>

@@ -2,7 +2,7 @@ body {
     background: #F5E4E1;
 }
 
-#covidNumber {
+#covidNumberTitle {
     font-size: clamp(25px, 10vw, 125px);
     text-align-last: center;
 }

@@ -27,11 +27,11 @@
     <!--    Javascript-->
     <script type="text/javascript">
         let totalCases = {{ total_cases }};
-        let totalCasesDate = {{ total_cases_dates }};
+        let totalCasesDate = {{ total_cases_dates|tojson|safe }};
         let cases24H = {{ cases_24h }};
-        let cases24HDate = {{ cases_24h_dates }};
+        let cases24HDate = {{ cases_24h_dates|tojson|safe }};
         let cases7Days = {{ cases_7days }};
-        let cases7DaysDate = {{ cases_7days_dates }};
+        let cases7DaysDate = {{ cases_7days_dates|tojson|safe }};
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 
