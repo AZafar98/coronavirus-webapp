@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-center align-items-center">
 
-    <div class="row content text-center align-items-center">
-        <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3" id="covidCount">
+    <div class="row content text-center align-items-center mt-5">
+        <div class="col" id="covidCount">
             <h1 id="covidNumberTitle">
                 <span id="covidNumber"></span>
                 <small id="covidCountStrapline">United Kingdom coronavirus cases</small>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="row content text-center align-items-center">
-        <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3 text-center">
+        <div class="col align-items-center text-center">
             <button type="button" class="btn btn-primary timeRangeButton" id="timeRangeButton1">
                 Total
             </button>
@@ -30,26 +30,24 @@
     </div>
 
     <div class="row content text-center align-items-center">
-        <div class="col-md-8 offset-md-2 col-sm-6 offset-sm-3 text-center my-2">
-            <p><small>
+        <div class="col text-center align-items-center my-1">
+            <small>
                 For period <span id="dataDate"></span>
-            </small></p>
+            </small>
         </div>
     </div>
 
 
     <div class="row content text-left">
-        <div class="col-md-10 offset-md-1 col-sm-10 offset-sm-1 mt-5" id="otherSubtitle">
-            Other causes of death in the UK:
-        </div>
-        <div class="col-md-10 offset-md-1 col-sm-10 offset-sm-1" id="diseaseTitle">
-            Heart Disease
-            <div class="col-md-8 offset-md-2" id="factor">
-                {{- heart_data -}}
+        <div class="col mt-5 ml-3" id="otherSubtitle">
+            How does this compare?
+            <div class=col id="diseaseTitle">
+                GRAPH AREA
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 

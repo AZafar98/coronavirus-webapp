@@ -3,7 +3,7 @@ body {
 }
 
 #covidNumberTitle {
-    font-size: clamp(25px, 10vw, 125px);
+    font-size: clamp(25px, 17vw, 200px);
     text-align-last: center;
 }
 
@@ -45,7 +45,7 @@ body {
     font-style: normal;
     font-weight: 600;
     letter-spacing: -0.02em;
-    text-transform: capitalize;
+    text-transform: uppercase;
     color: #ED8182;
 }
 
