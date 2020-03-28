@@ -1,7 +1,8 @@
 # Imports
 import pandas as pd
 import fingertips_py as ftp
-from pprint import pprint
+import os
+from pathlib import Path
 
 # Indicator ID 848 refers to Depression: Recorded prevalence (aged 18+)
 # Indicator ID 273 refers to Chronic Heart Disease prevalence
@@ -9,8 +10,86 @@ from pprint import pprint
 # area_type_id = 15 in England
 # area_type_id = 113 is parliamentary constituencies
 
-def get_data(indicator, england_only = True, keep_cols = None, dev = False):
+
+def data_paths(indicator):
+
+    phe_data_path = Path("../../data/json/phe/{}_DATA".format(indicator))
+    phe_meta_path = Path("../../data/json/phe/{}_META".format(indicator))
+    all_data_path = Path("../../data/json/phe/{}_ALL_DATA".format(indicator))
+
+    return phe_data_path, phe_meta_path, all_data_path
+
+def check_data_exists(indicator):
+    """
+    Check is local JSON files exist for the indicator.
+    :param indicator:
+    :return:
+    """
+
+    phe_data_path, phe_meta_path, all_data_path = data_paths(indicator)
+
+    # Re-download the data if both data and meta data files do not exist.
+    if phe_data_path.is_file() and phe_meta_path.is_file():
+        get_data = True
+        meta = True
+
+    else:
+        get_data = False
+        meta = False
+
+    # All data is not strictly needed, so if this doesn't exist we're not too bothered.
+    if all_data_path.is_file():
+        all_data = True
+
+    else:
+        all_data = False
+
+    return get_data, meta, all_data
+
+def get_data_from_json(path):
+    """
+    As named...
+    :param pathlib.Path path:
+    :return:
+    """
+    return pd.read_json(path)
+
+
+def get_data(indicator, england_only = True, keep_cols = None, dev = False, use_json = True):
+
+    """
+    Get data from the fingertips api. If write_json is false, then try to not query the API and read locally.
+    :param indicator:
+    :param england_only:
+    :param keep_cols:
+    :param dev:
+    :param write_json:
+    :return:
+    """
+
+    if use_json is True:
+        phe_data_path, phe_meta_path, all_data_path = data_paths(indicator)
+        check_data, check_meta, check_all = check_data_exists(indicator)
+
+        # Make sure both data and metadata exists. Otherwise, re-download them.
+        if check_data is True and check_meta is True:
+            get_data = get_data_from_json(phe_data_path)
+            meta = get_data_from_json(phe_meta_path)
+
+            # All data is not strictly needed, so if that doesn't exist, just continue.
+            if check_all is True:
+                all_data = get_data_from_json(all_data_path)
+            else:
+                all_data = None
+            print("using json...")
+
+            return get_data, meta, all_data
+
+        else:
+            print("Required JSON files do not exist. Downloading data from PHE.")
+
     # There is an 'England' area code in the data, so just use that flag
+    print("use JSON didn't work")
     if england_only is True:
         get_data = ftp.retrieve_data.get_all_data_for_indicators(indicators=indicator, area_type_id=15)
 
@@ -37,11 +116,15 @@ def get_data(indicator, england_only = True, keep_cols = None, dev = False):
     # TODO: For Development, keep all of the columns available too.
     if dev is True:
         print("Running function get_data in dev mode")
-        all_data =  get_data.copy()
+        all_data =  get_data.copy().reset_index(drop=True)
     else:
-        all_data = None
+        all_data = pd.DataFrame()
 
     get_data = get_data.loc[:, keep_cols].reset_index(drop=True)
+
+    write_data_to_json(get_data, "{}_DATA".format(indicator))
+    write_data_to_json(meta, "{}_META".format(indicator))
+    write_data_to_json(all_data, "{}_ALL_DATA".format(indicator))
 
     return get_data, meta, all_data
 
@@ -114,19 +197,40 @@ def get_figure_for_flask(data):
 
     most_recent_data = data.loc[data['Time period'] == most_recent_year, :]
 
-    return f"{int(most_recent_data.iloc[0].loc['Count']):,}"
+    # return f"{int(most_recent_data.iloc[0].loc['Count']):,}"
+    return int(most_recent_data.iloc[0].loc['Count'])
+
+
+def write_data_to_json(data, name):
+    """
+    Take the PHE DataFrame and save to JSON so we don't have to query the (slow) PHE API every time.
+    :param data: data to write
+    :param name: file name, including extension
+    :return: None
+    """
+
+    if data.empty:
+        return "Empty df passed. Nothing will be written."
+
+    # TODO: Regex check for invalid file name.
+    OUT_PATH = "../../data/json/phe/{}"
+
+    data.to_json(OUT_PATH.format(name))
 
 
 def get_heart_data():
 
-    heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True)
+    heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True, use_json=True)
     summary_heart = extract_summary_figure(heart_data, json=False)
     return get_figure_for_flask(summary_heart)
 
-get_heart_data()
 
-# depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True)
-# summary_depression = extract_summary_figure(depression_data, json=False)
-#
-# profile_test = explore_profile_data(41001)
-#
+def get_depression_data():
+    depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True, use_json=True)
+    summary_depression = extract_summary_figure(depression_data, json=False)
+    return get_figure_for_flask(summary_depression)
+
+
+# get_heart_data()
+# get_depression_data()
+
