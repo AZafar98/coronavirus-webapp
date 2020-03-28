@@ -1,4 +1,3 @@
-console.log(String(totalCasesDate))
 $(document).ready(function () {
 
     // Thanks to https://stackoverflow.com/a/2901298
@@ -26,6 +25,36 @@ $(document).ready(function () {
         document.getElementById("dataDate").innerHTML = cases24HDate;
 
     };
+    //
+    // let graphData = [{
+    //     x: ['Heart Disease', 'Depression'],
+    //     y: [heartDiseaseData, depressionData],
+    //     type: 'bar'
+    //     }
+    // ];
+
+    // Plotly.newPlot('graphArea', graphData);
+
+    var chart = new CanvasJS.Chart("graphArea", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+    backgroundColor: "#FFF8F6",
+	axisY: {
+		title: "No. People"
+	},
+	data: [{
+		type: "column",
+		showInLegend: true,
+		legendMarkerColor: "grey",
+		legendText: "Source: Public Health England.",
+		dataPoints: [
+			{ y: heartDiseaseData, label: "Heart Disease" },
+			{ y: depressionData,  label: "Depression" }
+		]
+	}]
+});
+chart.render();
 
 });
+
 

@@ -20,7 +20,14 @@
             crossorigin="anonymous"></script>
 
     <!--    Plotly-->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>-->
+
+    <!--    Chart.js-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>-->
+
+    <!--    Canvas.js-->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
     <!--    Local stylesheet-->
     <title>{% block title %}{% endblock %}</title>
@@ -34,6 +41,8 @@
         let cases24HDate = {{ cases_24h_dates|tojson|safe }};
         let cases7Days = {{ cases_7days }};
         let cases7DaysDate = {{ cases_7days_dates|tojson|safe }};
+        let heartDiseaseData = {{ heart_data }}
+        let depressionData = {{ depression_data }}
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 

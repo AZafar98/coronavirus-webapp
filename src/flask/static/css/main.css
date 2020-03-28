@@ -1,5 +1,5 @@
 body {
-    background: #F5E4E1;
+    background: #FFF8F6;
 }
 
 #covidNumberTitle {
@@ -40,7 +40,7 @@ body {
 }
 
 #otherSubtitle {
-    font-size: clamp(15px, 3vw, 125px);
+    font-size: clamp(15px, 2vw, 125px);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
