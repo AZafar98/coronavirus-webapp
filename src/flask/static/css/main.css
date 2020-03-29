@@ -2,9 +2,34 @@ body {
     background: #FFF8F6;
 }
 
+/* Functions such as min, max and clamp are not supported by all browsers. Either use media queries, or just
+ size using vh and vw */
+
 #covidNumberTitle {
-    font-size: clamp(25px, 17vw, 200px);
+    /*font-size: clamp(25px, 17vw, 200px);*/
+    font-size: 16vw;
     text-align-last: center;
+}
+
+@media only screen and (min-width: 768px) {
+    #covidNumberTitle {
+        font-size: 12vw;
+    }
+}
+
+#dataDate {
+    font-size: 2vw;
+    display: inherit;
+    font-variant: all-small-caps;
+    letter-spacing: 0.02em;
+    font-family: Inter;
+    margin-top: 0.1vh;
+}
+
+@media only screen and (min-width: 768px) {
+    #dataDate {
+        font-size: 1.5vw;
+    }
 }
 
 #covidCount {
@@ -18,29 +43,30 @@ body {
     text-align: center;
     letter-spacing: 0.02em;
     color: #D02F46;
-    /*background: #edcfca;*/
-
 }
 
 #covidCountStrapline {
-    position: inherit;
     display: block;
-    margin-top: max(10px, 1vh);
+    /*margin-top: max(10px, 1vh);*/
+    margin-top: 1vh;
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    font-size: 2vw;
+    font-size: 4vw;
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: #ED8182;
-    text-align: left;
-    float: none;
-    width: auto;
-    height: auto;
+}
+
+@media only screen and (min-width: 768px) {
+    #covidCountStrapline {
+        font-size: 3vw;
+    }
 }
 
 #otherSubtitle {
-    font-size: clamp(15px, 2vw, 125px);
+    /*font-size: clamp(15px, 2vw, 125px);*/
+    font-size: 3.5vw;
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
@@ -49,6 +75,17 @@ body {
     color: #ED8182;
 }
 
+@media only screen and (min-width: 768px) {
+    #otherSubtitle {
+        font-size: 2vw;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: #ED8182;
+    }
+}
 
 .timeRangeButton {
     padding: 1vh 1vw;
@@ -59,9 +96,16 @@ body {
     color: #ED8182;
     cursor: auto;
     text-transform: uppercase;
-    font-size: 1.25vw;
+    font-size: 2.5vw;
     margin-right: 2vw;
-    margin-top: min(5px, 1vh);
+    /*margin-top: min(5px, 1vh);*/
+    margin-top: 0.5vh;
+}
+
+@media only screen and (min-width: 768px) {
+    .timeRangeButton {
+        font-size: 1.25vw;
+    }
 }
 
 .timeRangeButton:hover {
@@ -70,7 +114,8 @@ body {
 }
 
 .timeRangeButton:focus {
-    color: #D02F46
+    color: #D02F46;
+    color: white
 }
 
 #otherFactors {
@@ -91,13 +136,10 @@ body {
 }
 
 #factor {
-    /*display: inline-grid;*/
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
     font-size: 1.5vw;
-    /*line-height: 4;*/
-    /*text-align: left;*/
     letter-spacing: 0.02em;
     color: #D02F46;
 }
@@ -112,4 +154,7 @@ body {
     color: #ED8182;
 }
 
+#graphArea {
+    display: block;
+    margin: 0 auto 0 auto;
 }
