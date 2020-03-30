@@ -20,12 +20,22 @@ $(document).ready(function () {
         heartDiseaseData = initHeartDisease;
         depressionData = initDepression;
 
-        chart.options.data[0].dataPoints = [
-            {y: heartDiseaseData, label: "Heart Disease"},
-            {y: depressionData, label: "Depression"}
-        ];
-        chart.render();
+        // chart.options.data[0].dataPoints = [
+        //     {y: heartDiseaseData, label: "Heart Disease"},
+        //     {y: depressionData, label: "Depression"}
+        // ];
+        // chart.render();
 
+        barChart.data.datasets = [{
+            label: 'test',
+            data: [heartDiseaseData, depressionData],
+            backgroundColor: ['#FF9D9E', '#D02F46'],
+            borderColor: ['#000000', '#000000'],
+            borderWidth: 1,
+            hoverBorderWidth: 2
+        }];
+
+        barChart.update();
     };
 
     document.getElementById("timeRangeButton2").onclick = function () {
@@ -33,14 +43,25 @@ $(document).ready(function () {
         document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
 
         // Update the chart data and redraw
-        heartDiseaseData = Math.round(initHeartDisease * (7/365));
-        depressionData = Math.round(initDepression * (7/365));
+        heartDiseaseData = Math.round(initHeartDisease * (7 / 365));
+        depressionData = Math.round(initDepression * (7 / 365));
 
-        chart.options.data[0].dataPoints = [
-            {y: heartDiseaseData, label: "Heart Disease"},
-            {y: depressionData, label: "Depression"}
-            ];
-        chart.render();
+        // chart.options.data[0].dataPoints = [
+        //     {y: heartDiseaseData, label: "Heart Disease"},
+        //     {y: depressionData, label: "Depression"}
+        //     ];
+        // chart.render();
+
+        barChart.data.datasets = [{
+            label: 'test',
+            data: [heartDiseaseData, depressionData],
+            backgroundColor: ['#FF9D9E', '#D02F46'],
+            borderColor: ['#000000', '#000000'],
+            borderWidth: 1,
+            hoverBorderWidth: 2
+        }];
+
+        barChart.update();
     };
 
     document.getElementById("timeRangeButton3").onclick = function () {
@@ -51,37 +72,65 @@ $(document).ready(function () {
         heartDiseaseData = Math.round(initHeartDisease / 365);
         depressionData = Math.round(initDepression / 365);
 
-        chart.options.data[0].dataPoints = [
-            {y: heartDiseaseData, label: "Heart Disease"},
-            {y: depressionData, label: "Depression"}
-        ];
-        chart.render();
+
+        barChart.data.datasets = [{
+            label: 'test',
+            data: [heartDiseaseData, depressionData],
+            backgroundColor: ['#FF9D9E', '#D02F46'],
+            borderColor: ['#000000', '#000000'],
+            borderWidth: 1,
+            hoverBorderWidth: 2
+        }];
+
+        barChart.update();
 
     };
 
-    CanvasJS.addColorSet("chartColors", ["#FF9D9E", "#D02F46"]);
 
-    let chart = new CanvasJS.Chart("graphArea", {
-        animationEnabled: true,
-        theme: "light2", // "light1", "light2", "dark1", "dark2"
-        backgroundColor: "#FFF8F6",
-        colorSet: "chartColors",
-        axisY: {
-            title: "No. People"
-        },
-        data: [{
-            type: "column",
-            showInLegend: true,
-            legendMarkerColor: "grey",
-            legendText: "Source: Public Health England.",
-            dataPoints: [
-                {y: heartDiseaseData, label: "Heart Disease"},
-                {y: depressionData, label: "Depression"}
-            ]
+    let data = {
+        labels: ['Heart Disease', 'Depression'],
+        datasets: [{
+            label: 'test',
+            data: [heartDiseaseData, depressionData],
+            backgroundColor: ['#FF9D9E', '#D02F46'],
+            borderColor: ['#000000', '#000000'],
+            borderWidth: 1,
+            hoverBorderWidth: 2
         }]
-    });
-    chart.render();
+    };
 
+    let ctx = document.getElementById('graphArea');
+
+    let options = {
+        // For labelling the axes and tooltips properly:
+        // https://stackoverflow.com/a/48996286
+
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    callback: function (value) {
+                        return numberWithCommas(value);
+                    }
+                }
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, chart) {
+                    let datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                    return datasetLabel + ': ' + numberWithCommas(tooltipItem.yLabel);
+
+                }
+            }
+        }
+    };
+
+    let barChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    })
 });
 
 

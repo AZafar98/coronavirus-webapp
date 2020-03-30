@@ -226,6 +226,7 @@ def get_heart_data():
 
 
 def get_depression_data():
+
     depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True, use_json=True)
     summary_depression = extract_summary_figure(depression_data, json=False)
     return get_figure_for_flask(summary_depression)
@@ -234,3 +235,6 @@ def get_depression_data():
 # get_heart_data()
 # get_depression_data()
 
+# TODO: Make sure it works if data isn't already downloaded
+# TODO: Error handling when running app
+# TODO: Make directories in code i.e. phe directory
