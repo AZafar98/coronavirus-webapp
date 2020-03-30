@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import warnings
 import re
+from pathlib import Path
 
 def download_corona_data():
     """
@@ -11,7 +12,10 @@ def download_corona_data():
     :return:
     """
 
-    OUT_PATH = "../../data/json/{}"
+    # Make sure the required path exists. Create it if not.
+    Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
+
+    OUT_PATH = "../../data/json/corona/{}"
 
     CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
     DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
@@ -27,6 +31,8 @@ def download_corona_data():
     deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
 
+    return 0
+
 # download_corona_data()
 
 
@@ -36,19 +42,32 @@ def get_corona_data():
     :return:
     """
 
-    if not (os.path.exists("../../data/json/confirmed_cases.txt") or
-            os.path.exists("../../data/json/deaths_cases.txt") or
-            os.path.exists("../../data/json/recovered_cases.txt")):
+    file_path = "../../data/json/corona/{}"
 
-        print("error")
-        download_corona_data()
+    if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
+            os.path.exists(file_path.format("deaths_cases.txt")) or
+            os.path.exists(file_path.format("recovered_cases.txt"))):
+
+        print("corona data not downloaded. Downloading.")
+
+        download = download_corona_data()
+
+        if download == 0:
+            # Successful download.
+            confirmed_df = pd.read_json(file_path.format("confirmed_cases.txt"))
+            recovered_df = pd.read_json(file_path.format("recovered_cases.txt"))
+            deaths_df = pd.read_json(file_path.format("deaths_cases.txt"))
+        else:
+            # Download failed
+            raise RuntimeError("Data failed to download. Exiting process.")
 
     else:
-        confirmed_df = pd.read_json("../../data/json/confirmed_cases.txt")
-        recovered_df = pd.read_json("../../data/json/recovered_cases.txt")
-        deaths_df = pd.read_json("../../data/json/deaths_cases.txt")
+        confirmed_df = pd.read_json(file_path.format("confirmed_cases.txt"))
+        recovered_df = pd.read_json(file_path.format("recovered_cases.txt"))
+        deaths_df = pd.read_json(file_path.format("deaths_cases.txt"))
 
     return confirmed_df, recovered_df, deaths_df
+
 
 confirmed, recovered, deaths = get_corona_data()
 

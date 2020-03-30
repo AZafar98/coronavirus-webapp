@@ -8,6 +8,10 @@ footer_text = '</body>\n</html>'
 application = Flask(__name__)
 
 
+# NOTE: With the current setup, if PHE data does not exist. It will be downloaded when the page is first loaded.
+# So, the first time you try to view the page, it will be notably slower.
+# All subsequent refreshes will be fast as it will use the same data which will be saved locally as JSON.
+
 def index():
     # There's probably a better way than passing down a load of similar function calls, but it works for now...
     return render_template('index.html', total_cases=display_covid_cases(cases=True, period='Total'),

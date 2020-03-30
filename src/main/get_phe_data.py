@@ -13,11 +13,15 @@ from pathlib import Path
 
 def data_paths(indicator):
 
+    # Make sure the required path exists. Create it if not.
+    Path("../../data/json/phe").mkdir(parents=True, exist_ok=True)
+
     phe_data_path = Path("../../data/json/phe/{}_DATA".format(indicator))
     phe_meta_path = Path("../../data/json/phe/{}_META".format(indicator))
     all_data_path = Path("../../data/json/phe/{}_ALL_DATA".format(indicator))
 
     return phe_data_path, phe_meta_path, all_data_path
+
 
 def check_data_exists(indicator):
     """
@@ -45,6 +49,7 @@ def check_data_exists(indicator):
         all_data = False
 
     return get_data, meta, all_data
+
 
 def get_data_from_json(path):
     """
@@ -106,17 +111,16 @@ def get_data(indicator, england_only = True, keep_cols = None, dev = False, use_
     # Remove any rows that don't have a value
     get_data = get_data.loc[~get_data['Value'].isna(), :]
 
-
     if keep_cols is None:
         keep_cols = ['Indicator ID', 'Indicator Name', 'Sex', 'Age', 'Time period', 'Value', 'Value note', 'Count', 'Denominator']
     else:
         if not isinstance(keep_cols, list):
             raise TypeError("Columns to keep must be passed as a list.")
 
-    # TODO: For Development, keep all of the columns available too.
+    # For Development, keep all of the columns available too.
     if dev is True:
         print("Running function get_data in dev mode")
-        all_data =  get_data.copy().reset_index(drop=True)
+        all_data = get_data.copy().reset_index(drop=True)
     else:
         all_data = pd.DataFrame()
 
@@ -154,6 +158,7 @@ def extract_summary_figure(data, json = False):
     else:
         return max_counts
 
+
 def explore_profile_data(profile_id):
 
     """
@@ -174,6 +179,7 @@ def explore_profile_data(profile_id):
     unique = profile_data.drop_duplicates('Indicator ID').sort_values(by='Indicator ID')
 
     return unique
+
 
 def get_figure_for_flask(data):
     """
@@ -231,9 +237,6 @@ def get_depression_data():
     summary_depression = extract_summary_figure(depression_data, json=False)
     return get_figure_for_flask(summary_depression)
 
-
-# get_heart_data()
-# get_depression_data()
 
 # TODO: Make sure it works if data isn't already downloaded
 # TODO: Error handling when running app
