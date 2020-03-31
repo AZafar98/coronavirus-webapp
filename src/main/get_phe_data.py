@@ -10,15 +10,26 @@ from pathlib import Path
 # area_type_id = 15 in England
 # area_type_id = 113 is parliamentary constituencies
 
+global RUNNING_LOCALLY
+RUNNING_LOCALLY = True
+
 
 def data_paths(indicator):
 
-    # Make sure the required path exists. Create it if not.
-    Path("../../data/json/phe").mkdir(parents=True, exist_ok=True)
+    if RUNNING_LOCALLY:
+        # Make sure the required path exists. Create it if not.
+        Path("../../data/json/phe").mkdir(parents=True, exist_ok=True)
 
-    phe_data_path = Path("../../data/json/phe/{}_DATA".format(indicator))
-    phe_meta_path = Path("../../data/json/phe/{}_META".format(indicator))
-    all_data_path = Path("../../data/json/phe/{}_ALL_DATA".format(indicator))
+        phe_data_path = Path("../../data/json/phe/{}_DATA".format(indicator))
+        phe_meta_path = Path("../../data/json/phe/{}_META".format(indicator))
+        all_data_path = Path("../../data/json/phe/{}_ALL_DATA".format(indicator))
+    else:
+        # Make sure the required path exists. Create it if not.
+        Path("coronavirus-webapp/data/json/phe").mkdir(parents=True, exist_ok=True)
+
+        phe_data_path = Path("coronavirus-webapp/data/json/phe/{}_DATA".format(indicator))
+        phe_meta_path = Path("coronavirus-webapp/data/json/phe/{}_META".format(indicator))
+        all_data_path = Path("coronavirus-webapp/data/json/phe/{}_ALL_DATA".format(indicator))
 
     return phe_data_path, phe_meta_path, all_data_path
 
@@ -60,7 +71,7 @@ def get_data_from_json(path):
     return pd.read_json(path)
 
 
-def get_data(indicator, england_only = True, keep_cols = None, dev = False, use_json = True):
+def get_data(indicator, england_only=True, keep_cols=None, dev=False, use_json=True):
 
     """
     Get data from the fingertips api. If write_json is false, then try to not query the API and read locally.
@@ -68,7 +79,7 @@ def get_data(indicator, england_only = True, keep_cols = None, dev = False, use_
     :param england_only:
     :param keep_cols:
     :param dev:
-    :param write_json:
+    :param use_json:
     :return:
     """
 
@@ -219,7 +230,10 @@ def write_data_to_json(data, name):
         return "Empty df passed. Nothing will be written."
 
     # TODO: Regex check for invalid file name.
-    OUT_PATH = "../../data/json/phe/{}"
+    if RUNNING_LOCALLY:
+        OUT_PATH = "../../data/json/phe/{}"
+    else:
+        OUT_PATH = "coronavirus-webapp/data/json/phe/{}"
 
     data.to_json(OUT_PATH.format(name))
 
@@ -236,3 +250,5 @@ def get_depression_data():
     depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True, use_json=True)
     summary_depression = extract_summary_figure(depression_data, json=False)
     return get_figure_for_flask(summary_depression)
+
+get_heart_data()
