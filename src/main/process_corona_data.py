@@ -4,6 +4,7 @@ import warnings
 import re
 from pathlib import Path
 
+
 def download_corona_data():
     """
     Get the data straight from the Git repo, since the API has stopped working
@@ -13,9 +14,13 @@ def download_corona_data():
     """
 
     # Make sure the required path exists. Create it if not.
-    Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
-
-    OUT_PATH = "../../data/json/corona/{}"
+    # On PythonAnywhere, the paths are a bit different.
+    try:
+        Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
+        OUT_PATH = "../../data/json/corona/{}"
+    except PermissionError:
+        Path("coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+        OUT_PATH = "coronavirus-webapp/data/json/corona/{}"
 
     CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
     DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
@@ -33,16 +38,16 @@ def download_corona_data():
 
     return 0
 
-# download_corona_data()
-
 
 def get_corona_data():
     """
     Get the data to use for analysis. If it is not saved locally, download it
     :return:
     """
-
-    file_path = "../../data/json/corona/{}"
+    if RUNNING_LOCALLY:
+        file_path = "../../data/json/corona/{}"
+    else:
+        file_path = "coronavirus-webapp/data/json/corona/{}"
 
     if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
             os.path.exists(file_path.format("deaths_cases.txt")) or
@@ -193,3 +198,13 @@ def display_covid_cases(cases=True, period='Total'):
         return uk_cases
     else:
         return str(dates)
+
+
+"""
+COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved
+locally, but uncommenting the function call below will just overwrite those)
+"""
+
+RUNNING_LOCALLY = True
+
+download_corona_data()
