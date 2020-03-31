@@ -11,8 +11,7 @@ from pathlib import Path
 # area_type_id = 113 is parliamentary constituencies
 
 global RUNNING_LOCALLY
-RUNNING_LOCALLY = True
-
+RUNNING_LOCALLY = False
 
 def data_paths(indicator):
 
