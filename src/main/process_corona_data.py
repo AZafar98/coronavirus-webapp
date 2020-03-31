@@ -44,6 +44,7 @@ def get_corona_data():
     Get the data to use for analysis. If it is not saved locally, download it
     :return:
     """
+    RUNNING_LOCALLY = False
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
@@ -204,7 +205,5 @@ def display_covid_cases(cases=True, period='Total'):
 COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved
 locally, but uncommenting the function call below will just overwrite those)
 """
-
-RUNNING_LOCALLY = True
 
 download_corona_data()
