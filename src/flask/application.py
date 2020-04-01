@@ -2,15 +2,14 @@ from flask import Flask, render_template
 from src.main.process_corona_data import display_covid_cases
 from src.main.get_phe_data import get_heart_data, get_depression_data
 
-footer_text = '</body>\n</html>'
-
-# EB looks for an 'application' callable by default.
+# Create an 'application' callable
 application = Flask(__name__)
-
 
 # NOTE: With the current setup, if PHE data does not exist. It will be downloaded when the page is first loaded.
 # So, the first time you try to view the page, it will be notably slower.
 # All subsequent refreshes will be fast as it will use the same data which will be saved locally as JSON.
+# This *should* only apply when running the app on your local machine
+
 
 def index():
     # There's probably a better way than passing down a load of similar function calls, but it works for now...
@@ -26,9 +25,10 @@ def index():
 
 application.add_url_rule('/', 'index', index)
 
-# run the app.
+# Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
+# to be left here
 if __name__ == "__main__":
-    # Setting debug to True enables debug output. This line should be
+    # Setting debug to True enables debug output. This line should be.
     # removed before deploying a production app.
     application.debug = True
     application.run()
