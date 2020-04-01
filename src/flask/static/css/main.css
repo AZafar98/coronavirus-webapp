@@ -162,3 +162,21 @@ body {
 canvas{
     margin: 0 auto;
 }
+
+#graph-container {
+    max-width: 75vw;
+    max-height: 50vh;
+}
+
+#footer-text {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 0px;
+
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+
+    color: #D02F46;
+}

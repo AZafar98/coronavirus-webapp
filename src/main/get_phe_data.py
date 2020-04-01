@@ -1,8 +1,9 @@
 # Imports
 import pandas as pd
 import fingertips_py as ftp
-import os
 from pathlib import Path
+
+from src.flask.settings import RUNNING_LOCALLY
 
 # Indicator ID 848 refers to Depression: Recorded prevalence (aged 18+)
 # Indicator ID 273 refers to Chronic Heart Disease prevalence
@@ -10,8 +11,6 @@ from pathlib import Path
 # area_type_id = 15 in England
 # area_type_id = 113 is parliamentary constituencies
 
-global RUNNING_LOCALLY
-RUNNING_LOCALLY = False
 
 def data_paths(indicator):
 
@@ -249,5 +248,3 @@ def get_depression_data():
     depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True, use_json=True)
     summary_depression = extract_summary_figure(depression_data, json=False)
     return get_figure_for_flask(summary_depression)
-
-get_heart_data()

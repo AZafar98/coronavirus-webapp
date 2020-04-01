@@ -4,6 +4,8 @@ import warnings
 import re
 from pathlib import Path
 
+from src.flask.settings import RUNNING_LOCALLY
+
 
 def download_corona_data():
     """
@@ -44,7 +46,6 @@ def get_corona_data():
     Get the data to use for analysis. If it is not saved locally, download it
     :return:
     """
-    RUNNING_LOCALLY = False
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
@@ -206,4 +207,4 @@ COVID data is updated on GitHub daily. To download it, uncomment the line below.
 locally, but uncommenting the function call below will just overwrite those)
 """
 
-download_corona_data()
+# download_corona_data()

@@ -123,7 +123,9 @@ $(document).ready(function () {
 
                 }
             }
-        }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
     };
 
     let barChart = new Chart(ctx, {
