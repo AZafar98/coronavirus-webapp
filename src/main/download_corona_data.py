@@ -1,0 +1,37 @@
+import pandas as pd
+from pathlib import Path
+
+def download_corona_data():
+    """
+    Get the data straight from the Git repo, since the API has stopped working
+
+    The data is updated once per day, so this function should be run daily.
+    :return:
+    """
+
+    # Make sure the required path exists. Create it if not.
+    # On PythonAnywhere, the paths are a bit different.
+    try:
+        Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
+        OUT_PATH = "../../data/json/corona/{}"
+    except PermissionError:
+        Path("coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+        OUT_PATH = "coronavirus-webapp/data/json/corona/{}"
+
+    CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+    DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+    RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
+
+    confirmed_data = pd.read_csv(CONFIRMED_URL)
+    deaths_data = pd.read_csv(DEATHS_URL)
+    recovered_data = pd.read_csv(RECOVERED_URL)
+
+    # Save the data locally so it doesn't have to be accessed from GitHub every time.
+
+    confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
+    deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
+    recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
+
+    return 0
+
+download_corona_data()
