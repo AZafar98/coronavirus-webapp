@@ -248,12 +248,3 @@ def get_depression_data():
     depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True, use_json=True)
     summary_depression = extract_summary_figure(depression_data, json=False)
     return get_figure_for_flask(summary_depression)
-
-
-profileids = explore_profile_data(40)
-
-# Indicator ID 92863 = Domestic abuse-related incidents and crime
-# Indicator ID 41001 = Suicide rate
-# Indicator ID 90467 = Depression and anxiety prevalence (GP patient survey)
-# Indicator ID 90646 = Depression: QOF incidence (18+) - new diagnosis
-
