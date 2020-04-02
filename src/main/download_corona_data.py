@@ -3,8 +3,11 @@ from pathlib import Path
 import os
 
 # This is to redeploy the webapp after the data has been downloaded.
+
+
 def update():
     os.utime('/var/www/azafar98_pythonanywhere_com_wsgi.py')
+
 
 def download_corona_data():
     """
@@ -38,6 +41,7 @@ def download_corona_data():
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
 
     return 0
+
 
 download = download_corona_data()
 
