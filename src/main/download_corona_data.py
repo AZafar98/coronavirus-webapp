@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 import sys
 
-# add your project directory to the sys.path
+# add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
 project_home = '/home/Azafar98/coronavirus-webapp'
 if project_home not in sys.path:
