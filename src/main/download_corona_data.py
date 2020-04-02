@@ -1,6 +1,14 @@
 import pandas as pd
 from pathlib import Path
 import os
+import sys
+
+# add your project directory to the sys.path
+# This is purely for PythonAnywhere - not necessary if running locally
+project_home = '/home/Azafar98/coronavirus-webapp'
+if project_home not in sys.path:
+    sys.path = [project_home] + sys.path
+
 from src.flask.settings import RUNNING_LOCALLY
 
 
