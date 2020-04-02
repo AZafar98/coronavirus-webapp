@@ -1,10 +1,13 @@
 import pandas as pd
 from pathlib import Path
 import os
+from src.flask.settings import RUNNING_LOCALLY
+
 
 # This is to redeploy the webapp after the data has been downloaded.
 def update():
     os.utime('/var/www/azafar98_pythonanywhere_com_wsgi.py')
+
 
 def download_corona_data():
     """
@@ -39,7 +42,10 @@ def download_corona_data():
 
     return 0
 
-download = download_corona_data()
 
-if download == 0:
-    update()
+if not RUNNING_LOCALLY:
+    download = download_corona_data()
+    if download == 0:
+        update()
+else:
+    download_corona_data()
