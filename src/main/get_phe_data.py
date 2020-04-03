@@ -237,14 +237,18 @@ def write_data_to_json(data, name):
 
 
 def get_heart_data():
-
     heart_data, heart_meta, all_data = get_data(273, dev=True, england_only=True, use_json=True)
     summary_heart = extract_summary_figure(heart_data, json=False)
     return get_figure_for_flask(summary_heart)
 
 
 def get_depression_data():
-
     depression_data, depression_meta, all_depression = get_data(848, dev=True, england_only=True, use_json=True)
     summary_depression = extract_summary_figure(depression_data, json=False)
     return get_figure_for_flask(summary_depression)
+
+
+def get_domestic_abuse_data():
+    domestic_abuse, dom_meta, dom_all = get_data(92863, dev=True, england_only=True, use_json=True)
+    summary_domestic = extract_summary_figure(domestic_abuse, json=False)
+    return get_figure_for_flask(summary_domestic)

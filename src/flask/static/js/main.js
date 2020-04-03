@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     let initDepression = depressionData;
     let initHeartDisease = heartDiseaseData;
+    let initDomesticAbuse = domesticAbuseData
 
     // Thanks to https://stackoverflow.com/a/2901298
     function numberWithCommas(x) {
@@ -19,6 +20,7 @@ $(document).ready(function () {
         // Update the chart data and redraw
         heartDiseaseData = initHeartDisease;
         depressionData = initDepression;
+        domesticAbuseData = initDomesticAbuse;
 
         // chart.options.data[0].dataPoints = [
         //     {y: heartDiseaseData, label: "Heart Disease"},
@@ -28,9 +30,9 @@ $(document).ready(function () {
 
         barChart.data.datasets = [{
             label: 'test',
-            data: [heartDiseaseData, depressionData],
-            backgroundColor: ['#FF9D9E', '#D02F46'],
-            borderColor: ['#000000', '#000000'],
+            data: [heartDiseaseData, depressionData, domesticAbuseData],
+            backgroundColor: ['#FF9D9E', '#D02F46','#FF9D9E'],
+            borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }];
@@ -45,18 +47,13 @@ $(document).ready(function () {
         // Update the chart data and redraw
         heartDiseaseData = Math.round(initHeartDisease * (7 / 365));
         depressionData = Math.round(initDepression * (7 / 365));
-
-        // chart.options.data[0].dataPoints = [
-        //     {y: heartDiseaseData, label: "Heart Disease"},
-        //     {y: depressionData, label: "Depression"}
-        //     ];
-        // chart.render();
+        domesticAbuseData = Math.round(initDomesticAbuse * (7 / 365));
 
         barChart.data.datasets = [{
             label: 'test',
-            data: [heartDiseaseData, depressionData],
-            backgroundColor: ['#FF9D9E', '#D02F46'],
-            borderColor: ['#000000', '#000000'],
+            data: [heartDiseaseData, depressionData, domesticAbuseData],
+            backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
+            borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }];
@@ -71,13 +68,14 @@ $(document).ready(function () {
         // Update the chart data and redraw
         heartDiseaseData = Math.round(initHeartDisease / 365);
         depressionData = Math.round(initDepression / 365);
+        domesticAbuseData = Math.round(initDomesticAbuse / 365);
 
 
         barChart.data.datasets = [{
             label: 'test',
-            data: [heartDiseaseData, depressionData],
-            backgroundColor: ['#FF9D9E', '#D02F46'],
-            borderColor: ['#000000', '#000000'],
+            data: [heartDiseaseData, depressionData, domesticAbuseData],
+            backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
+            borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }];
@@ -88,12 +86,12 @@ $(document).ready(function () {
 
 
     let data = {
-        labels: ['Heart Disease', 'Depression'],
+        labels: ['Heart Disease', 'Depression', 'Domestic Abuse'],
         datasets: [{
             label: 'test',
-            data: [heartDiseaseData, depressionData],
-            backgroundColor: ['#FF9D9E', '#D02F46'],
-            borderColor: ['#000000', '#000000'],
+            data: [heartDiseaseData, depressionData, domesticAbuseData],
+            backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
+            borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }]

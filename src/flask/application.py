@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from src.main.process_corona_data import display_covid_cases
-from src.main.get_phe_data import get_heart_data, get_depression_data
+from src.main.get_phe_data import get_heart_data, get_depression_data, get_domestic_abuse_data
 
 # Create an 'application' callable
 application = Flask(__name__)
@@ -20,13 +20,14 @@ def index():
                            cases_7days=display_covid_cases(cases=True, period='7days'),
                            cases_7days_dates=display_covid_cases(cases=False, period='7days'),
                            heart_data=get_heart_data(),
-                           depression_data=get_depression_data())
+                           depression_data=get_depression_data(),
+                           domestic_abuse=get_domestic_abuse_data())
 
 
 application.add_url_rule('/', 'index', index)
 
 # Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
-# to be left here
+# to be left here.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
