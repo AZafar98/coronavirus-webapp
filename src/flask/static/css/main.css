@@ -236,3 +236,13 @@ canvas{
 hr.footer-rule {
     border: 0.5px solid #ED8182;
 }
+
+
+[data-toggle="collapse"] .fa:before {
+    content: "\f078";
+
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f054";
+}

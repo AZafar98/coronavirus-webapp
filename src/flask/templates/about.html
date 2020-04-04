@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
-{%block title %} COVID-19 Live - About {% endblock %}
+{%block title %} COVID-19 Live - Donate {% endblock %}
 
 {% block content %}
-<img src="{{ url_for('static', filename='images/covid-about.jpg') }}" class="img-fluid mx-auto rounded d-block" alt="About Page Image">
+<div class="container-fluid text-center align-items-center">
+
+    <img src="{{ url_for('static', filename='images/covid-donate.jpg') }}" class="img-fluid rounded mx-auto d-block"
+         alt="About Page Image">
+
+</div>
+
 
 {% endblock %}
