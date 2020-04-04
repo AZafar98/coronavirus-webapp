@@ -29,17 +29,18 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <!--    Javascript-->
+<!--        Javascript-->
     <script type="text/javascript" defer>
-        let totalCases = {{ total_cases }};
-        let totalCasesDate = {{ total_cases_dates|tojson|safe }};
-        let cases24H = {{ cases_24h }};
-        let cases24HDate = {{ cases_24h_dates|tojson|safe }};
-        let cases7Days = {{ cases_7days }};
-        let cases7DaysDate = {{ cases_7days_dates|tojson|safe }};
-        let heartDiseaseData = {{ heart_data }}
-        let depressionData = {{ depression_data }}
-        let domesticAbuseData = {{ domestic_abuse }}
+
+        let totalCases = {{ displayCovidCases(cases=True, period='Total') }};
+        let totalCasesDate = {{ displayCovidCases(cases=False, period='Total') |tojson|safe }};
+        let cases24H = {{ displayCovidCases(cases=True, period='24h') }};
+        let cases24HDate = {{ displayCovidCases(cases=False, period='24h') |tojson|safe }};
+        let cases7Days = {{ displayCovidCases(cases=True, period='7days') }};
+        let cases7DaysDate = {{ displayCovidCases(cases=False, period='7days') |tojson|safe }};
+        let heartDiseaseData = {{ getPHEData(indicator=273, dev=True) }}
+        let depressionData = {{ getPHEData(indicator=848, dev=True) }}
+        let domesticAbuseData = {{ getPHEData(indicator=92863, dev=True) }}
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 
@@ -61,16 +62,16 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <span class="navbar-text">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="{{ url_for('about') }}">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Donate</a>
+                <a class="nav-link" href="{{ url_for('donate') }}">Donate</a>
             </li>
         </ul>
     </span>

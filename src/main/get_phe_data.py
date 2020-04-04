@@ -112,6 +112,10 @@ def get_data(indicator, england_only=True, keep_cols=None, dev=False, use_json=T
             get_data = ftp.retrieve_data.get_data_for_indicator_at_all_available_geographies(indicator)
             get_data = get_data.loc[get_data['Area Type'].str.upper() == 'ENGLAND']
 
+            if get_data.empty:
+                raise ValueError("No data returned from fingertips."
+                                 " You have probably specified an invalid indicator ID.")
+
     else:
         get_data = ftp.retrieve_data.get_data_for_indicator_at_all_available_geographies(indicator)
 
@@ -252,3 +256,12 @@ def get_domestic_abuse_data():
     domestic_abuse, dom_meta, dom_all = get_data(92863, dev=True, england_only=True, use_json=True)
     summary_domestic = extract_summary_figure(domestic_abuse, json=False)
     return get_figure_for_flask(summary_domestic)
+
+
+def get_phe_data_for_flask(indicator, dev=True):
+    if type(indicator) is not int:
+        raise TypeError("Indicator ID must be an integer, not {}".format(type(indicator)))
+
+    data, meta, all_data = get_data(indicator, dev=dev, england_only=True, use_json=True)
+    summary_data = extract_summary_figure(data, json=False)
+    return get_figure_for_flask(summary_data)
