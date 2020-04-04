@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     let initDepression = depressionData;
     let initHeartDisease = heartDiseaseData;
-    let initDomesticAbuse = domesticAbuseData
+    let initDomesticAbuse = domesticAbuseData;
 
     // Thanks to https://stackoverflow.com/a/2901298
     function numberWithCommas(x) {
@@ -29,13 +29,15 @@ $(document).ready(function () {
         // chart.render();
 
         barChart.data.datasets = [{
-            label: 'test',
+            label: '',
             data: [heartDiseaseData, depressionData, domesticAbuseData],
             backgroundColor: ['#FF9D9E', '#D02F46','#FF9D9E'],
             borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }];
+
+        barChart.options.annotation.annotations[0].value = totalCases;
 
         barChart.update();
     };
@@ -49,14 +51,22 @@ $(document).ready(function () {
         depressionData = Math.round(initDepression * (7 / 365));
         domesticAbuseData = Math.round(initDomesticAbuse * (7 / 365));
 
+        // Apparently, this should work. But just updating the chart data does not redraw the chart, hence we have the
+        // Solution implemented below i.e. redefine the entire datasets option
+
+        // barChart.data.datasets.data = [heartDiseaseData, depressionData, domesticAbuseData]
+
+
         barChart.data.datasets = [{
-            label: 'test',
+            label: '',
             data: [heartDiseaseData, depressionData, domesticAbuseData],
             backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
             borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }];
+
+        barChart.options.annotation.annotations[0].value = cases7Days;
 
         barChart.update();
     };
@@ -72,13 +82,15 @@ $(document).ready(function () {
 
 
         barChart.data.datasets = [{
-            label: 'test',
+            label: '',
             data: [heartDiseaseData, depressionData, domesticAbuseData],
             backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
             borderColor: ['#000000', '#000000', '#000000'],
             borderWidth: 1,
             hoverBorderWidth: 2
         }];
+
+        barChart.options.annotation.annotations[0].value = cases24H;
 
         barChart.update();
 
@@ -88,7 +100,7 @@ $(document).ready(function () {
     let data = {
         labels: ['Heart Disease', 'Depression', 'Domestic Abuse'],
         datasets: [{
-            label: 'test',
+            label: '',
             data: [heartDiseaseData, depressionData, domesticAbuseData],
             backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
             borderColor: ['#000000', '#000000', '#000000'],
@@ -124,13 +136,31 @@ $(document).ready(function () {
         },
         responsive: true,
         maintainAspectRatio: false,
+        annotation: {
+        annotations: [{
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y-axis-0',
+            value: 1000000,
+            borderColor: 'red',
+            borderWidth: 2,
+            label: {
+                enabled: true,
+                backgroundColor: '#3F054E',
+                content: 'COVID Cases',
+                fontSize: 10,
+                fontColor: "#fff",
+                position: 'center'
+            }
+        }]
+    }
     };
 
     let barChart = new Chart(ctx, {
         type: 'bar',
         data: data,
         options: options
-    })
+    });
 });
 
 

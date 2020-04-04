@@ -17,17 +17,17 @@ body {
     }
 }
 
+#graph-explainer {
+    font-size: 2.5vw;
+    font-family: Inter;
+}
+
 @media only screen and (min-width: 768px) {
     #graph-explainer {
-        font-size: 3vw;
-        font-family: Inter;
+        font-size: 1vw;
     }
 }
 
-#graph-explainer {
-    font-size: 3vw;
-    font-family: Inter;
-}
 
 #explainer-header-text {
     font-family: Inter;
@@ -48,16 +48,6 @@ body {
     padding: 0 0;
 }
 
-
-
-@media only screen and (min-width: 768px) {
-    #graph-explainer {
-    font-size: 1.5vw;
-    font-family: Inter;
-    background-color: inherit;
-}
-
-}
 
 #dataDate {
     font-size: 2.5vw;
@@ -186,16 +176,6 @@ body {
     color: #D02F46;
 }
 
-#diseaseTitle {
-    font-size: clamp(10px, 2vw, 100px);
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    text-transform: capitalize;
-    color: #ED8182;
-}
-
 #graphArea {
     display: block;
     margin: 0 auto 0 auto;
@@ -219,11 +199,16 @@ canvas{
     }
 }
 
+.card-para {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 #footer-text {
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 2vw;
+    font-size: 1.5vw;
     line-height: 0px;
     letter-spacing: -0.02em;
     text-transform: capitalize;
@@ -235,7 +220,7 @@ canvas{
         font-family: Inter;
         font-style: normal;
         font-weight: 500;
-        font-size: 1vw;
+        font-size: 0.75vw;
         line-height: 0px;
         letter-spacing: -0.02em;
         text-transform: capitalize;
