@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from src.main.process_corona_data import display_covid_cases
-from src.main.get_phe_data import get_heart_data, get_depression_data, get_domestic_abuse_data, get_phe_data_for_flask
+from src.main.get_phe_data import get_phe_data_for_flask
 
 # Create an 'application' callable
 application = Flask(__name__)
