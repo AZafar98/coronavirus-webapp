@@ -141,7 +141,7 @@ $(document).ready(function () {
             type: 'line',
             mode: 'horizontal',
             scaleID: 'y-axis-0',
-            value: 1000000,
+            value: totalCases,
             borderColor: 'red',
             borderWidth: 2,
             label: {
