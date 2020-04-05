@@ -9,7 +9,7 @@ application = Flask(__name__)
 # NOTE: With the current setup, if PHE data does not exist. It will be downloaded when the page is first loaded.
 # So, the first time you try to view the page, it will be notably slower.
 # All subsequent refreshes will be fast as it will use the same data which will be saved locally as JSON.
-# This *should* only apply when running the app on your local machine.
+# This *should* only apply when running the app on your local machine
 """
 
 # This lets us call the function through the Jinja2 template engine.
