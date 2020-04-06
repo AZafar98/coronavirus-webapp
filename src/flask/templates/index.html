@@ -37,11 +37,42 @@
 
     <div class="row content text-left">
         <div class="col mt-5">
+            <span class="mx-1" id="otherSubtitle">Trajectory</span>
+
+            <div class="accordion mx-3 mt-2" id="trajectory-explainer-accordian">
+                <div class="card">
+                    <div class="card-header accordion-heading">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#trajectory-explainer"
+                                    aria-expanded="false" aria-controls="trajectory-explainer"
+                                    id="explainer-header-text">
+                                <i class="fa" aria-hidden="true"></i>
+                                What does this mean?
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="trajectory-explainer" class="collapse" aria-labelledby="trajectory-explain-heading"
+                         data-parent="#trajectory-explainer-accordian">
+                        <div class="card-body">
+                            <p class="card-para">
+                                Trajectory of deaths and cases in the UK.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row content text-left">
+        <div class="col mt-5">
             <span class="mx-1" id="otherSubtitle">How does this compare?</span>
 
             <div class="accordion mx-3 mt-2" id="graph-explainer">
                 <div class="card">
-                    <div class="card-header" id="graph-explain-heading">
+                    <div class="card-header accordion-heading">
                         <h2 class="mb-0">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                     data-target="#graph-interpret"
@@ -68,7 +99,7 @@
                                 but to share some perspective about some of the other important issues we face as a
                                 society in the context of COVID-19.
                             </p>
-                            <p>
+                            <p class="card-para">
                                 The data below is from <abbr title="Public Health England" class="initialism">PHE</abbr>.
                                 Yearly figures have been averaged to 7 days and 24 hours to give an
                                 average representation where the exact data is not available.
@@ -77,29 +108,10 @@
                     </div>
                 </div>
             </div>
-
-<!--                <p class="ml-1" id="explain-para">-->
-<!--                    The purpose of the graph is to give some context and perspective on the severity of COVID-19.-->
-<!--                    <br>-->
-<!--                    It is not intended to take away from the seriousness of COVID-19 and the challenges facing us,-->
-<!--                    but rather to raise awareness of the fact that there are other equally important challenges facing-->
-<!--                    modern societies in terms of the number of people that are directly affected.-->
-<!--                </p>-->
-
-<!--            <p class="ml-1" id="explain-para">COVID-19 has had a devastating impact both around the world and in the UK. The seriousness of the issue-->
-<!--            should not be understated, however this is also an opportunity to raise awareness of other important issues-->
-<!--            facing us today in the context of the coronavirus.-->
-<!--            <br>-->
-<!--            The chart below shows {TBC exactly what it will show} how many people suffer from {placeholder}.-->
-<!--            <br>-->
-<!--            The message is that we should take COVID seriously - but also to raise awareness of other problems that are just-->
-<!--            as prevalent in the UK, but are not treated with the same level of seriousness.</p>-->
-
         </div>
     </div>
     <div class="row content text-left">
         <div class="col mx-auto" id="graph-container">
-<!--            <div class="col mx-auto mt-5 w-75 mh-25" id="graphArea"></div>-->
             <canvas class="col mt-5 w-75" id="graphArea"></canvas>
         </div>
     </div>

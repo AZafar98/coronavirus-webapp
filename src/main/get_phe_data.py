@@ -194,7 +194,7 @@ def explore_profile_data(profile_id):
     return unique
 
 
-def get_figure_for_flask(data):
+def get_figure_for_flask(data, differenced=True):
     """
     Get the single figure we want to display on the webpage.
     Pass the result of extract_summary_figure() into this function.
@@ -210,14 +210,18 @@ def get_figure_for_flask(data):
         """
         return elem.split('/')[1]
 
-    # Make sure the data is sorted by year, so we can then assume the last element is the most recent
-    time_periods = sorted(data['Time period'].tolist(), key=sort_fn)
-    most_recent_year = time_periods[-1]
+    if differenced is True:
+        differenced_data = data['Count'].diff()
+        # Get the most recent differenced data
+        return int(differenced_data.iloc[-1])
+    else:
+        # Make sure the data is sorted by year, so we can then assume the last element is the most recent
+        time_periods = sorted(data['Time period'].tolist(), key=sort_fn)
+        most_recent_year = time_periods[-1]
 
-    most_recent_data = data.loc[data['Time period'] == most_recent_year, :]
+        most_recent_data = data.loc[data['Time period'] == most_recent_year, :]
 
-    # return f"{int(most_recent_data.iloc[0].loc['Count']):,}"
-    return int(most_recent_data.iloc[0].loc['Count'])
+        return int(most_recent_data.iloc[0].loc['Count'])
 
 
 def write_data_to_json(data, name):
@@ -247,10 +251,13 @@ def write_data_to_json(data, name):
 """
 
 
-def get_phe_data_for_flask(indicator, dev=True):
+def get_phe_data_for_flask(indicator, differenced, dev=True):
     if type(indicator) is not int:
         raise TypeError("Indicator ID must be an integer, not {}".format(type(indicator)))
 
     data, meta, all_data = get_data(indicator, dev=dev, england_only=True, use_json=True)
     summary_data = extract_summary_figure(data, json=False)
-    return get_figure_for_flask(summary_data)
+    return get_figure_for_flask(summary_data, differenced=differenced)
+
+
+get_phe_data_for_flask(273, differenced=True)
