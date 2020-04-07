@@ -65,25 +65,28 @@
             </div>
         </div>
     </div>
+
     <div class="row content text-left">
-        <div class="col mt-5 w-50" id="tempSelect2">
+        <div class="col mt-5 w-50">
             <select data-style="bg-white rounded-pill px-4 py-3 shadow-sm w-75 " class="selectpicker w-100"
-                    data-live-search="true" title="Data to view">
-                <option value="confirmed">Confirmed cases</option>
+                    data-live-search="true" title="Data to view" id="covidTypeSelect">
+                <option value="confirmed" selected>Confirmed cases</option>
                 <option value="deaths">Deaths</option>
                 <option value="recovered">Recovered cases</option>
             </select>
         </div>
-        <div class="col mt-5 w-50" id="tempSelect">
+
+        <div class="col mt-5 w-50">
             <select data-style="bg-white rounded-pill px-4 py-3 shadow-sm w-75" class="selectpicker w-100"
                     multiple data-live-search="true" data-selected-text-format="count > 3" title="Countries to compare"
-                    name="test[]" id="countrySelector">
+                    name="test[]" data-actions-box="true" id="countrySelector">
                 {% for country in country_options %}
                 <option value="{{ country }}">{{ country }}</option>
                 {% endfor %}
             </select>
         </div>
     </div>
+
     <div class="row content text-left">
         <div class="col mx-auto graph-container" id="covid-graph-container">
             <div class="col mt-5 w-75" id="covidTimeSeries"></div>

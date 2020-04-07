@@ -17,7 +17,6 @@ application = Flask(__name__)
 application.jinja_env.globals.update(displayCovidCases=display_covid_cases)
 application.jinja_env.globals.update(getPHEData=get_phe_data_for_flask)
 application.jinja_env.globals.update(getCovidTimeSeries=covid_time_series)
-# application.jinja_env.globals.update(country_options=country_options)
 
 
 def index():
@@ -40,6 +39,6 @@ application.add_url_rule('/donate', 'donate', donate)
 # to be left here.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app
+    # removed before deploying a production app.
     application.debug = True
     application.run()

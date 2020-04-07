@@ -236,11 +236,22 @@ def covid_time_series(data_type, country=None):
     :return:
     """
 
-    if data_type.upper() not in ['CONFIRMED', 'DEATHS', 'RECOVERED']:
+    data_type = data_type.upper()
+
+    if data_type not in ['CONFIRMED', 'DEATHS', 'RECOVERED']:
         raise ValueError("Invalid type. Must be 'confirmed', 'deaths', 'recovered'")
 
+    confirmed, recovered, deaths = get_corona_data()
+
+    if data_type == 'CONFIRMED':
+        data = confirmed
+    elif data_type == 'DEATHS':
+        data = deaths
+    else:
+        data = recovered
+
     # This gets UK data by default.
-    country_data = data_for_country(confirmed, country, province='None')
+    country_data = data_for_country(data, country, province='None')
 
     # Get a list of only the date columns
     date_pat = re.compile('\d{1,2}/\d{1,2}/\d{1,2}')
@@ -262,6 +273,7 @@ def country_options():
     countries = country_data['Country/Region'].unique().tolist()
 
     return countries
+
 
 # test = data_for_country(confirmed, 'United Kingdom', province='None')
 test2 = covid_time_series('confirmed', None)

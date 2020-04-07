@@ -3,6 +3,10 @@ $(document).ready(function () {
     let initHeartDisease = heartDiseaseData;
     let initDomesticAbuse = domesticAbuseData;
     let confirmedTimeSeries = JSON.parse(confirmedCovidTimeSeries);
+    let deathTimeSeries = JSON.parse(deathCovidTimeSeries);
+    let recoveredTimeSeries = JSON.parse(recoveredCovidTimeSeries);
+
+    console.log(confirmedTimeSeries);
 
     // Thanks to https://stackoverflow.com/a/2901298
     function numberWithCommas(x) {
@@ -21,12 +25,6 @@ $(document).ready(function () {
         heartDiseaseData = initHeartDisease;
         depressionData = initDepression;
         domesticAbuseData = initDomesticAbuse;
-
-        // chart.options.data[0].dataPoints = [
-        //     {y: heartDiseaseData, label: "Heart Disease"},
-        //     {y: depressionData, label: "Depression"}
-        // ];
-        // chart.render();
 
         barChart.data.datasets = [{
             label: '',
@@ -156,12 +154,34 @@ $(document).ready(function () {
     }
     };
 
-    // $('.selectpicker').selectpicker();
+    // We are going to use this variable for the data in all charts. When the user chooses a different data type, we
+    // will just update this variable to have the correct data for simplicity.
+
+    let baseCovidData = confirmedTimeSeries;
 
     $('#countrySelector').on('change', function (e) {
         let selectedItems = $('#countrySelector').val();
-        dyGraphData(confirmedTimeSeries, selectedItems);
-        console.log(selectedItems);
+        dyGraphData(baseCovidData, selectedItems);
+        covidGraph.updateOptions({
+            'file': window.dyGraphData,
+            'labels': window.dyGraphLabels
+        })
+    });
+
+    $('#covidTypeSelect').on('change', function(e) {
+
+        let typeSelected = $('#covidTypeSelect').val();
+        let selectedItems = $('#countrySelector').val();
+
+        if (typeSelected === 'confirmed') {
+            baseCovidData = confirmedTimeSeries
+        } else if (typeSelected === 'deaths') {
+            baseCovidData = deathTimeSeries;
+        } else {
+            baseCovidData = recoveredTimeSeries
+        }
+
+        dyGraphData(baseCovidData, selectedItems);
         covidGraph.updateOptions({
             'file': window.dyGraphData,
             'labels': window.dyGraphLabels
@@ -175,8 +195,6 @@ $(document).ready(function () {
     });
 
     function dyGraphData(data, countries) {
-        console.log(data);
-        console.log("entered function");
         window.dyGraphLabels = ["x"];
         window.dyGraphData = [];
 
@@ -191,6 +209,8 @@ $(document).ready(function () {
         }
     }
 
+    // Set the defauly value to UK and render the graph with UK confirmed cases
+    $('#countrySelector').selectpicker('val', 'United Kingdom');
     dyGraphData(confirmedTimeSeries, ['United Kingdom']);
 
     let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
