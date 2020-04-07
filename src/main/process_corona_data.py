@@ -202,6 +202,36 @@ def display_covid_cases(cases=True, period='Total'):
         return str(dates)
 
 
+def covid_time_series(type, country=None):
+    """
+
+    :param str type: 'confirmed', 'deaths' or 'recovered'
+    :param str country: Country to get data for. Default is None which return data for every country.
+    :return:
+    """
+
+    if type.upper() not in ['CONFIRMED', 'DEATHS', 'RECOVERED']:
+        raise ValueError("Invalid type. Must be 'confirmed', 'deaths', 'recovered'")
+
+    # This gets UK data by default.
+    country_data = data_for_country(confirmed, country, province='None')
+
+    # Get a list of only the date columns
+    date_pat = re.compile('\d{1,2}/\d{1,2}/\d{1,2}')
+    cols = country_data.columns.tolist()
+    date_cols = [col for col in cols if date_pat.match(col)]
+
+    data = country_data[['Country/Region'] + date_cols].T.reset_index()
+    data.columns = data.iloc[0].tolist()
+    data = data.drop(0, axis=0)
+    data = data.rename(columns={'Country/Region': 'Date'})
+
+    return data.to_json()
+
+
+# test = data_for_country(confirmed, 'United Kingdom', province='None')
+test2 = covid_time_series('confirmed', 'United Kingdom')
+
 """
 COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved
 locally, but uncommenting the function call below will just overwrite those)
