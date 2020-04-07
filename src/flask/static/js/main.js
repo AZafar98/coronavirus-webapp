@@ -209,6 +209,28 @@ $(document).ready(function () {
         }
     }
 
+
+    function legendFormatter(data) {
+        if (data.x == null) {
+            // This happens when there's no selection and {legend: 'always'} is set.
+            return '<br>' + data.series.map(function (series) {
+                return series.dashHTML + ' ' + series.labelHTML
+            }).join('<br>');
+        }
+
+        var html = this.getLabels()[0] + ': ' + data.xHTML;
+        data.series.forEach(function (series) {
+            if (!series.isVisible) return;
+            var labeledData = series.labelHTML + ': ' + series.yHTML;
+            if (series.isHighlighted) {
+                labeledData = '<b>' + labeledData + '</b>';
+            }
+            html += '<br>' + series.dashHTML + ' ' + labeledData;
+        });
+        return html;
+    }
+
+
     // Set the defauly value to UK and render the graph with UK confirmed cases
     $('#countrySelector').selectpicker('val', 'United Kingdom');
     dyGraphData(confirmedTimeSeries, ['United Kingdom']);
@@ -219,7 +241,7 @@ $(document).ready(function () {
             labels: window.dyGraphLabels,
             showRangeSelector: true,
             legend: 'always',
-            ylabel: 'Number of cases',
+            // ylabel: 'Number of cases',
             title: 'Comparisons across countries',
             axes: {
                 y: {
@@ -231,8 +253,9 @@ $(document).ready(function () {
                     }
                 }
             },
-            highlightSeriesOpts: {'strokeWidth': 2}
-            // labelsDiv: document.getElementById('element') For the legend
+            highlightSeriesOpts: {'strokeWidth': 2},
+            labelsDiv: document.getElementById('covidLegend'),
+            legendFormatter: legendFormatter
         }
     );
 });

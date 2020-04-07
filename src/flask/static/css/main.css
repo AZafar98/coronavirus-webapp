@@ -259,6 +259,11 @@ canvas{
     }
 }
 
+#covidLegend {
+    display: block;
+    vertical-align: top;
+}
+
 hr.footer-rule {
     border: 0.5px solid #ED8182;
 }
