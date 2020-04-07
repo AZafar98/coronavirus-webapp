@@ -1,8 +1,8 @@
 $(document).ready(function () {
-
     let initDepression = depressionData;
     let initHeartDisease = heartDiseaseData;
     let initDomesticAbuse = domesticAbuseData;
+    let confirmedTimeSeries = JSON.parse(confirmedCovidTimeSeries);
 
     // Thanks to https://stackoverflow.com/a/2901298
     function numberWithCommas(x) {
@@ -156,11 +156,61 @@ $(document).ready(function () {
     }
     };
 
+    // $('.selectpicker').selectpicker();
+
+    $('#countrySelector').on('change', function (e) {
+        let selectedItems = $('#countrySelector').val();
+        dyGraphData(confirmedTimeSeries, selectedItems);
+        console.log(selectedItems);
+        covidGraph.updateOptions({
+            'file': window.dyGraphData,
+            'labels': window.dyGraphLabels
+        })
+    });
+
     let barChart = new Chart(ctx, {
         type: 'bar',
         data: data,
         options: options
     });
+
+    function dyGraphData(data, countries) {
+        console.log(data);
+        console.log("entered function");
+        window.dyGraphLabels = ["x"];
+        window.dyGraphData = [];
+
+        for (let i = 0; i < Object.keys(data['Date']).length; i++) {
+            let tempGraphData = [new Date(data['Date'][i+1])];
+            for (let j = 0; j < countries.length; j++) {
+                let country = countries[j];
+                window.dyGraphLabels[j + 1] = country;
+                tempGraphData[j + 1] = data[country][i];
+            }
+            window.dyGraphData[i] = tempGraphData;
+        }
+    }
+
+    dyGraphData(confirmedTimeSeries, ['United Kingdom']);
+
+    let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
+        window.dyGraphData,
+        {
+            labels: window.dyGraphLabels,
+            showRangeSelector: true,
+            legend: 'always',
+            ylabel: 'Number of cases',
+            title: 'Comparisons across countries',
+            axes: {
+                y: {
+                    valueFormatter: function(x) {
+                        return numberWithCommas(x)
+                    },
+                    axisLabelFormatter: function(x) {
+                        return numberWithCommas(x)
+                    }
+                }
+            }
+        }
+    );
 });
-
-

@@ -3,6 +3,7 @@ import os
 import warnings
 import re
 from pathlib import Path
+from collections import Counter
 
 from src.flask.settings import RUNNING_LOCALLY
 
@@ -79,11 +80,31 @@ def get_corona_data():
 confirmed, recovered, deaths = get_corona_data()
 
 
-def data_for_country(data, country, province = None):
+def aggregate_duplicate_countries(data):
+    countries = data['Country/Region'].tolist()
+    count_countries = Counter(countries)
+    duplicates = [country for country, count in count_countries.items() if count > 1]
+
+    for duplicate_country in duplicates:
+        temp_data = data.loc[data['Country/Region'] == duplicate_country, :]
+        temp_data = temp_data.sum(axis=0)
+        temp_data['Province/State'] = 'None'
+        temp_data['Country/Region'] = duplicate_country
+
+        # Drop all of the old data before inserting the aggregated data
+        data = data.loc[data['Country/Region'] != duplicate_country, :]
+
+        temp_data = temp_data.to_frame().T
+        data = pd.concat([data, temp_data], axis=0)
+
+    return data
+
+
+def data_for_country(data, country, province=None):
     """
     Get the data for specified country and (optional) province.
     :param pd.DataFrame data: COVID data returned from get_corona_data
-    :param str country: Country name. Specify None to return all data.
+    :param (str, None) country: Country name. Specify None to return all data.
     :param str province: Province name
     :return: Data for specified country and province
     """
@@ -91,6 +112,11 @@ def data_for_country(data, country, province = None):
     # Option to return data for all countries
     if country is None:
         country_data = data.copy()
+        # We need to remove duplicated countries, otherwise there will be non-unique columns in the index, which causes
+        # a problem when convering to JSON. These are countries where the data is split into multiple provinces, so we
+        # are simply going to aggregate all of the data
+        country_data = aggregate_duplicate_countries(country_data)
+
         return country_data.reset_index(drop=True)
 
     country_data = data.loc[data['Country/Region'].str.upper() == country.upper(),:].reset_index(drop=True)
@@ -202,15 +228,15 @@ def display_covid_cases(cases=True, period='Total'):
         return str(dates)
 
 
-def covid_time_series(type, country=None):
+def covid_time_series(data_type, country=None):
     """
 
-    :param str type: 'confirmed', 'deaths' or 'recovered'
-    :param str country: Country to get data for. Default is None which return data for every country.
+    :param str data_type: 'confirmed', 'deaths' or 'recovered'
+    :param (str, None) country: Country to get data for. Default is None which return data for every country.
     :return:
     """
 
-    if type.upper() not in ['CONFIRMED', 'DEATHS', 'RECOVERED']:
+    if data_type.upper() not in ['CONFIRMED', 'DEATHS', 'RECOVERED']:
         raise ValueError("Invalid type. Must be 'confirmed', 'deaths', 'recovered'")
 
     # This gets UK data by default.
@@ -229,8 +255,16 @@ def covid_time_series(type, country=None):
     return data.to_json()
 
 
+def country_options():
+    # Pass None to get data for all countries back
+    country_data = data_for_country(confirmed, None, province='None')
+
+    countries = country_data['Country/Region'].unique().tolist()
+
+    return countries
+
 # test = data_for_country(confirmed, 'United Kingdom', province='None')
-test2 = covid_time_series('confirmed', 'United Kingdom')
+test2 = covid_time_series('confirmed', None)
 
 """
 COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved

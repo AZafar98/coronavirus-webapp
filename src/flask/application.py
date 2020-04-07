@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from src.main.process_corona_data import display_covid_cases
+from src.main.process_corona_data import display_covid_cases, covid_time_series, country_options
 from src.main.get_phe_data import get_phe_data_for_flask
 
 # Create an 'application' callable
@@ -16,10 +16,12 @@ application = Flask(__name__)
 # Thanks to https://stackoverflow.com/questions/6036082/call-a-python-function-from-jinja2
 application.jinja_env.globals.update(displayCovidCases=display_covid_cases)
 application.jinja_env.globals.update(getPHEData=get_phe_data_for_flask)
+application.jinja_env.globals.update(getCovidTimeSeries=covid_time_series)
+# application.jinja_env.globals.update(country_options=country_options)
 
 
 def index():
-    return render_template('index.html')
+    return render_template('index.html', country_options=country_options())
 
 
 def about():
@@ -38,6 +40,6 @@ application.add_url_rule('/donate', 'donate', donate)
 # to be left here.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
+    # removed before deploying a production app
     application.debug = True
     application.run()
