@@ -237,9 +237,12 @@ canvas{
     }
 }
 
-
 #page-footer {
     width: 100vw;
+}
+
+#covidTypeSelect {
+    font-size: 2vw;
 }
 
 hr.footer-rule {

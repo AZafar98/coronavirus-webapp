@@ -66,24 +66,30 @@
         </div>
     </div>
 
-    <div class="row content text-left">
-        <div class="col mt-5 w-50">
-            <select data-style="bg-white rounded-pill px-4 py-3 shadow-sm w-75 " class="selectpicker w-100"
-                    data-live-search="true" title="Data to view" id="covidTypeSelect">
-                <option value="confirmed" selected>Confirmed cases</option>
-                <option value="deaths">Deaths</option>
-                <option value="recovered">Recovered cases</option>
-            </select>
+    <div class="row">
+        <div class="col my-2">
+                <div class="dropdown bootstrap-select">
+                    <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker" data-width="auto"
+                            data-live-search="true" title="Data to view" id="covidTypeSelect">
+                        <option value="confirmed" selected>Confirmed cases</option>
+                        <option value="deaths">Deaths</option>
+                        <option value="recovered">Recovered cases</option>
+                    </select>
+                </div>
         </div>
 
-        <div class="col mt-5 w-50">
-            <select data-style="bg-white rounded-pill px-4 py-3 shadow-sm w-75" class="selectpicker w-100"
-                    multiple data-live-search="true" data-selected-text-format="count > 3" title="Countries to compare"
-                    name="test[]" data-actions-box="true" id="countrySelector">
-                {% for country in country_options %}
-                <option value="{{ country }}">{{ country }}</option>
-                {% endfor %}
-            </select>
+<!--        <div class="col-sm-3 mt-5">-->
+        <div class="col my-2">
+                <div class="dropdown bootstrap-select">
+                    <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker"
+                            multiple data-live-search="true" data-selected-text-format="count > 3"
+                            title="Countries to compare" data-width="auto"
+                            name="test[]" data-actions-box="true" id="countrySelector">
+                        {% for country in country_options %}
+                        <option value="{{ country }}">{{ country }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
         </div>
     </div>
 
