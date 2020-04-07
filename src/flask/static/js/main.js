@@ -223,14 +223,16 @@ $(document).ready(function () {
             title: 'Comparisons across countries',
             axes: {
                 y: {
-                    valueFormatter: function(x) {
+                    valueFormatter: function (x) {
                         return numberWithCommas(x)
                     },
-                    axisLabelFormatter: function(x) {
+                    axisLabelFormatter: function (x) {
                         return numberWithCommas(x)
                     }
                 }
-            }
+            },
+            highlightSeriesOpts: {'strokeWidth': 2}
+            // labelsDiv: document.getElementById('element') For the legend
         }
     );
 });
