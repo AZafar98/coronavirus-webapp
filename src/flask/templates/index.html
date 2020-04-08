@@ -14,7 +14,7 @@
         <div class="col" id="covidCount">
             <h1 id="covidNumberTitle">
                 <span id="covidNumber"></span>
-                <small id="covidCountStrapline">United Kingdom coronavirus cases</small>
+                <small id="covidCountStrapline">United Kingdom COVID-19 cases</small>
                 <span id="dataDate"></span>
             </h1>
         </div>
@@ -61,7 +61,7 @@
                             </p>
                             <p class="card-para">
                                 First choose the type of data you want to see, and then select all of the countries you
-                                would like to graph the data for. Noe that the dropdown menu for countries is searchable.
+                                would like to graph the data for. Note that the dropdown menu for countries is searchable.
                             </p>
                             <p class="card-para">
                                 All of the COVID-19 data is sourced from the <a
@@ -78,8 +78,9 @@
 
     <div class="row my-3 mx-2" id="graph-select-menus">
         <div class="col-sm-4">
-            <i class="fa fa-question-circle" data-toggle="tooltip" title="View either the total cases reported at the
-             end of each day, or the number of new reports each day."></i>
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="<b>Total:</b> Total cases reported at the
+             end of each day <br>
+              <b>New reports per day:</b> Number of new cases, deaths of recoveries each day."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Type of data" id="dataFreqSelect">
@@ -90,7 +91,8 @@
         </div>
 
         <div class="col-sm-4">
-            <i class="fa fa-question-circle" data-toggle="tooltip" title="Category of data to view."></i>
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="Category of data to view. <br> For definitions
+             of the data types, see the <a href='{{ url_for('about') }}'> about page</a>"></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Data to view" id="covidTypeSelect">
@@ -102,7 +104,7 @@
         </div>
 
         <div class="col-sm-4">
-            <i class="fa fa-question-circle" data-toggle="tooltip" title="Select countries to graph and compare.
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="Select countries to graph and compare.<br>
             Note that the menu is searchable."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
@@ -145,7 +147,7 @@
                          data-parent="#graph-explainer">
                         <div class="card-body">
                             <p class="card-para">
-                                The graph shows the reported number of COVID cases compared to the average rate of
+                                The graph shows the reported number of COVID-19 cases compared to the average rate of
                                 occurrence
                                 of (so far) heart disease, depression and domestic abuse.
                                 <br>
