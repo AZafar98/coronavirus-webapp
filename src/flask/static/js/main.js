@@ -265,6 +265,9 @@ let options = {
             }
         }]
     },
+    legend: {
+        display: false
+    },
     tooltips: {
         callbacks: {
             label: function (tooltipItem, chart) {
