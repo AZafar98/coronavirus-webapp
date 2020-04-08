@@ -195,7 +195,7 @@ $(document).ready(function () {
     });
 
     function dyGraphData(data, countries) {
-        window.dyGraphLabels = ["x"];
+        window.dyGraphLabels = ["Date"];
         window.dyGraphData = [];
 
         for (let i = 0; i < Object.keys(data['Date']).length; i++) {
@@ -250,6 +250,11 @@ $(document).ready(function () {
                     },
                     axisLabelFormatter: function (x) {
                         return numberWithCommas(x)
+                    }
+                },
+                x: {
+                    valueFormatter: function (d) {
+                        return new Date(d).toLocaleDateString();
                     }
                 }
             },
