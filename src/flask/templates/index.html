@@ -76,18 +76,21 @@
         </div>
     </div>
 
-    <div class="row my-3 mx-2">
-        <div class="col-sm-2">
+    <div class="row my-3 mx-2" id="graph-select-menus">
+        <div class="col-sm-4">
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="View either the total cases reported at the
+             end of each day, or the number of new cases reported each day."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Type of data" id="dataFreqSelect">
                     <option value="total" selected>Total</option>
-                    <option value="new">New per day</option>
+                    <option value="new">New cases per day</option>
                 </select>
             </div>
         </div>
 
-        <div class="col-sm-5">
+        <div class="col-sm-4">
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="Category of data to view."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Data to view" id="covidTypeSelect">
@@ -98,7 +101,9 @@
             </div>
         </div>
 
-        <div class="col-sm-5">
+        <div class="col-sm-4">
+            <i class="fa fa-question-circle" data-toggle="tooltip" title="Select countries to graph and compare.
+            Note that the menu is searchable."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         multiple data-live-search="true" data-selected-text-format="count > 3"

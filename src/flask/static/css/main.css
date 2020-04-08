@@ -259,6 +259,12 @@ canvas{
     }
 }
 
+#graph-select-menus .fa-question-circle {
+    float: right;
+    margin-bottom: 0.75vh;
+    margin-top: 0.75vh;
+}
+
 #covidLegend {
     display: block;
     vertical-align: top;
