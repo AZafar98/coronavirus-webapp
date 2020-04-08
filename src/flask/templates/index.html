@@ -66,10 +66,10 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col my-2">
-            <div class="dropdown bootstrap-select">
-                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker" data-width="auto"
+    <div class="row my-2 mx-2">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control"
                         data-live-search="true" title="Data to view" id="covidTypeSelect">
                     <option value="confirmed" selected>Confirmed cases</option>
                     <option value="deaths">Deaths</option>
@@ -78,12 +78,12 @@
             </div>
         </div>
 
-        <div class="col my-2">
-            <div class="dropdown bootstrap-select">
-                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker"
+        <div class="col-sm-6">
+            <div class="form-group">
+                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control"
                         multiple data-live-search="true" data-selected-text-format="count > 3"
-                        title="Countries to compare" data-width="auto"
-                        name="test[]" data-actions-box="true" id="countrySelector">
+                        title="Countries to compare"
+                        data-actions-box="true" id="countrySelector">
                     {% for country in country_options %}
                     <option value="{{ country }}">{{ country }}</option>
                     {% endfor %}
@@ -92,11 +92,11 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col mx-auto" id="covid-graph-container">
+    <div class="row mx-1">
+        <div class="col-sm-9" id="covid-graph-container">
             <div class="col mt-3 w-100" id="covidTimeSeries"></div>
         </div>
-        <div id="covidLegend"></div>
+        <div class="col-sm-2" id="covidLegend"></div>
     </div>
 
     <div class="row content text-left">

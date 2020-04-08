@@ -241,9 +241,9 @@ canvas{
     width: 100vw;
 }
 
-#covidTypeSelect {
-    font-size: 2vw;
-}
+/*#covidTypeSelect {*/
+/*    font-size: 2vw;*/
+/*}*/
 
 #covidTimeSeries .dygraph-title{
     font-size: 4vw;

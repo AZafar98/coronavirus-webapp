@@ -263,6 +263,8 @@ def covid_time_series(data_type, country=None):
     data = data.drop(0, axis=0)
     data = data.rename(columns={'Country/Region': 'Date'})
 
+    # TODO: Sort alphabetically
+
     return data.to_json()
 
 
