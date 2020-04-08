@@ -79,12 +79,12 @@
     <div class="row my-3 mx-2" id="graph-select-menus">
         <div class="col-sm-4">
             <i class="fa fa-question-circle" data-toggle="tooltip" title="View either the total cases reported at the
-             end of each day, or the number of new cases reported each day."></i>
+             end of each day, or the number of new reports each day."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Type of data" id="dataFreqSelect">
                     <option value="total" selected>Total</option>
-                    <option value="new">New cases per day</option>
+                    <option value="new">New reports per day</option>
                 </select>
             </div>
         </div>
@@ -107,7 +107,7 @@
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         multiple data-live-search="true" data-selected-text-format="count > 3"
-                        title="Countries to compare"
+                        data-count-selected-text= "{0} countries selected" title="Countries to compare"
                         data-actions-box="true" id="countrySelector">
                     {% for country in country_options %}
                     <option value="{{ country }}">{{ country }}</option>
