@@ -5,8 +5,9 @@ $(document).ready(function () {
     let confirmedTimeSeries = JSON.parse(confirmedCovidTimeSeries);
     let deathTimeSeries = JSON.parse(deathCovidTimeSeries);
     let recoveredTimeSeries = JSON.parse(recoveredCovidTimeSeries);
-
-    console.log(confirmedTimeSeries);
+    let confirmedTimeSeriesDiff = JSON.parse(confirmedCovidTimeSeriesDiff);
+    let deathTimeSeriesDiff = JSON.parse(deathCovidTimeSeriesDiff);
+    let recoveredTimeSeriesDiff = JSON.parse(recoveredCovidTimeSeriesDiff);
 
     // Thanks to https://stackoverflow.com/a/2901298
     function numberWithCommas(x) {
@@ -169,17 +170,49 @@ $(document).ready(function () {
     });
 
     $('#covidTypeSelect').on('change', function(e) {
+        let typeSelected = $('#covidTypeSelect').val();
+        let selectedItems = $('#countrySelector').val();
+        let dataTypeSelected = $('#dataFreqSelect').val();
 
+        baseCovidData = setBaseCovidData(dataTypeSelected, typeSelected);
+
+        dyGraphData(baseCovidData, selectedItems);
+        covidGraph.updateOptions({
+            'file': window.dyGraphData,
+            'labels': window.dyGraphLabels
+        })
+    });
+
+    function setBaseCovidData(dataFreq, dataType) {
+        if (dataFreq === 'total') {
+            if (dataType === 'confirmed') {
+                baseCovidData = confirmedTimeSeries
+            } else if (dataType === 'deaths') {
+                baseCovidData = deathTimeSeries;
+            } else {
+                baseCovidData = recoveredTimeSeries
+            }
+        } else if (dataFreq == 'new') {
+            if (dataType === 'confirmed') {
+                baseCovidData = confirmedTimeSeriesDiff
+            } else if (dataType === 'deaths') {
+                baseCovidData = deathTimeSeriesDiff;
+            } else {
+                baseCovidData = recoveredTimeSeriesDiff
+            }
+        } else {
+            // Invalid dataFreq passed, so just set it to the confirmed data.
+            baseCovidData = confirmedTimeSeries
+        }
+        return baseCovidData
+    }
+
+    $('#dataFreqSelect').on('change', function(e) {
+        let dataTypeSelected = $('#dataFreqSelect').val();
         let typeSelected = $('#covidTypeSelect').val();
         let selectedItems = $('#countrySelector').val();
 
-        if (typeSelected === 'confirmed') {
-            baseCovidData = confirmedTimeSeries
-        } else if (typeSelected === 'deaths') {
-            baseCovidData = deathTimeSeries;
-        } else {
-            baseCovidData = recoveredTimeSeries
-        }
+        baseCovidData = setBaseCovidData(dataTypeSelected, typeSelected);
 
         dyGraphData(baseCovidData, selectedItems);
         covidGraph.updateOptions({
@@ -199,7 +232,7 @@ $(document).ready(function () {
         window.dyGraphData = [];
 
         for (let i = 0; i < Object.keys(data['Date']).length; i++) {
-            let tempGraphData = [new Date(data['Date'][i+1])];
+            let tempGraphData = [new Date(data['Date'][i])];
             for (let j = 0; j < countries.length; j++) {
                 let country = countries[j];
                 window.dyGraphLabels[j + 1] = country;

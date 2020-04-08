@@ -77,10 +77,20 @@
     </div>
 
     <div class="row my-3 mx-2">
-        <div class="col-sm-6">
+        <div class="col-sm-2">
             <div class="form-group">
-                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control"
-                        data-live-search="true" title="Data to view" id="covidTypeSelect">
+                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
+                        title="Type of data" id="dataFreqSelect">
+                    <option value="total" selected>Total</option>
+                    <option value="new">New per day</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-5">
+            <div class="form-group">
+                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
+                        title="Data to view" id="covidTypeSelect">
                     <option value="confirmed" selected>Confirmed cases</option>
                     <option value="deaths">Deaths</option>
                     <option value="recovered">Recovered cases</option>
@@ -88,9 +98,9 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="form-group">
-                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control"
+                <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         multiple data-live-search="true" data-selected-text-format="count > 3"
                         title="Countries to compare"
                         data-actions-box="true" id="countrySelector">
@@ -117,7 +127,7 @@
                 <div class="card">
                     <div class="card-header accordion-heading">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
                                     data-target="#graph-interpret"
                                     aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                                 <i class="fa" aria-hidden="true"></i>
@@ -126,7 +136,7 @@
                         </h2>
                     </div>
 
-                    <div id="graph-interpret" class="collapse" aria-labelledby="graph-explain-heading"
+                    <div id="graph-interpret" class="collapse show" aria-labelledby="graph-explain-heading"
                          data-parent="#graph-explainer">
                         <div class="card-body">
                             <p class="card-para">

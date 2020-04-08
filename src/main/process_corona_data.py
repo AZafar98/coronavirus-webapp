@@ -228,11 +228,11 @@ def display_covid_cases(cases=True, period='Total'):
         return str(dates)
 
 
-def covid_time_series(data_type, country=None):
+def covid_time_series(data_type, difference=False, country=None):
     """
 
     :param str data_type: 'confirmed', 'deaths' or 'recovered'
-    :param (str, None) country: Country to get data for. Default is None which return data for every country.
+    :param str or None country: Country to get data for. Default is None which return data for every country.
     :return:
     """
 
@@ -261,7 +261,15 @@ def covid_time_series(data_type, country=None):
     data = country_data[['Country/Region'] + date_cols].T.reset_index()
     data.columns = data.iloc[0].tolist()
     data = data.drop(0, axis=0)
-    data = data.rename(columns={'Country/Region': 'Date'})
+    data = data.rename(columns={'Country/Region': 'Date'}).reset_index(drop=True)
+
+    if difference is True:
+        data_to_difference = data.loc[:, [col for col in data.columns if col != 'Date']]
+        differenced = data_to_difference.diff()
+        # First row will be NA values after differencing. Drop that so it doesn't cause problems later when trying to
+        # graph the data
+        differenced['Date'] = data['Date']
+        data = differenced.drop(1, axis=0).reset_index(drop=True);
 
     return data.to_json()
 
@@ -277,7 +285,7 @@ def country_options():
 
 
 # test = data_for_country(confirmed, 'United Kingdom', province='None')
-test2 = covid_time_series('confirmed', None)
+test2 = covid_time_series('confirmed', difference=True, country=None)
 
 """
 COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved

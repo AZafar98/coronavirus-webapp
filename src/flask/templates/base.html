@@ -54,9 +54,12 @@
         let heartDiseaseData = {{ getPHEData(indicator=273, differenced=True, dev=True) }}
         let depressionData = {{ getPHEData(indicator=848, differenced=True, dev=True) }}
         let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=True) }}
-        let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', country=None) |tojson|safe }}
-        let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', country=None) |tojson|safe }}
-        let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', country=None) |tojson|safe }}
+        let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False, country=None) |tojson|safe }}
+        let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False, country=None) |tojson|safe }}
+        let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False, country=None) |tojson|safe }}
+        let confirmedCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='confirmed', difference=True, country=None) |tojson|safe }}
+        let deathCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='deaths', difference=True, country=None) |tojson|safe }}
+        let recoveredCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='recovered', difference=True, country=None) |tojson|safe }}
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 
