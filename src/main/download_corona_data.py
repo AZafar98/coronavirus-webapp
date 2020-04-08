@@ -39,30 +39,12 @@ def download_corona_data():
     DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
     RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
 
-    def reformat_date_cols(data):
-        date_pat = re.compile('\d{1,2}/\d{1,2}/\d{1,2}')
-        cols = data.columns.tolist()
-        date_cols = [col for col in cols if date_pat.match(col)]
-        non_date_cols = [col for col in cols if not date_pat.match(col)]
-
-        formatted_dates = [pd.to_datetime(date).strftime("%d/%m/%y") for date in date_cols]
-        new_cols = non_date_cols + formatted_dates
-
-        data.columns = new_cols
-
-        return data
 
     confirmed_data = pd.read_csv(CONFIRMED_URL)
     deaths_data = pd.read_csv(DEATHS_URL)
     recovered_data = pd.read_csv(RECOVERED_URL)
 
-    # Change to British date format
-    confirmed_data = reformat_date_cols(confirmed_data)
-    deaths_data = reformat_date_cols(deaths_data)
-    recovered_data = reformat_date_cols(recovered_data)
-
     # Save the data locally so it doesn't have to be accessed from GitHub every time.
-
     confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
     deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))

@@ -29,30 +29,11 @@ def download_corona_data():
     DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
     RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
 
-    def reformat_date_cols(data):
-        date_pat = re.compile('\d{1,2}/\d{1,2}/\d{1,2}')
-        cols = data.columns.tolist()
-        date_cols = [col for col in cols if date_pat.match(col)]
-        non_date_cols = [col for col in cols if not date_pat.match(col)]
-
-        formatted_dates = [pd.to_datetime(date).strftime("%d/%m/%y") for date in date_cols]
-        new_cols = non_date_cols + formatted_dates
-
-        data.columns = new_cols
-
-        return data
-
     confirmed_data = pd.read_csv(CONFIRMED_URL)
     deaths_data = pd.read_csv(DEATHS_URL)
     recovered_data = pd.read_csv(RECOVERED_URL)
 
-    # Change to British date format
-    confirmed_data = reformat_date_cols(confirmed_data)
-    deaths_data = reformat_date_cols(deaths_data)
-    recovered_data = reformat_date_cols(recovered_data)
-
     # Save the data locally so it doesn't have to be accessed from GitHub every time.
-
     confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
     deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
@@ -163,6 +144,10 @@ def data_for_country(data, country, province=None):
     return country_data
 
 
+def british_date_format(date):
+    return pd.to_datetime(date).strftime("%d/%m/%y")
+
+
 def get_latest_figures(data, period='TOTAL'):
     """
     Calculate relevant figures to show to user
@@ -187,8 +172,10 @@ def get_latest_figures(data, period='TOTAL'):
         cases_sum = total_df.sum(axis=0)
         cases = cases_sum.iat[0]
 
+        date = british_date_format(date_cols[-1])
+
         # Also return the dates the data is from so we can display this
-        return cases, date_cols[-1]
+        return cases, date
 
     if period.upper() == '24H':
         # Now need to calculate the difference between the two most recent data points
@@ -200,7 +187,9 @@ def get_latest_figures(data, period='TOTAL'):
 
         new_cases_sum = new_cases_df.sum(axis=0)
 
-        dates_used = ' - '.join([date_cols[-2], date_cols[-1]])
+        date1, date2 = british_date_format(date_cols[-2]), british_date_format(date_cols[-1])
+
+        dates_used = ' - '.join([date1, date2])
 
         # Also return the dates the data is from so we can display this
         return new_cases_sum, dates_used
@@ -215,7 +204,9 @@ def get_latest_figures(data, period='TOTAL'):
 
         new_cases_sum = new_cases_df.sum(axis=0)
 
-        dates_used = ' - '.join([date_cols[-7], date_cols[-1]])
+        date1, date2 = british_date_format(date_cols[-7]), british_date_format(date_cols[-1])
+
+        dates_used = ' - '.join([date1, date2])
 
         # Also return the dates the data is from so we can display this
         return new_cases_sum, dates_used
