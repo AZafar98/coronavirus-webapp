@@ -270,6 +270,13 @@ canvas{
     vertical-align: top;
 }
 
+.header-image {
+    max-width: 30vw;
+    max-height: 30vh;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+}
+
 hr.footer-rule {
     border: 0.5px solid #ED8182;
 }

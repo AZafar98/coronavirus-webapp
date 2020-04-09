@@ -2,8 +2,26 @@
 
 {%block title %} COVID-19 Live {% endblock %}
 
-{%block script %}
+{%block scripts %}
+    <script type="text/javascript" defer>
 
+            let totalCases = {{ displayCovidCases(cases=True, period='Total') }};
+            let totalCasesDate = {{ displayCovidCases(cases=False, period='Total') |tojson|safe }};
+            let cases24H = {{ displayCovidCases(cases=True, period='24h') }};
+            let cases24HDate = {{ displayCovidCases(cases=False, period='24h') |tojson|safe }};
+            let cases7Days = {{ displayCovidCases(cases=True, period='7days') }};
+            let cases7DaysDate = {{ displayCovidCases(cases=False, period='7days') |tojson|safe }};
+            let heartDiseaseData = {{ getPHEData(indicator=273, differenced=True, dev=True) }}
+            let depressionData = {{ getPHEData(indicator=848, differenced=True, dev=True) }}
+            let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=True) }}
+            let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False, country=None) |tojson|safe }}
+            let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False, country=None) |tojson|safe }}
+            let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False, country=None) |tojson|safe }}
+            let confirmedCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='confirmed', difference=True, country=None) |tojson|safe }}
+            let deathCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='deaths', difference=True, country=None) |tojson|safe }}
+            let recoveredCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='recovered', difference=True, country=None) |tojson|safe }}
+        </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}

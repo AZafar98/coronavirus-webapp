@@ -2,11 +2,17 @@
 
 {%block title %} COVID-19 Live - Donate {% endblock %}
 
+{% block scripts %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid align-items-center">
 
-    <img src="{{ url_for('static', filename='images/covid-donate.jpg') }}" class="img-fluid rounded mx-auto d-block"
-         alt="About Page Image">
+    <lottie-player
+            src="https://assets1.lottiefiles.com/packages/lf20_wpGbRj.json" background="transparent"
+            speed="1" hover loop class="mx-auto img-fluid rounded header-image">
+    </lottie-player>
 
 
     <div class="accordion mx-3 mt-2" id="about-accordian">
