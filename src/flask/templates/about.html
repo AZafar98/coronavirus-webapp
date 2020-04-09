@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
-{%block meta_tags %}
+{%block head %}
+    {{ super() }}
     <meta property="og:title" content="COVID-19 Live - About"/>
     <meta property="og:url" content="https://azafar98.pythonanywhere.com/about/"/>
+    <meta property="og:description" content="About COVID-19 Live, it's mission and some FAQs."/>
 {% endblock %}
 
 {%block title %} COVID-19 Live - About {% endblock %}
@@ -28,7 +30,7 @@
                             data-target="#graph-interpret"
                             aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                         <i class="fa" aria-hidden="true"></i>
-                        What
+                        Why did we build COVID-19 Live?
                     </button>
                 </h2>
             </div>
@@ -50,7 +52,7 @@
                             data-target="#generic-about-2"
                             aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                         <i class="fa" aria-hidden="true"></i>
-                        is
+                        How should I use this tool?
                     </button>
                 </h2>
             </div>
@@ -71,7 +73,7 @@
                             data-target="#generic-about-3"
                             aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                         <i class="fa" aria-hidden="true"></i>
-                        going
+                        What do the types of COVID-19 data mean?
                     </button>
                 </h2>
             </div>
@@ -92,7 +94,7 @@
                             data-target="#generic-about-4"
                             aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                         <i class="fa" aria-hidden="true"></i>
-                        on
+                        What do the categories of COVID-19 data mean?
                     </button>
                 </h2>
             </div>
@@ -113,7 +115,7 @@
                             data-target="#generic-about-5"
                             aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                         <i class="fa" aria-hidden="true"></i>
-                        this
+                        Where is the data from?
                     </button>
                 </h2>
             </div>
@@ -134,7 +136,7 @@
                             data-target="#generic-about-6"
                             aria-expanded="false" aria-controls="graph-interpret" id="explainer-header-text">
                         <i class="fa" aria-hidden="true"></i>
-                        page?
+                        Can I view the code?
                     </button>
                 </h2>
             </div>
