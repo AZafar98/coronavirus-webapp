@@ -272,10 +272,12 @@ canvas{
 
 .header-image {
     max-width: 30vw;
-    max-height: 30vh;
+    max-height: 40vh;
     margin-bottom: 5vh;
     margin-top: 5vh;
+    display: flex;
 }
+
 
 hr.footer-rule {
     border: 0.5px solid #ED8182;
