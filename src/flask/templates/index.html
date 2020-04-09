@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{%block head %}
+    {{ super() }}
+    <meta property="og:title" content="COVID-19 Live"/>
+    <meta property="og:url" content="https://azafar98.pythonanywhere.com/"/>
+{% endblock %}
+
 {%block title %} COVID-19 Live {% endblock %}
 
 {%block scripts %}

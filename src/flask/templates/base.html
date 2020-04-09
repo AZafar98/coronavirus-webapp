@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% block head %}
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,17 @@
      coronavirus cases, coronavirus deaths, comparisons, coronavirus comparisons, coronavirus data, COVID comparisons,
       COVID data, COVID cases, COVID deaths, COVID-19 comparisons, COVID-19 data, COVID-19 cases, COVID-19 deaths">
 
-    <meta property="og:title" content="COVID-19 Live"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://azafar98.pythonanywhere.com/"/>
     <meta property="og:image"
           content="https://raw.githubusercontent.com/AZafar98/coronavirus-webapp/master/src/flask/static/images/favicon.png"/>
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Hearbeat logo" />
+
+{% endblock %}
+<!--    <meta property="og:title" content="COVID-19 Live"/>-->
+<!--    <meta property="og:url" content="https://azafar98.pythonanywhere.com/"/>-->
+
+
 
     <title>{% block title %}{% endblock %}</title>
 
