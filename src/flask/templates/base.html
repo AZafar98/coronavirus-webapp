@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Easy to use dashboard enabling simple comparisons of COVID-19 data worlwide, with
+     additional focus on COVID-19 compared to other societal issues in the UK.">
+    <meta name="keywords" content="COVID, COVID-19, Coronavirus, corona, virus, corona disease, cases, deaths,
+     coronavirus cases, coronavirus deaths, comparisons, coronavirus comparisons, coronavirus data, COVID comparisons,
+      COVID data, COVID cases, COVID deaths, COVID-19 comparisons, COVID-19 data, COVID-19 cases, COVID-19 deaths">
+
+    <meta property="og:image" content="{{ url_for('static', filename='images/favicon.ico') }}" />
+
+    <title>{% block title %}{% endblock %}</title>
 
     <!--    Favicon-->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
@@ -45,7 +54,6 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
 
     <!--    Local stylesheet-->
-    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
     {% block scripts %}{% endblock %}
