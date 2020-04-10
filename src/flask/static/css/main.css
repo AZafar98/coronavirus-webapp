@@ -1,32 +1,70 @@
 body {
     background: #FFF8F6;
+    font-family: Inter;
+    font-style: normal;
 }
 
 /* Functions such as min, max and clamp are not supported by all browsers. Either use media queries, or just
  size using vh and vw */
 
+.navbar-custom {
+    background-color: inherit;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-variant: all-small-caps;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand {
+    color: #D02F46;
+    margin-left: 0;
+}
+/* We want the navbar indented only on big screens - not on mobile. */
+@media only screen and (min-width: 768px) {
+    .navbar-custom .navbar-brand {
+        margin-left: 5vw;
+    }
+}
+
+.navbar-custom .navbar-text {
+    color: #D02F46;
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: #ED8182;
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #D02F46;
+}
+
+/* We want the navbar to be indented from the right - but only on big screens */
+.navbar-custom ul.nav-right {
+    margin-right: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar-custom ul.nav-right {
+        margin-right: 5vw;
+    }
+}
+
+.navbar-custom .navbar-nav .navbar-active {
+    color: #D02F46;
+}
+
 #covidNumberTitle {
     /*font-size: clamp(25px, 17vw, 200px);*/
-    font-size: 16vw;
+    font-size: 13vw;
     text-align-last: center;
 }
 
 @media only screen and (min-width: 768px) {
     #covidNumberTitle {
-        font-size: 11vw;
+        font-size: 8vw;
     }
 }
-
-/*#graph-explainer {*/
-/*    font-size: 2.5vw;*/
-/*    font-family: Inter;*/
-/*}*/
-
-/*@media only screen and (min-width: 768px) {*/
-/*    #graph-explainer {*/
-/*        font-size: 1vw;*/
-/*    }*/
-/*}*/
 
 .card-para {
     margin-top: 0;
@@ -136,7 +174,7 @@ body {
 
 .timeRangeButton {
     padding: 1vh 1vw;
-    border: 1.5px solid #D02F46;
+    border: 1.5px solid #ED8182;
     border-radius: 4px;
     text-align: center;
     background-color: inherit;
@@ -156,38 +194,20 @@ body {
 }
 
 .timeRangeButton:hover {
-    background-color: #D02F46;
-    color: white
+    background-color: inherit;
+    border: 1.5px solid #D02F46;
+    color: #D02F46;
 }
 
 .timeRangeButton:focus {
+    background-color: inherit;
+    border: 1.5px solid #D02F46;
     color: #D02F46;
-    color: white
 }
 
-#otherFactors {
-    position: absolute;
-    width: auto;
-    height: 0;
-    top: 45vh;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2.25vw;
-    line-height: 0px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.02em;
-    text-transform: capitalize;
-    color: #ED8182;
-}
 
-#factor {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.5vw;
-    letter-spacing: 0.02em;
+.buttonActive {
+    border: 1.5px solid #D02F46;
     color: #D02F46;
 }
 

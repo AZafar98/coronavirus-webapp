@@ -15,8 +15,8 @@
     <meta property="og:image"
           content="https://raw.githubusercontent.com/AZafar98/coronavirus-webapp/master/src/flask/static/images/social_display.png">
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="400" />
-    <meta property="og:image:height" content="300" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
     <meta property="og:image:alt" content="COVID-19 Live logo. Allowing you to see global COVID-19 stats." />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -24,10 +24,6 @@
 
 
 {% endblock %}
-<!--    <meta property="og:title" content="COVID-19 Live"/>-->
-<!--    <meta property="og:url" content="https://azafar98.pythonanywhere.com/"/>-->
-
-
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -85,11 +81,11 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-style navbar-custom">
     <a class="navbar-brand" href="{{ url_for('index') }}">COVID-19 Live</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars" style="color:#D02F46; font-size:28px;"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
@@ -97,7 +93,7 @@
                 <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav nav-right">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('about') }}">About</a>
             </li>

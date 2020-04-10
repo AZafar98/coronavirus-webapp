@@ -81,7 +81,7 @@ function setDefaultPage() {
     $('#dataFreqSelect').selectpicker('val', 'total');
     $('#countrySelector').selectpicker('val', 'United Kingdom');
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
-    document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
+    // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 }
 
 setDefaultPage();
@@ -89,11 +89,17 @@ let getDyGraphData = SetDyGraphData(confirmedTimeSeries, ['United Kingdom']);
 let dyGraphLabels = getDyGraphData.Labels;
 let dyGraphData = getDyGraphData.Data;
 
+// Add styling to the selected button even when out of focus.
+$("button").on('click', function (e) {
+    $("button").removeClass('buttonActive');
+    $(this).addClass('buttonActive');
+});
+
 
 //Clicking the 'Total' button
 document.getElementById("timeRangeButton1").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
-    document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
+    // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 
     // Update the chart data and redraw
     heartDiseaseData = initHeartDisease;
@@ -117,7 +123,7 @@ document.getElementById("timeRangeButton1").onclick = function () {
 // Clicking the '7 Days' button
 document.getElementById("timeRangeButton2").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases7Days);
-    document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
+    // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
 
     // Update the chart data and redraw
     heartDiseaseData = Math.round(initHeartDisease * (7 / 365));
@@ -147,7 +153,7 @@ document.getElementById("timeRangeButton2").onclick = function () {
 //Clicking the '24 hours' button.
 document.getElementById("timeRangeButton3").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases24H);
-    document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
+    // document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
 
     // Update the chart data and redraw
     heartDiseaseData = Math.round(initHeartDisease / 365);
