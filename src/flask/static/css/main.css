@@ -42,17 +42,19 @@ body {
 }
 
 
-#explainer-header-text {
+.accordian-header-text {
     font-family: Inter;
     font-size: 3vw;
     color: #D02F46;
 }
 
 @media only screen and (min-width: 768px) {
-    #explainer-header-text {
+    .accordian-header-text {
         font-family: Inter;
         font-size: 1.5vw;
         color: #D02F46;
+        padding-bottom: 1vh;
+        padding-top: 1vh;
     }
 }
 
