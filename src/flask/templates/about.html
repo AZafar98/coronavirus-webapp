@@ -10,17 +10,17 @@
 {%block title %} COVID-19 Live - About {% endblock %}
 
 {% block scripts %}
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid align-items-center">
-
-    <lottie-player
-            src="https://assets1.lottiefiles.com/packages/lf20_wpGbRj.json" background="transparent"
-            speed="1" hover loop class="mx-auto img-fluid rounded header-image">
-    </lottie-player>
-
+    <div class="row">
+        <div class="col-sm-8 mx-auto mb-5">
+            <img src="{{ url_for('static', filename='images/covid-live-logo.png') }}"
+                 class="img-fluid mx-auto rounded d-block"
+                 alt="About Page Image">
+        </div>
+    </div>
 
     <div class="accordion mx-3 mt-2" id="about-accordian">
         <div class="card">

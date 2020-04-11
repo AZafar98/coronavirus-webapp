@@ -1,15 +1,22 @@
 let initDepression = depressionData;
 let initHeartDisease = heartDiseaseData;
 let initDomesticAbuse = domesticAbuseData;
-let confirmedTimeSeries = JSON.parse(confirmedCovidTimeSeries);
-let deathTimeSeries = JSON.parse(deathCovidTimeSeries);
-let recoveredTimeSeries = JSON.parse(recoveredCovidTimeSeries);
-let confirmedTimeSeriesDiff = JSON.parse(confirmedCovidTimeSeriesDiff);
-let deathTimeSeriesDiff = JSON.parse(deathCovidTimeSeriesDiff);
-let recoveredTimeSeriesDiff = JSON.parse(recoveredCovidTimeSeriesDiff);
+const confirmedTimeSeries = JSON.parse(confirmedCovidTimeSeries);
+const deathTimeSeries = JSON.parse(deathCovidTimeSeries);
+const recoveredTimeSeries = JSON.parse(recoveredCovidTimeSeries);
+const confirmedTimeSeriesDiff = JSON.parse(confirmedCovidTimeSeriesDiff);
+const deathTimeSeriesDiff = JSON.parse(deathCovidTimeSeriesDiff);
+const recoveredTimeSeriesDiff = JSON.parse(recoveredCovidTimeSeriesDiff);
 
 //There was a total of 170,993 casualties of all severities in reported road traffic accidents in 2017.
-let initRoadCasualties = 170993;
+const initRoadCasualties = 170993;
+//https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland
+const ukAdultPopulationEstimate = 50528421;
+//https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/lonelinesswhatcharacteristicsandcircumstancesareassociatedwithfeelinglonely/2018-04-10
+//Figure 1 shows that in 2016 to 2017, there were 5% of adults (aged 16 years and over) in England reporting feeling lonely “often/always”
+const percentLonely = 0.05;
+const initLoneliness = ukAdultPopulationEstimate*percentLonely;
+
 
 // Thanks to https://stackoverflow.com/a/2901298
 function numberWithCommas(x) {
@@ -239,12 +246,12 @@ $('#dataFreqSelect').on('change', function (e) {
 
 // Bar chart data
 let data = {
-    labels: ['Domestic Abuse', 'Depression', 'Road Casualties'],
+    labels: ['Depression', 'Domestic Abuse', 'Heart Disease', 'Loneliness', 'Road Casualties'],
     datasets: [{
         label: '',
-        data: [initDomesticAbuse, initDepression, initRoadCasualties],
-        backgroundColor: ['#FF9D9E', '#FF9D9E', '#FF9D9E'],
-        borderColor: ['#D02F46', '#D02F46', '#D02F46'],
+        data: [initDepression, initDomesticAbuse, initHeartDisease, initLoneliness, initRoadCasualties],
+        backgroundColor: ['#FF9D9E', '#FF9D9E', '#FF9D9E', '#FF9D9E', '#FF9D9E'],
+        borderColor: ['#D02F46', '#D02F46', '#D02F46', '#D02F46', '#D02F46'],
         borderWidth: 1,
         hoverBorderWidth: 2
     }]
@@ -282,6 +289,14 @@ let options = {
 
             }
         }
+    },
+    title: {
+        display: true,
+        position: 'top',
+        fontSize: 20,
+        fontFamily: "'Inter', 'Helvetica Neue'",
+        padding: 15,
+        text: 'What else is bad in the world?'
     },
     responsive: true,
     maintainAspectRatio: false
@@ -327,12 +342,14 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
                 },
                 axisLabelFormatter: function (x) {
                     return numberWithCommas(x)
-                }
+                },
+                drawGrid: true
             },
             x: {
                 valueFormatter: function (d) {
                     return new Date(d).toLocaleDateString();
-                }
+                },
+                drawGrid: false
             }
         },
         highlightSeriesOpts: {'strokeWidth': 2},
