@@ -8,6 +8,8 @@ let confirmedTimeSeriesDiff = JSON.parse(confirmedCovidTimeSeriesDiff);
 let deathTimeSeriesDiff = JSON.parse(deathCovidTimeSeriesDiff);
 let recoveredTimeSeriesDiff = JSON.parse(recoveredCovidTimeSeriesDiff);
 
+let initRoadCasualties = 170993;
+
 // Thanks to https://stackoverflow.com/a/2901298
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -90,34 +92,33 @@ let dyGraphLabels = getDyGraphData.Labels;
 let dyGraphData = getDyGraphData.Data;
 
 // Add styling to the selected button even when out of focus.
-$("button").on('click', function (e) {
-    $("button").removeClass('buttonActive');
+$(".timeRangeButton").on('click', function (e) {
+    $(".timeRangeButton").removeClass('buttonActive');
     $(this).addClass('buttonActive');
 });
 
-
 //Clicking the 'Total' button
-document.getElementById("timeRangeButton1").onclick = function () {
+    document.getElementById("timeRangeButton1").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 
     // Update the chart data and redraw
-    heartDiseaseData = initHeartDisease;
-    depressionData = initDepression;
-    domesticAbuseData = initDomesticAbuse;
-
-    barChart.data.datasets = [{
-        label: '',
-        data: [heartDiseaseData, depressionData, domesticAbuseData],
-        backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-        borderColor: ['#000000', '#000000', '#000000'],
-        borderWidth: 1,
-        hoverBorderWidth: 2
-    }];
-
-    barChart.options.annotation.annotations[0].value = totalCases;
-
-    barChart.update();
+    // heartDiseaseData = initHeartDisease;
+    // depressionData = initDepression;
+    // domesticAbuseData = initDomesticAbuse;
+    //
+    // barChart.data.datasets = [{
+    //     label: '',
+    //     data: [heartDiseaseData, depressionData, domesticAbuseData],
+    //     backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
+    //     borderColor: ['#000000', '#000000', '#000000'],
+    //     borderWidth: 1,
+    //     hoverBorderWidth: 2
+    // }];
+    //
+    // barChart.options.annotation.annotations[0].value = totalCases;
+    //
+    // barChart.update();
 };
 
 // Clicking the '7 Days' button
@@ -126,28 +127,27 @@ document.getElementById("timeRangeButton2").onclick = function () {
     // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
 
     // Update the chart data and redraw
-    heartDiseaseData = Math.round(initHeartDisease * (7 / 365));
-    depressionData = Math.round(initDepression * (7 / 365));
-    domesticAbuseData = Math.round(initDomesticAbuse * (7 / 365));
+    // heartDiseaseData = Math.round(initHeartDisease * (7 / 365));
+    // depressionData = Math.round(initDepression * (7 / 365));
+    // domesticAbuseData = Math.round(initDomesticAbuse * (7 / 365));
 
     // Apparently, this should work. But just updating the chart data does not redraw the chart, hence we have the
     // Solution implemented below i.e. redefine the entire datasets option
 
     // barChart.data.datasets.data = [heartDiseaseData, depressionData, domesticAbuseData]
 
-
-    barChart.data.datasets = [{
-        label: '',
-        data: [heartDiseaseData, depressionData, domesticAbuseData],
-        backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-        borderColor: ['#000000', '#000000', '#000000'],
-        borderWidth: 1,
-        hoverBorderWidth: 2
-    }];
-
-    barChart.options.annotation.annotations[0].value = cases7Days;
-
-    barChart.update();
+    // barChart.data.datasets = [{
+    //     label: '',
+    //     data: [heartDiseaseData, depressionData, domesticAbuseData],
+    //     backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
+    //     borderColor: ['#000000', '#000000', '#000000'],
+    //     borderWidth: 1,
+    //     hoverBorderWidth: 2
+    // }];
+    //
+    // barChart.options.annotation.annotations[0].value = cases7Days;
+    //
+    // barChart.update();
 };
 
 //Clicking the '24 hours' button.
@@ -156,23 +156,23 @@ document.getElementById("timeRangeButton3").onclick = function () {
     // document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
 
     // Update the chart data and redraw
-    heartDiseaseData = Math.round(initHeartDisease / 365);
-    depressionData = Math.round(initDepression / 365);
-    domesticAbuseData = Math.round(initDomesticAbuse / 365);
-
-
-    barChart.data.datasets = [{
-        label: '',
-        data: [heartDiseaseData, depressionData, domesticAbuseData],
-        backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-        borderColor: ['#000000', '#000000', '#000000'],
-        borderWidth: 1,
-        hoverBorderWidth: 2
-    }];
-
-    barChart.options.annotation.annotations[0].value = cases24H;
-
-    barChart.update();
+    // heartDiseaseData = Math.round(initHeartDisease / 365);
+    // depressionData = Math.round(initDepression / 365);
+    // domesticAbuseData = Math.round(initDomesticAbuse / 365);
+    //
+    //
+    // barChart.data.datasets = [{
+    //     label: '',
+    //     data: [heartDiseaseData, depressionData, domesticAbuseData],
+    //     backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
+    //     borderColor: ['#000000', '#000000', '#000000'],
+    //     borderWidth: 1,
+    //     hoverBorderWidth: 2
+    // }];
+    //
+    // barChart.options.annotation.annotations[0].value = cases24H;
+    //
+    // barChart.update();
 
 };
 
@@ -238,10 +238,10 @@ $('#dataFreqSelect').on('change', function (e) {
 
 // Bar chart data
 let data = {
-    labels: ['Heart Disease', 'Depression', 'Domestic Abuse'],
+    labels: ['Domestic Abuse', 'Depression', 'Road Casualties'],
     datasets: [{
         label: '',
-        data: [heartDiseaseData, depressionData, domesticAbuseData],
+        data: [initDomesticAbuse, initDepression, initRoadCasualties],
         backgroundColor: ['#FF9D9E', '#FF9D9E', '#FF9D9E'],
         borderColor: ['#D02F46', '#D02F46', '#D02F46'],
         borderWidth: 1,
@@ -316,7 +316,7 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
     {
         labels: dyGraphLabels,
         showRangeSelector: true,
-        legend: 'follow',
+        legend: 'always',
         // ylabel: 'Number of cases',
         title: 'Comparisons across countries',
         axes: {
@@ -336,7 +336,10 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
         },
         highlightSeriesOpts: {'strokeWidth': 2},
         legendFormatter: legendFormatter,
+        labelsDiv: document.getElementById('covidLegend'),
         hideOverlayOnMouseOut: true,
-        labelsSeparateLines: true
+        labelsSeparateLines: true,
+        xRangePad: 50,
+        titleHeight: 50
     }
 );

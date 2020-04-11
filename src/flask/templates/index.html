@@ -117,6 +117,7 @@
             </div>
         </div>
 
+
         <div class="col-sm-4">
             <i class="fa fa-question-circle" data-toggle="tooltip" title="Category of data to view. <br> For definitions
              of the data types, see the <a href='{{ url_for('about') }}'> about page</a>"></i>
@@ -148,7 +149,12 @@
 
     <div class="row mx-1 my-3">
         <div class="col mx-auto mt-5" id="covid-graph-container">
-            <div class="col mt-3 w-100" id="covidTimeSeries"></div>
+            <div class="row">
+                <div class="col mt-3 w-100" id="covidTimeSeries"></div>
+            </div>
+            <div class="row">
+                <div class="col" id="covidLegend"></div>
+            </div>
         </div>
     </div>
 
