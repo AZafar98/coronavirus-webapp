@@ -51,7 +51,7 @@
 
     <div class="row content text-center align-items-center">
         <div class="col align-items-center text-center">
-            <button type="button" class="btn btn-primary timeRangeButton" id="timeRangeButton1">
+            <button type="button" class="btn btn-primary timeRangeButton buttonActive" id="timeRangeButton1">
                 Total
             </button>
             <button type="button" class="btn btn-primary timeRangeButton" id="timeRangeButton2">
@@ -146,11 +146,10 @@
         </div>
     </div>
 
-    <div class="row mx-1">
-        <div class="col-sm-9" id="covid-graph-container">
+    <div class="row mx-1 my-3">
+        <div class="col mx-auto mt-5" id="covid-graph-container">
             <div class="col mt-3 w-100" id="covidTimeSeries"></div>
         </div>
-        <div class="col-sm-2" id="covidLegend"></div>
     </div>
 
     <div class="row content text-left">
@@ -197,9 +196,9 @@
             </div>
         </div>
     </div>
-    <div class="row content text-left">
+    <div class="row content text-left mt-5">
         <div class="col mx-auto" id="graph-container">
-            <canvas class="col mt-5 w-75" id="graphArea"></canvas>
+            <canvas class="col w-75" id="graphArea"></canvas>
         </div>
     </div>
 </div>

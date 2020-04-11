@@ -242,8 +242,8 @@ let data = {
     datasets: [{
         label: '',
         data: [heartDiseaseData, depressionData, domesticAbuseData],
-        backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-        borderColor: ['#000000', '#000000', '#000000'],
+        backgroundColor: ['#FF9D9E', '#FF9D9E', '#FF9D9E'],
+        borderColor: ['#D02F46', '#D02F46', '#D02F46'],
         borderWidth: 1,
         hoverBorderWidth: 2
     }]
@@ -262,6 +262,11 @@ let options = {
                 callback: function (value) {
                     return numberWithCommas(value);
                 }
+            }
+        }],
+        xAxes: [{
+            gridLines: {
+                display: false
             }
         }]
     },
@@ -311,7 +316,7 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
     {
         labels: dyGraphLabels,
         showRangeSelector: true,
-        legend: 'always',
+        legend: 'follow',
         // ylabel: 'Number of cases',
         title: 'Comparisons across countries',
         axes: {
@@ -330,7 +335,8 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
             }
         },
         highlightSeriesOpts: {'strokeWidth': 2},
-        labelsDiv: document.getElementById('covidLegend'),
-        legendFormatter: legendFormatter
+        legendFormatter: legendFormatter,
+        hideOverlayOnMouseOut: true,
+        labelsSeparateLines: true
     }
 );
