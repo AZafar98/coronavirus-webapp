@@ -8,6 +8,7 @@ let confirmedTimeSeriesDiff = JSON.parse(confirmedCovidTimeSeriesDiff);
 let deathTimeSeriesDiff = JSON.parse(deathCovidTimeSeriesDiff);
 let recoveredTimeSeriesDiff = JSON.parse(recoveredCovidTimeSeriesDiff);
 
+//There was a total of 170,993 casualties of all severities in reported road traffic accidents in 2017.
 let initRoadCasualties = 170993;
 
 // Thanks to https://stackoverflow.com/a/2901298
@@ -283,25 +284,25 @@ let options = {
         }
     },
     responsive: true,
-    maintainAspectRatio: false,
-    annotation: {
-        annotations: [{
-            type: 'line',
-            mode: 'horizontal',
-            scaleID: 'y-axis-0',
-            value: totalCases,
-            borderColor: 'red',
-            borderWidth: 2,
-            label: {
-                enabled: true,
-                backgroundColor: '#3F054E',
-                content: 'COVID Cases',
-                fontSize: 10,
-                fontColor: "#fff",
-                position: 'center'
-            }
-        }]
-    }
+    maintainAspectRatio: false
+    // annotation: {
+    //     annotations: [{
+    //         type: 'line',
+    //         mode: 'horizontal',
+    //         scaleID: 'y-axis-0',
+    //         value: totalCases,
+    //         borderColor: 'red',
+    //         borderWidth: 2,
+    //         label: {
+    //             enabled: true,
+    //             backgroundColor: '#3F054E',
+    //             content: 'COVID Cases',
+    //             fontSize: 10,
+    //             fontColor: "#fff",
+    //             position: 'center'
+    //         }
+    //     }]
+    // }
 };
 
 let barChart = new Chart(ctx, {
@@ -340,6 +341,7 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
         hideOverlayOnMouseOut: true,
         labelsSeparateLines: true,
         xRangePad: 50,
-        titleHeight: 50
+        titleHeight: 50,
+        colors: ['#D02F46', '#ED8182', '#F5E4E1']
     }
 );
