@@ -49,7 +49,7 @@
     </div>
 
 
-    <div class="row content text-center align-items-center">
+    <div class="row content text-center align-items-center mb-5">
         <div class="col align-items-center text-center">
             <button type="button" class="btn btn-primary timeRangeButton buttonActive" id="timeRangeButton1">
                 Total
@@ -63,47 +63,13 @@
         </div>
     </div>
 
-    <div class="row content text-left">
-        <div class="col mt-5">
+    <div class="row text-left mt-5">
+        <div class="col">
             <span class="mx-1" id="otherSubtitle">Trajectory</span>
-
-            <div class="accordion mx-3 mt-2" id="trajectory-explainer-accordian">
-                <div class="card">
-                    <div class="card-header accordion-heading">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed accordian-header-text" type="button" data-toggle="collapse"
-                                    data-target="#trajectory-explainer"
-                                    aria-expanded="false" aria-controls="trajectory-explainer">
-                                <i class="fa" aria-hidden="true"></i>
-                                What does this mean?
-                            </button>
-                        </h2>
-                    </div>
-
-                    <div id="trajectory-explainer" class="collapse" aria-labelledby="trajectory-explain-heading"
-                         data-parent="#trajectory-explainer-accordian">
-                        <div class="card-body">
-                            <p class="card-para">
-                                Explore how cases, deaths and recoveries related to COVID-19 have grown across the world.
-                            </p>
-                            <p class="card-para">
-                                First choose the type of data you want to see, and then select all of the countries you
-                                would like to graph the data for. Note that the dropdown menu for countries is searchable.
-                            </p>
-                            <p class="card-para">
-                                All of the COVID-19 data is sourced from the <a
-                                    href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data">
-                                John Hopkins University and Medicine Github Repository.
-                            </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <div class="row my-3 mx-2" id="graph-select-menus">
+    <div class="row mb-3 mx-2" id="graph-select-menus">
         <div class="col-sm-4">
             <i class="fa fa-question-circle" data-toggle="tooltip" title="<b>Total:</b> Total cases reported at the
              end of each day <br>
@@ -111,7 +77,7 @@
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Type of data" id="dataFreqSelect">
-                    <option value="total" selected>Total</option>
+                    <option value="total" selected>Total reports</option>
                     <option value="new">New reports per day</option>
                 </select>
             </div>
@@ -147,7 +113,7 @@
         </div>
     </div>
 
-    <div class="row mx-1 my-3">
+    <div class="row mx-1 my-3 mb-5">
         <div class="col mx-auto mt-5" id="covid-graph-container">
             <div class="row">
                 <div class="col mt-3 w-100" id="covidTimeSeries"></div>
@@ -159,10 +125,55 @@
     </div>
 
     <div class="row content text-left">
-        <div class="col mt-5">
-            <span class="mx-1" id="otherSubtitle">How does this compare?</span>
+        <div class="col">
+            <div class="accordion mx-3 mt-2" id="trajectory-explainer-accordian">
+                <div class="card">
+                    <div class="card-header accordion-heading">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed accordian-header-text" type="button"
+                                    data-toggle="collapse"
+                                    data-target="#trajectory-explainer"
+                                    aria-expanded="false" aria-controls="trajectory-explainer">
+                                <i class="fa" aria-hidden="true"></i>
+                                What does this mean?
+                            </button>
+                        </h2>
+                    </div>
 
-            <div class="accordion mx-3 mt-2" id="graph-explainer">
+                    <div id="trajectory-explainer" class="collapse" aria-labelledby="trajectory-explain-heading"
+                         data-parent="#trajectory-explainer-accordian">
+                        <div class="card-body">
+                            <p class="card-para">
+                                Explore how cases, deaths and recoveries related to COVID-19 have grown across the
+                                world.
+                            </p>
+                            <p class="card-para">
+                                First choose the type of data you want to see, and then select all of the countries you
+                                would like to graph the data for. Note that the dropdown menu for countries is
+                                searchable.
+                            </p>
+                            <p class="card-para">
+                                All of the COVID-19 data is sourced from the <a
+                                    href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data">
+                                John Hopkins University and Medicine Github Repository.
+                            </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-left mt-5">
+        <div class="col">
+            <span class="mx-1" id="otherSubtitle">How does this compare?</span>
+        </div>
+    </div>
+
+    <div class="row content text-left my-3 mx-2">
+        <div class="col">
+            <div class="accordion mt-2" id="graph-explainer">
                 <div class="card">
                     <div class="card-header accordion-heading">
                         <h2 class="mb-0">
