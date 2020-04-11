@@ -126,7 +126,10 @@ def data_for_country(data, country, province=None):
     # Some countries have a Python None value for province. Replace these with string so we can still find them
     country_data['Province/State'] = country_data['Province/State'].fillna('None')
 
-    if province is not None:
+    if province.upper() == 'ALL':
+        country_data = aggregate_duplicate_countries(country_data)
+
+    elif province is not None:
         provinces = country_data['Province/State'].unique().tolist()
         country_data = country_data.loc[country_data['Province/State'].str.upper() == province.upper(), :]
 
@@ -134,11 +137,11 @@ def data_for_country(data, country, province=None):
         if len(country_data) == 0:
             raise ValueError("Invalid province '{}' specified for country '{}'. Specify province from \n {}."
                              .format(province, country, provinces))
-
-    if len(country_data) > 1:
-        provinces = country_data['Province/State'].unique().tolist()
-        warnings.warn("More than one province available for {}. Please specify province from {}, or all will be used."
-                      .format(country, provinces))
+    else:
+        if len(country_data) > 1:
+            provinces = country_data['Province/State'].unique().tolist()
+            warnings.warn("More than one province available for {}. Please specify province from {}, or all will be used."
+                          .format(country, provinces))
 
     country_data = country_data.reset_index(drop=True)
     return country_data
@@ -223,7 +226,7 @@ def display_covid_cases(cases=True, period='Total'):
     period = period.upper()
 
     # For now, this is set up to use UK data only. Need to figure out Flask a bit better to pass parameters down.
-    uk_data = data_for_country(confirmed, 'United Kingdom', province='None')
+    uk_data = data_for_country(confirmed, 'United Kingdom', province='All')
 
     if period not in ['TOTAL', '24H', '7DAYS']:
         raise ValueError("Invalid time period. Must be either 'TOTAL', '24H', or '7DAYS'")
@@ -291,10 +294,6 @@ def country_options():
     countries = sorted(countries)
 
     return countries
-
-
-# test = data_for_country(confirmed, 'United Kingdom', province='None')
-test2 = covid_time_series('confirmed', difference=True, country=None)
 
 """
 COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved
