@@ -342,6 +342,6 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
         labelsSeparateLines: true,
         xRangePad: 50,
         titleHeight: 50,
-        colors: ['#D02F46', '#ED8182', '#F5E4E1']
+        colors: ['#49006a', '#7a0177', '#ae017e', '#dd3497', '#f768a1', '#fa9fb5', '#fcc5c0', '#fde0dd', '#fff7f3']
     }
 );
