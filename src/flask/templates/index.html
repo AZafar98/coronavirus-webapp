@@ -73,12 +73,13 @@
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Type of data" id="dataFreqSelect">
-                    <option value="total" selected>Total reports</option>
+                    <option value="total">Total reports</option>
                     <option value="new">New reports per day</option>
                 </select>
             </div>
         </div>
 
+<!--        FIXME: Highlight gets stuck when using arrows only on the first 2 menus -->
 
         <div class="col-sm-4">
             <i class="fa fa-question-circle" data-toggle="tooltip" title="Category of data to view. <br> For definitions
@@ -86,7 +87,7 @@
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         title="Data to view" id="covidTypeSelect">
-                    <option value="confirmed" selected>Confirmed cases</option>
+                    <option value="confirmed">Confirmed cases</option>
                     <option value="deaths">Deaths</option>
                     <option value="recovered">Recovered cases</option>
                 </select>

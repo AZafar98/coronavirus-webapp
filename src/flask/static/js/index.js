@@ -89,6 +89,7 @@ function legendFormatter(data) {
 // Set the default values to UK and Total and render the graph with UK confirmed cases (COVID line graph)
 function setDefaultPage() {
     $('#dataFreqSelect').selectpicker('val', 'total');
+    $('#covidTypeSelect').selectpicker('val', 'confirmed');
     $('#countrySelector').selectpicker('val', 'United Kingdom');
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
@@ -109,79 +110,18 @@ $(".timeRangeButton").on('click', function (e) {
     document.getElementById("timeRangeButton1").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
-
-    // Update the chart data and redraw
-    // heartDiseaseData = initHeartDisease;
-    // depressionData = initDepression;
-    // domesticAbuseData = initDomesticAbuse;
-    //
-    // barChart.data.datasets = [{
-    //     label: '',
-    //     data: [heartDiseaseData, depressionData, domesticAbuseData],
-    //     backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-    //     borderColor: ['#000000', '#000000', '#000000'],
-    //     borderWidth: 1,
-    //     hoverBorderWidth: 2
-    // }];
-    //
-    // barChart.options.annotation.annotations[0].value = totalCases;
-    //
-    // barChart.update();
 };
 
 // Clicking the '7 Days' button
 document.getElementById("timeRangeButton2").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases7Days);
     // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
-
-    // Update the chart data and redraw
-    // heartDiseaseData = Math.round(initHeartDisease * (7 / 365));
-    // depressionData = Math.round(initDepression * (7 / 365));
-    // domesticAbuseData = Math.round(initDomesticAbuse * (7 / 365));
-
-    // Apparently, this should work. But just updating the chart data does not redraw the chart, hence we have the
-    // Solution implemented below i.e. redefine the entire datasets option
-
-    // barChart.data.datasets.data = [heartDiseaseData, depressionData, domesticAbuseData]
-
-    // barChart.data.datasets = [{
-    //     label: '',
-    //     data: [heartDiseaseData, depressionData, domesticAbuseData],
-    //     backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-    //     borderColor: ['#000000', '#000000', '#000000'],
-    //     borderWidth: 1,
-    //     hoverBorderWidth: 2
-    // }];
-    //
-    // barChart.options.annotation.annotations[0].value = cases7Days;
-    //
-    // barChart.update();
 };
 
 //Clicking the '24 hours' button.
 document.getElementById("timeRangeButton3").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases24H);
     // document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
-
-    // Update the chart data and redraw
-    // heartDiseaseData = Math.round(initHeartDisease / 365);
-    // depressionData = Math.round(initDepression / 365);
-    // domesticAbuseData = Math.round(initDomesticAbuse / 365);
-    //
-    //
-    // barChart.data.datasets = [{
-    //     label: '',
-    //     data: [heartDiseaseData, depressionData, domesticAbuseData],
-    //     backgroundColor: ['#FF9D9E', '#D02F46', '#FF9D9E'],
-    //     borderColor: ['#000000', '#000000', '#000000'],
-    //     borderWidth: 1,
-    //     hoverBorderWidth: 2
-    // }];
-    //
-    // barChart.options.annotation.annotations[0].value = cases24H;
-    //
-    // barChart.update();
-
 };
 
 // We are going to use this variable for the data in all charts. When the user chooses a different data type, we
@@ -300,24 +240,6 @@ let options = {
     },
     responsive: true,
     maintainAspectRatio: false
-    // annotation: {
-    //     annotations: [{
-    //         type: 'line',
-    //         mode: 'horizontal',
-    //         scaleID: 'y-axis-0',
-    //         value: totalCases,
-    //         borderColor: 'red',
-    //         borderWidth: 2,
-    //         label: {
-    //             enabled: true,
-    //             backgroundColor: '#3F054E',
-    //             content: 'COVID Cases',
-    //             fontSize: 10,
-    //             fontColor: "#fff",
-    //             position: 'center'
-    //         }
-    //     }]
-    // }
 };
 
 let barChart = new Chart(ctx, {
