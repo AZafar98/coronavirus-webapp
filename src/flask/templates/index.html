@@ -72,21 +72,21 @@
               <b>New reports per day:</b> Number of new cases, deaths of recoveries each day."></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
-                        title="Type of data" id="dataFreqSelect">
+                        data-live-search="true" title="Type of data" id="dataFreqSelect">
                     <option value="total">Total reports</option>
                     <option value="new">New reports per day</option>
                 </select>
             </div>
         </div>
 
-<!--        FIXME: Highlight gets stuck when using arrows only on the first 2 menus -->
+<!--        FIXME: Highlight gets stuck when using arrows. Temporary fix is to add data-live-search="true"-->
 
         <div class="col-sm-4">
             <i class="fa fa-question-circle" data-toggle="tooltip" title="Category of data to view. <br> For definitions
              of the data types, see the <a href='{{ url_for('about') }}'> about page</a>"></i>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
-                        title="Data to view" id="covidTypeSelect">
+                        data-live-search="true" title="Data to view" id="covidTypeSelect">
                     <option value="confirmed">Confirmed cases</option>
                     <option value="deaths">Deaths</option>
                     <option value="recovered">Recovered cases</option>
