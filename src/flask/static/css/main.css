@@ -2,6 +2,10 @@ body {
     background: #FFF8F6;
     font-family: Inter;
     font-style: normal;
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding-bottom: 100px
 }
 
 @media only screen and (min-width: 768px) {
@@ -11,6 +15,9 @@ body {
         font-style: normal;
         margin-left: 1.5rem;
         margin-right: 1.5rem;
+        min-height: 100vh;
+        position: relative;
+        padding-bottom: 100px
     }
 }
 
@@ -286,7 +293,7 @@ body {
     color: #D02F46;
 }
 
-/*.bootstrap-select > .dropdown-toggle {*/
+/*.bootstrap-select > .dropdown-toggle:active {*/
 /*    border: 1.5px solid #D02F46;*/
 /*    color: #D02F46;*/
 /*}*/
@@ -367,7 +374,7 @@ canvas{
 #page-footer {
     width: 100vw;
     bottom: 0;
-    position: static;
+    position: absolute;
 }
 
 /*#covidTypeSelect {*/
