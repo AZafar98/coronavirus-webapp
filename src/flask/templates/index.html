@@ -131,7 +131,7 @@
                                     data-target="#trajectory-explainer"
                                     aria-expanded="false" aria-controls="trajectory-explainer">
                                 <i class="fa" aria-hidden="true"></i>
-                                What does this mean?
+                                Using the graph
                             </button>
                         </h2>
                     </div>
@@ -140,21 +140,19 @@
                          data-parent="#trajectory-explainer-accordian">
                         <div class="card-body">
                             <p class="card-para">
-                                This graph allows you to visualise COVID-19 data across the world. It is easy to compare
-                                the total figures across countries, or the number of new reports
-                                per day.
+                                This graph allows you to visualise COVID-19 data across the world.
                             </p>
                             <p class="card-para">
-                                For example, to visualise the trend in how many new cases the UK is reporting each day
+                                For example, to see the trend in how many new cases the UK is reporting each day
                                 choose the 'New reports per day' option with 'Confirmed cases' and 'United Kingdom'.
                             </p>
                             <p class="card-para">
-                                It may be interesting to compare data between countries to see how long it took each
-                                country to reach it's current level of cases. To compare the US and China, choose 'Total
-                                reports' , 'Confirmed cases' and 'US, China'.
+                                You can also compare data between countries to to see how long it took each
+                                country to reach it's current level of cases, for example. To compare the US and China,
+                                choose 'Total reports' , 'Confirmed cases' and 'US, China'.
                             </p>
                             <p class="card-para">
-                                All of the COVID-19 data is sourced directly from the <a
+                                All of the COVID-19 data is sourced directly from the <a target="_blank"
                                     href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data">
                                 John Hopkins University and Medicine Github Repository.</a>
                                 For more information about the data, see the  <a href="{{ url_for('about') }}">
@@ -192,55 +190,67 @@
                     <div id="graph-interpret" class="collapse show" aria-labelledby="graph-explain-heading"
                          data-parent="#graph-explainer">
                         <div class="card-body">
-                            <p class="card-para">
-                                This section is not intended to take away from the seriousness of the threat COVID-19
-                                poses to
-                                us. Instead, we want to to offer some perspective about other important issues we face
-                                as a
-                                society.
-                            </p>
-                            <p class="card-para">
-                                We have come together to fight COVID-19 and we believe it is possible for us to come
-                                together
-                                to combat issues such as loneliness everyday - not just during a crisis. We want to
-                                spread awareness of just how widespread these issues are.
-                            </p>
-                            <strong>Depression </strong>
-                            <p class="card-para">
-                                The number of people recorded as suffering from depression by their GP as of 2018/19.
-                                Depression can affect any one of us and have sever
-                                consequences. We should aim to be more understanding and aware of it.
-                            </p>
-                            <strong>Domestic Abuse </strong>
-                            <p class="card-para">
-                                The number of reported incidents of domestic violence
-                                in 2018/19. Tackling domestic abuse as a public health issue is
-                                vital for ensuring that some of the
-                                most vulnerable people in our society receive the support, understanding and treatment
-                                they deserve.
-                            </p>
-                            <strong>Heart Disease </strong>
-                            <p class="card-para">
-                                The number of patients with a
-                                registered CHD in the year 2018/19. Coronary heart disease (CHD) is the single most common
-                                cause of premature death in the UK.
-                            </p>
-                            <strong>Loneliness </strong>
-                            <p class="card-para">
-                                The number of people who reported feeling lonely
-                                "often/always".Loneliness is considered by many to be one of the largest
-                                health risks we face. It is important we tackle this, and it is something we can all
-                                easily take a role in.
-                            </p>
+                            <div class="row mx-2">
+                                <p class="card-para para-lead">
+                                We understand the seriousness of the threat COVID-19 poses, and we do not want to
+                                take anything away from that.
+                                </p>
+                            </div>
+                            <div class="row mx-2">
+                                <p class="card-para para-lead">
+                                Instead, we want to take this as an opportunity to reflect on the wider issues that we
+                                as a society face everyday and in particular, draw your attention to the level of
+                                loneliness, depression and domestic violence in the UK.
+                                </p>
+                            </div>
+                            <div class="row mx-2">
+                                <p class="card-para para-lead">
+                                    In offering this perspective, we hope this can encourage individuals to come
+                                    together to combat these issues in a similar way to how we are collectively fighting
+                                    COVID-19.
+                                </p>
+                            </div>
 
-                            <p class="card-para">
-                                The data is sourced from <abbr title="Public Health England" class="initialism">PHE</abbr>
-                                and the <abbr title="Office for National Statistics" class="initialism">ONS</abbr>.
-                            </p>
+                            <dl class="row mt-2">
+                                <dt class="col-sm-6">Depression</dt>
+                                <div class="row mx-2">
+                                    <dd class="col card-para">
+                                        The number of people recorded as suffering from depression by their GP as of
+                                        2018/19.
+                                        Depression can affect any one of us.
+                                        We should aim to be more understanding and aware of it.
+                                    </dd>
+                                </div>
+                                <dt class="col-sm-6">Domestic Abuse</dt>
+                                <div class="row mx-2">
+                                    <dd class="col card-para">
+                                        The number of reported incidents of domestic violence in 2018/19.
+                                        Tackling domestic abuse as a public health issue is vital for ensuring that some
+                                        of the most vulnerable people in our society receive the support,
+                                        understanding and treatment they deserve.
+                                    </dd>
+                                </div>
+                                <dt class="col-sm-6">Heart Disease</dt>
+                                <div class="row mx-2">
+                                    <dd class="col card-para">
+                                        The number of patients with a registered Coronary heart disease (CHD) in the
+                                        year 2018/19.
+                                        CHD is the single most common cause of premature death in the UK.
+                                    </dd>
+                                </div>
+                                <dt class="col-sm-6">Loneliness</dt>
+                                <div class="row mx-2">
+                                    <dd class="col card-para">
+                                        The number of people who reported feeling lonely "often/always".
+                                        Loneliness is considered by many to be one of the largest health risks we face.
+                                        It is important we tackle this, and it is something we can all play our part in.
+                                    </dd>
+                                </div>
+                            </dl>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm modalButton" data-toggle="modal"
-                                    data-target="#exampleModalLong">
+                                    data-target="#dataModal">
                                 Data details
                             </button>
 
@@ -258,12 +268,12 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">About the data used</h5>
+                <h5 class="modal-title accordion-heading" id="dataModalTitle">About the data used</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -275,44 +285,64 @@
                     representaion of the scale of the COVID-19 outbreak as they only represent the instances where a
                     positive test is present.
                     <br>
+                <p class="card-para">
+                    The data is sourced from <abbr title="Public Health England" class="initialism">PHE</abbr>
+                    and the <abbr title="Office for National Statistics" class="initialism">ONS</abbr>.
+                <br>
+                <small class="text-muted">
                     Data from <abbr title="Public Health England" class="initialism">PHE</abbr> has been sourced using
                     the fingertips_py Python package.
                     <br>
                     The <abbr title="Office of National Statistics" class="initialism">ONS</abbr> data has been taken
                     from reports and thus is not directly accessible to the user.
+                </small>
                 </p>
 
                 <strong>Heart Disease (PHE) </strong>
-                <p class="card-para">The percentage of patients with coronary heart
-                disease, as recorded on practice disease register
-                "Coronary heart disease (CHD) is the single most common cause of premature death in the
-                UK. The research evidence relating to the management of CHD is well established and if
-                implemented can reduce the risk of death from CHD and improve the quality of life for
-                patients. This indicator set focuses on the management of patients with established CHD
-                consistent with clinical priorities in the four nations."
+                <p class="card-para">The percentage of patients with coronary heart disease, as recorded on practice disease register
+                    "Coronary heart disease (CHD) is the single most common cause of premature death in the
+                    UK. The research evidence relating to the management of CHD is well established and if
+                    implemented can reduce the risk of death from CHD and improve the quality of life for
+                    patients. This indicator set focuses on the management of patients with established CHD
+                    consistent with clinical priorities in the four nations."
+                    <br>
+                    <small class="text-muted">PHE Fingertips Indicator ID 273 </small>
                 </p>
+
                 <strong>Depression (PHE) </strong>
                 <p class="card-para">The percentage of patients aged 18 and over with
-                depression, as recorded on practice disease registers.CCG: The recorded depression
-                prevalence is the number of people with depression recorded on their practice register
-                within a CCG, as a proportion of the practice list size of the CCG aged 18 years or over
+                    depression, as recorded on practice disease registers.CCG: The recorded depression
+                    prevalence is the number of people with depression recorded on their practice register
+                    within a CCG, as a proportion of the practice list size of the CCG aged 18 years or over
+                    <br>
+                    <small class="text-muted">PHE Fingertips Indicator ID 848 </small>
                 </p>
+
+
                 <strong>Road casualties (ONS) </strong>
                 <p class="card-para">TBC
                 </p>
+
                 <strong>Loneliness (ONS) </strong>
                 <p class="card-para"> Community Life Survey, 2016 to 2017, there were 5% of
-                adults (aged 16 years and over) in England reporting feeling lonely “often/always”
+                    adults (aged 16 years and over) in England reporting feeling lonely “often/always”
+                    <br>
+                    <small class="text-muted"><a target="_blank"
+                            href="https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/lonelinesswhatcharacteristicsandcircumstancesareassociatedwithfeelinglonely/2018-04-10">ONS
+                        loneliness report</a></small>
                 </p>
+
                 <strong>Domestic Abuse (PHE) </strong>
                 <p class="card-para">Domestic abuse-related incidents and crimes
-                recorded by the police, crude rates per 1,000.
-                Tackling domestic abuse as a public health issue is vital for ensuring that some of the
-                most vulnerable people in our society receive the support, understanding and treatment
-                they deserve. The more we can focus in on interventions that are effective, the more we
-                can treat victims and prevent future re-victimisation. It is also the government's
-                strategic ambition, as set out in Ending Violence against Women and Girls, Strategy 2016
-                \u2013 2020, to do what it can to contribute to a cohesive and comprehensive response."
+                    recorded by the police, crude rates per 1,000.
+                    Tackling domestic abuse as a public health issue is vital for ensuring that some of the
+                    most vulnerable people in our society receive the support, understanding and treatment
+                    they deserve. The more we can focus in on interventions that are effective, the more we
+                    can treat victims and prevent future re-victimisation. It is also the government's
+                    strategic ambition, as set out in Ending Violence against Women and Girls, Strategy 2016
+                    \u2013 2020, to do what it can to contribute to a cohesive and comprehensive response."
+                    <br>
+                    <small class="text-muted">PHE Fingertips Indicator ID 92863 </small>
                 </p>
             </div>
             <div class="modal-footer">

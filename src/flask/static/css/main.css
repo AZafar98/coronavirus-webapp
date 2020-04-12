@@ -88,6 +88,10 @@ body {
     }
 }
 
+.para-lead {
+    font-weight: 400;
+}
+
 .card-para {
     margin-top: 0;
     margin-bottom: 10px;

@@ -334,7 +334,7 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
         showRangeSelector: true,
         legend: 'always',
         // ylabel: 'Number of cases',
-        title: 'Comparisons across countries',
+        title: 'COVID-19 Comparisons',
         axes: {
             y: {
                 valueFormatter: function (x) {
