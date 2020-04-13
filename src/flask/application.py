@@ -37,11 +37,12 @@ def index():
 # def index():
 #     return render_template('rendered_index.html')
 
-
+@cache.cached(timeout=300)
 def about():
     return render_template('about.html')
 
 
+@cache.cached(timeout=300)
 def donate():
     return render_template('donate.html')
 
