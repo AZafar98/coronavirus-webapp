@@ -1,9 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, send_from_directory
+from flask_caching import Cache
 from src.main.process_corona_data import display_covid_cases, covid_time_series, country_options
 from src.main.get_phe_data import get_phe_data_for_flask
+from time import time
 
 # Create an 'application' callable
 application = Flask(__name__)
+
+config = {
+    "DEBUG": True,
+    "CACHE_TYPE": 'simple',
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
+application.config.from_mapping(config)
+cache = Cache(application)
 
 """
 # NOTE: With the current setup, if PHE data does not exist. It will be downloaded when the page is first loaded.
@@ -19,8 +29,13 @@ application.jinja_env.globals.update(getPHEData=get_phe_data_for_flask)
 application.jinja_env.globals.update(getCovidTimeSeries=covid_time_series)
 
 
+@cache.cached(timeout=300)
 def index():
     return render_template('index.html', country_options=country_options())
+
+
+# def index():
+#     return render_template('rendered_index.html')
 
 
 def about():
@@ -39,6 +54,6 @@ application.add_url_rule('/donate', 'donate', donate)
 # to be left here...
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
+    # removed before deploying a production app....
     application.debug = True
-    application.run()
+    application.run(threaded=True)
