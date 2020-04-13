@@ -32,13 +32,8 @@ application.jinja_env.globals.update(countryOptions=country_options)
 
 @cache.cached(timeout=300)
 def index():
-    t1 = time()
-    resp = render_template('index.html')
-    print(time() - t1)
-    return resp
+    return render_template('index.html')
 
-# def index():
-#     return render_template('rendered_index.html')
 
 @cache.cached(timeout=300)
 def about():
@@ -55,7 +50,7 @@ application.add_url_rule('/about', 'about', about)
 application.add_url_rule('/donate', 'donate', donate)
 
 # Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
-# to be left here......
+# to be left here....
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app....
