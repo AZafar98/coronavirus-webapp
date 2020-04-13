@@ -14,25 +14,26 @@
 
 {%block scripts %}
     <script type="text/javascript" defer>
-            let totalCases = {{ displayCovidCases(cases=True, period='Total') }};
-            let cases24H = {{ displayCovidCases(cases=True, period='24h') }};
-            let cases7Days = {{ displayCovidCases(cases=True, period='7days') }};
-            let heartDiseaseData = {{ getPHEData(indicator=273, differenced=False, dev=True) }}
-            let depressionData = {{ getPHEData(indicator=848, differenced=False, dev=True) }}
-            let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=True) }}
-            let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False, country=None) |tojson|safe }}
-            let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False, country=None) |tojson|safe }}
-            let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False, country=None) |tojson|safe }}
-            let confirmedCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='confirmed', difference=True, country=None) |tojson|safe }}
-            let deathCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='deaths', difference=True, country=None) |tojson|safe }}
-            let recoveredCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='recovered', difference=True, country=None) |tojson|safe }}
-        </script>
+        let totalCases = {{ displayCovidCases(cases=True, period='Total') }};
+        let cases24H = {{ displayCovidCases(cases=True, period='24h') }};
+        let cases7Days = {{ displayCovidCases(cases=True, period='7days') }};
+        let heartDiseaseData = {{ getPHEData(indicator=273, differenced=False, dev=True) }}
+        let depressionData = {{ getPHEData(indicator=848, differenced=False, dev=True) }}
+        let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=True) }}
+        let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False, country=None) |tojson|safe }}
+        let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False, country=None) |tojson|safe }}
+        let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False, country=None) |tojson|safe }}
+        let confirmedCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='confirmed', difference=True, country=None) |tojson|safe }}
+        let deathCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='deaths', difference=True, country=None) |tojson|safe }}
+        let recoveredCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='recovered', difference=True, country=None) |tojson|safe }}
+        let countriesList = {{ countryOptions() |tojson|safe }}
+    </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid text-center align-items-center">
+<div class="container-fluid min-vh-100 justify-content-center text-center align-items-center">
 
     <div class="row content text-center align-items-center mt-5">
         <div class="col" id="covidCount">
@@ -101,10 +102,7 @@
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
                         multiple data-live-search="true" data-selected-text-format="count > 3"
                         data-count-selected-text= "{0} countries selected" title="Countries to compare"
-                        data-actions-box="true" id="countrySelector">
-                    {% for country in country_options %}
-                    <option value="{{ country }}">{{ country }}</option>
-                    {% endfor %}
+                        data-actions-box="true" id="countrySelector" name="countries">
                 </select>
             </div>
         </div>
@@ -254,7 +252,6 @@
                                     data-target="#dataModal">
                                 Data details
                             </button>
-
                         </div>
                     </div>
                 </div>
@@ -289,18 +286,21 @@
                 <p class="card-para">
                     The data is sourced from <abbr title="Public Health England" class="initialism">PHE</abbr>
                     and the <abbr title="Office for National Statistics" class="initialism">ONS</abbr>.
-                <br>
-                <small class="text-muted">
-                    Data from <abbr title="Public Health England" class="initialism">PHE</abbr> has been sourced using
-                    the fingertips_py Python package.
                     <br>
-                    The <abbr title="Office of National Statistics" class="initialism">ONS</abbr> data has been taken
-                    from reports and thus is not directly accessible to the user.
-                </small>
+                    <small class="text-muted">
+                        Data from <abbr title="Public Health England" class="initialism">PHE</abbr> has been sourced
+                        using
+                        the fingertips_py Python package.
+                        <br>
+                        The <abbr title="Office of National Statistics" class="initialism">ONS</abbr> data has been
+                        taken
+                        from reports and thus is not directly accessible to the user.
+                    </small>
                 </p>
 
                 <strong>Heart Disease (PHE) </strong>
-                <p class="card-para">The percentage of patients with coronary heart disease, as recorded on practice disease register
+                <p class="card-para">The percentage of patients with coronary heart disease, as recorded on practice
+                    disease register
                     "Coronary heart disease (CHD) is the single most common cause of premature death in the
                     UK. The research evidence relating to the management of CHD is well established and if
                     implemented can reduce the risk of death from CHD and improve the quality of life for
@@ -329,7 +329,7 @@
                     adults (aged 16 years and over) in England reporting feeling lonely “often/always”
                     <br>
                     <small class="text-muted"><a target="_blank"
-                            href="https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/lonelinesswhatcharacteristicsandcircumstancesareassociatedwithfeelinglonely/2018-04-10">ONS
+                                                 href="https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/lonelinesswhatcharacteristicsandcircumstancesareassociatedwithfeelinglonely/2018-04-10">ONS
                         loneliness report</a></small>
                 </p>
 

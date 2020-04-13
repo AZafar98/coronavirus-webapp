@@ -94,6 +94,15 @@ function setDefaultPage() {
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 }
 
+countryOptions = [];
+countriesList.forEach(function(country) {
+    const option = "<option " + "value='" + country + "'>" + country + "</option>";
+    countryOptions.push(option)
+});
+$('select[name=countries]').html(countryOptions);
+$('.selectpicker').selectpicker('refresh');
+
+
 //Initialise tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip({html:true,
