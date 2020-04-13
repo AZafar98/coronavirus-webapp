@@ -1,6 +1,7 @@
 //Initialise tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip({html:true,
+      trigger: 'hover focus',
       delay: {"show": 500, "hide": 1000 }})
 });
 

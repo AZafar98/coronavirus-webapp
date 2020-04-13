@@ -15,8 +15,7 @@ const ukAdultPopulationEstimate = 50528421;
 //https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/lonelinesswhatcharacteristicsandcircumstancesareassociatedwithfeelinglonely/2018-04-10
 //Figure 1 shows that in 2016 to 2017, there were 5% of adults (aged 16 years and over) in England reporting feeling lonely “often/always”
 const percentLonely = 0.05;
-const initLoneliness = ukAdultPopulationEstimate*percentLonely;
-
+const initLoneliness = Math.round(ukAdultPopulationEstimate*percentLonely);
 
 // Thanks to https://stackoverflow.com/a/2901298
 function numberWithCommas(x) {
@@ -32,7 +31,7 @@ function setBaseCovidData(dataFreq, dataType) {
         } else {
             baseCovidData = recoveredTimeSeries
         }
-    } else if (dataFreq == 'new') {
+    } else if (dataFreq === 'new') {
         if (dataType === 'confirmed') {
             baseCovidData = confirmedTimeSeriesDiff
         } else if (dataType === 'deaths') {
@@ -95,6 +94,13 @@ function setDefaultPage() {
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 }
 
+//Initialise tooltips
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({html:true,
+      trigger: 'hover focus',
+      delay: {"show": 500, "hide": 1000 }})
+});
+
 setDefaultPage();
 let getDyGraphData = SetDyGraphData(confirmedTimeSeries, ['United Kingdom']);
 let dyGraphLabels = getDyGraphData.Labels;
@@ -126,11 +132,9 @@ document.getElementById("timeRangeButton3").onclick = function () {
 
 // We are going to use this variable for the data in all charts. When the user chooses a different data type, we
 // will just update this variable to have the correct data for simplicity.
-
 let baseCovidData = confirmedTimeSeries;
 
 //Changing the countries to see data for in line chart
-
 $('#countrySelector').on('change', function (e) {
     let selectedItems = $('#countrySelector').val();
 
@@ -144,7 +148,6 @@ $('#countrySelector').on('change', function (e) {
 });
 
 //Changing the data type for line graph
-
 $('#covidTypeSelect').on('change', function (e) {
     let typeSelected = $('#covidTypeSelect').val();
     let selectedItems = $('#countrySelector').val();
@@ -163,7 +166,6 @@ $('#covidTypeSelect').on('change', function (e) {
 });
 
 //Changing the data frequency for the line graph
-
 $('#dataFreqSelect').on('change', function (e) {
     let dataTypeSelected = $('#dataFreqSelect').val();
     let typeSelected = $('#covidTypeSelect').val();
@@ -181,8 +183,6 @@ $('#dataFreqSelect').on('change', function (e) {
     })
 });
 
-
-// Define data for the graphs and render them below.
 
 // Bar chart data
 let data = {
@@ -202,7 +202,6 @@ let ctx = document.getElementById('graphArea');
 let options = {
     // For labelling the axes and tooltips properly:
     // https://stackoverflow.com/a/48996286
-
     scales: {
         yAxes: [{
             ticks: {
