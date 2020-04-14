@@ -4,6 +4,7 @@ from src.main.process_corona_data import display_covid_cases, covid_time_series,
 from src.main.get_phe_data import get_phe_data_for_flask
 import sys
 from time import time
+from datetime import datetime, timedelta
 
 # This is purely for PythonAnywhere - not necessary if running locally
 project_home = '/home/Azafar98/coronavirus-webapp'
@@ -14,6 +15,16 @@ from src.flask.settings import RUNNING_LOCALLY
 
 # Create an 'application' callable
 application = Flask(__name__)
+
+
+def second_until_midnight():
+    """Get the number of seconds until midnight (plus a little bit).
+    Once the data is updated, cache is invalidated. So set the cache timeout using this."""
+    tomorrow = datetime.now() + timedelta(1)
+    midnight = datetime(year=tomorrow.year, month=tomorrow.month,
+                        day=tomorrow.day, hour=0, minute=5, second=0)
+    return (midnight - datetime.now()).seconds
+
 
 if RUNNING_LOCALLY:
     config = {
@@ -28,7 +39,7 @@ else:
         "DEBUG": False,
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": 'coronavirus-webapp/cache',
-        "CACHE_DEFAULT_TIMEOUT": 3600,
+        "CACHE_DEFAULT_TIMEOUT": second_until_midnight(),
         "CACHE_THRESHOLD": 100
     }
 
