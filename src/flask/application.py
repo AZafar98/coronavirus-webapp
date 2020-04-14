@@ -2,16 +2,34 @@ from flask import Flask, render_template
 from flask_caching import Cache
 from src.main.process_corona_data import display_covid_cases, covid_time_series, country_options
 from src.main.get_phe_data import get_phe_data_for_flask
+import sys
 from time import time
+
+# This is purely for PythonAnywhere - not necessary if running locally
+project_home = '/home/Azafar98/coronavirus-webapp'
+if project_home not in sys.path:
+    sys.path = [project_home] + sys.path
+
+from src.flask.settings import RUNNING_LOCALLY
 
 # Create an 'application' callable
 application = Flask(__name__)
 
-config = {
-    "DEBUG": True,
-    "CACHE_TYPE": 'simple',
-    "CACHE_DEFAULT_TIMEOUT": 300
-}
+if RUNNING_LOCALLY:
+    config = {
+        "DEBUG": True,
+        "CACHE_TYPE": 'filesystem',
+        "CACHE_DIR": '../../cache/',
+        "CACHE_DEFAULT_TIMEOUT": 300
+    }
+else:
+    config = {
+        "DEBUG": False,
+        "CACHE_TYPE": 'filesystem',
+        "CACHE_DIR": 'coronavirus-webapp/cache',
+        "CACHE_DEFAULT_TIMEOUT": 300
+    }
+
 application.config.from_mapping(config)
 cache = Cache(application)
 
@@ -50,9 +68,9 @@ application.add_url_rule('/about', 'about', about)
 application.add_url_rule('/donate', 'donate', donate)
 
 # Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
-# to be left here....
+# to be left here...
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app....
+    # removed before deploying a production app.
     application.debug = True
     application.run(threaded=True)
