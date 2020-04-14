@@ -38,7 +38,7 @@ else:
     config = {
         "DEBUG": False,
         "CACHE_TYPE": 'filesystem',
-        "CACHE_DIR": 'coronavirus-webapp/cache',
+        "CACHE_DIR": '/dev/shm',
         "CACHE_DEFAULT_TIMEOUT": second_until_midnight(),
         "CACHE_THRESHOLD": 100
     }
