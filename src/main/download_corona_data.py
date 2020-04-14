@@ -11,7 +11,7 @@ if project_home not in sys.path:
     sys.path = [project_home] + sys.path
 
 from src.flask.settings import RUNNING_LOCALLY
-from src.main.process_corona_data import aggregate_duplicate_countries, get_corona_data
+from src.main.process_corona_data import aggregate_duplicate_countries
 
 
 # This is to redeploy the webapp after the data has been downloaded.
@@ -51,6 +51,41 @@ def download_corona_data():
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
 
     return 0
+
+
+def get_corona_data():
+    """
+    Get the data to use for analysis. If it is not saved locally, download it
+    :return:
+    """
+    if RUNNING_LOCALLY:
+        file_path = "../../data/json/corona/{}"
+    else:
+        file_path = "coronavirus-webapp/data/json/corona/{}"
+
+    if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
+            os.path.exists(file_path.format("deaths_cases.txt")) or
+            os.path.exists(file_path.format("recovered_cases.txt"))):
+
+        print("corona data not downloaded. Downloading.")
+
+        download = download_corona_data()
+
+        if download == 0:
+            # Successful download.
+            confirmed_df = pd.read_json(file_path.format("confirmed_cases.txt"))
+            recovered_df = pd.read_json(file_path.format("recovered_cases.txt"))
+            deaths_df = pd.read_json(file_path.format("deaths_cases.txt"))
+        else:
+            # Download failed
+            raise RuntimeError("Data failed to download. Exiting process.")
+
+    else:
+        confirmed_df = pd.read_json(file_path.format("confirmed_cases.txt"))
+        recovered_df = pd.read_json(file_path.format("recovered_cases.txt"))
+        deaths_df = pd.read_json(file_path.format("deaths_cases.txt"))
+
+    return confirmed_df, recovered_df, deaths_df
 
 
 def update_covid_time_series(data_type):

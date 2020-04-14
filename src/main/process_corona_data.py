@@ -257,20 +257,20 @@ def get_covid_time_series(data_type, difference):
     if data_type == 'CONFIRMED':
         if not (os.path.exists(file_path.format("confirmed-covid-time-series.txt")) or
                 os.path.exists(file_path.format("confirmed-covid-time-series.txt"))):
-            print("data not downloaded. downloading.")
-            update_covid_time_series('confirmed')
+            print("data not downloaded. Not downloading.")
+            # update_covid_time_series('confirmed')
 
     elif data_type == 'DEATHS':
         if not (os.path.exists(file_path.format("deaths-covid-time-series.txt")) or
                 os.path.exists(file_path.format("deaths-covid-time-series.txt"))):
-            print("data not downloaded. downloading.")
-            update_covid_time_series('deaths')
+            print("data not downloaded. Not downloading.")
+            # update_covid_time_series('deaths')
 
     elif data_type == 'RECOVERED':
         if not (os.path.exists(file_path.format("recovered-covid-time-series.txt")) or
                 os.path.exists(file_path.format("recovered-covid-time-series.txt"))):
-            print("data not downloaded. downloading.")
-            update_covid_time_series('recovered')
+            print("data not downloaded. Not downloading.")
+            # update_covid_time_series('recovered')
     else:
         raise ValueError("Invalid data type to get covid time series")
 
