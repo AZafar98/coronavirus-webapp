@@ -3,6 +3,7 @@ from pathlib import Path
 import os
 import sys
 import re
+from collections import Counter
 
 # add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
@@ -11,7 +12,6 @@ if project_home not in sys.path:
     sys.path = [project_home] + sys.path
 
 from src.flask.settings import RUNNING_LOCALLY
-from src.main.process_corona_data import aggregate_duplicate_countries
 
 
 # This is to redeploy the webapp after the data has been downloaded.
@@ -51,6 +51,26 @@ def download_corona_data():
     recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
 
     return 0
+
+
+def aggregate_duplicate_countries(data):
+    countries = data['Country/Region'].tolist()
+    count_countries = Counter(countries)
+    duplicates = [country for country, count in count_countries.items() if count > 1]
+
+    for duplicate_country in duplicates:
+        temp_data = data.loc[data['Country/Region'] == duplicate_country, :]
+        temp_data = temp_data.sum(axis=0)
+        temp_data['Province/State'] = 'None'
+        temp_data['Country/Region'] = duplicate_country
+
+        # Drop all of the old data before inserting the aggregated data
+        data = data.loc[data['Country/Region'] != duplicate_country, :]
+
+        temp_data = temp_data.to_frame().T
+        data = pd.concat([data, temp_data], axis=0)
+
+    return data
 
 
 def get_corona_data():
