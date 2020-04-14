@@ -81,7 +81,7 @@ def get_corona_data():
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "coronavirus-webapp/data/json/corona/{}"
+        file_path = "/coronavirus-webapp/data/json/corona/{}"
 
     if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
             os.path.exists(file_path.format("deaths_cases.txt")) or
