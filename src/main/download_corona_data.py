@@ -143,7 +143,7 @@ def update_covid_time_series(data_type):
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "coronavirus-webapp/data/json/corona/{}"
+        file_path = "/home/Azafar98/coronavirus-webapp/data/json/corona/{}"
 
     data.to_json(file_path.format("{}-covid-time-series.txt").format(data_type.lower()))
     differenced.to_json(file_path.format("{}-covid-time-series-diff.txt").format(data_type.lower()))
