@@ -76,9 +76,6 @@ def get_corona_data():
     return confirmed_df, recovered_df, deaths_df
 
 
-confirmed, recovered, deaths = get_corona_data()
-
-
 def aggregate_duplicate_countries(data):
     countries = data['Country/Region'].tolist()
     count_countries = Counter(countries)
@@ -103,7 +100,7 @@ def data_for_country(data, country, province=None):
     """
     Get the data for specified country and (optional) province.
     :param pd.DataFrame data: COVID data returned from get_corona_data
-    :param (str, None) country: Country name. Specify None to return all data.
+    :param str or None country: Country name. Specify None to return all data.
     :param str province: Province name
     :return: Data for specified country and province
     """
@@ -225,6 +222,8 @@ def display_covid_cases(cases=True, period='Total'):
 
     period = period.upper()
 
+    confirmed, recovered, deaths = get_corona_data()
+
     # For now, this is set up to use UK data only. Need to figure out Flask a bit better to pass parameters down.
     uk_data = data_for_country(confirmed, 'United Kingdom', province='All')
 
@@ -287,6 +286,8 @@ def covid_time_series(data_type, difference=False, country=None):
 
 
 def country_options():
+
+    confirmed, recovered, deaths = get_corona_data()
     # Pass None to get data for all countries back
     country_data = data_for_country(confirmed, None, province='None')
 
@@ -300,4 +301,4 @@ COVID data is updated on GitHub daily. To download it, uncomment the line below.
 locally, but uncommenting the function call below will just overwrite those)
 """
 
-download_corona_data()
+# download_corona_data()

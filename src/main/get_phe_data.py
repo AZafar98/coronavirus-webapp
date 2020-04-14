@@ -95,7 +95,6 @@ def get_data(indicator, england_only=True, keep_cols=None, dev=False, use_json=T
                 all_data = get_data_from_json(all_data_path)
             else:
                 all_data = None
-            print("using json...")
 
             return get_data, meta, all_data
 
@@ -103,7 +102,6 @@ def get_data(indicator, england_only=True, keep_cols=None, dev=False, use_json=T
             print("Required JSON files do not exist. Downloading data from PHE.")
 
     # There is an 'England' area code in the data, so just use that flag
-    print("use JSON didn't work")
     if england_only is True:
         get_data = ftp.retrieve_data.get_all_data_for_indicators(indicators=indicator, area_type_id=15)
 
@@ -141,12 +139,13 @@ def get_data(indicator, england_only=True, keep_cols=None, dev=False, use_json=T
 
     write_data_to_json(get_data, "{}_DATA".format(indicator))
     write_data_to_json(meta, "{}_META".format(indicator))
-    write_data_to_json(all_data, "{}_ALL_DATA".format(indicator))
+    if dev is True:
+        write_data_to_json(all_data, "{}_ALL_DATA".format(indicator))
 
     return get_data, meta, all_data
 
 
-def extract_summary_figure(data, json = False):
+def extract_summary_figure(data, json=False):
     time_periods = data['Time period'].unique()
 
     # There seems to be a summary figure for the metrics with no category for each time period, so extract this and ignore
@@ -258,6 +257,3 @@ def get_phe_data_for_flask(indicator, differenced, dev=True):
     data, meta, all_data = get_data(indicator, dev=dev, england_only=True, use_json=True)
     summary_data = extract_summary_figure(data, json=False)
     return get_figure_for_flask(summary_data, differenced=differenced)
-
-
-get_phe_data_for_flask(273, differenced=True)

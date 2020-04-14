@@ -17,9 +17,9 @@
         let totalCases = {{ displayCovidCases(cases=True, period='Total') }};
         let cases24H = {{ displayCovidCases(cases=True, period='24h') }};
         let cases7Days = {{ displayCovidCases(cases=True, period='7days') }};
-        let heartDiseaseData = {{ getPHEData(indicator=273, differenced=False, dev=True) }}
-        let depressionData = {{ getPHEData(indicator=848, differenced=False, dev=True) }}
-        let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=True) }}
+        let heartDiseaseData = {{ getPHEData(indicator=273, differenced=False, dev=False) }}
+        let depressionData = {{ getPHEData(indicator=848, differenced=False, dev=False) }}
+        let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=False) }}
         let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False, country=None) |tojson|safe }}
         let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False, country=None) |tojson|safe }}
         let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False, country=None) |tojson|safe }}
