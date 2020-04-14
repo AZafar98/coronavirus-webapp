@@ -1,9 +1,8 @@
 from flask import Flask, render_template
 from flask_caching import Cache
-from src.main.process_corona_data import display_covid_cases, covid_time_series, country_options
+from src.main.process_corona_data import display_covid_cases, get_covid_time_series, country_options
 from src.main.get_phe_data import get_phe_data_for_flask
 import sys
-from time import time
 from datetime import datetime, timedelta
 
 # This is purely for PythonAnywhere - not necessary if running locally
@@ -32,7 +31,8 @@ if RUNNING_LOCALLY:
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": '../../cache/',
         "CACHE_DEFAULT_TIMEOUT": 10,
-        "CACHE_THRESHOLD": 10
+        "CACHE_THRESHOLD": 2,
+        "THREADED": True
     }
 else:
     config = {
@@ -40,7 +40,8 @@ else:
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": '/dev/shm',
         "CACHE_DEFAULT_TIMEOUT": second_until_midnight(),
-        "CACHE_THRESHOLD": 100
+        "CACHE_THRESHOLD": 100,
+        "THREADED": True
     }
 
 application.config.from_mapping(config)
@@ -50,28 +51,28 @@ cache = Cache(application)
 # NOTE: With the current setup, if PHE data does not exist. It will be downloaded when the page is first loaded.
 # So, the first time you try to view the page, it will be notably slower.
 # All subsequent refreshes will be fast as it will use the same data which will be saved locally as JSON.
-# This *should* only apply when running the app on your local machine
+# This *should* only apply when running the app on your local machine.
 """
 
 # This lets us call the function through the Jinja2 template engine.
 # Thanks to https://stackoverflow.com/questions/6036082/call-a-python-function-from-jinja2
 application.jinja_env.globals.update(displayCovidCases=display_covid_cases)
 application.jinja_env.globals.update(getPHEData=get_phe_data_for_flask)
-application.jinja_env.globals.update(getCovidTimeSeries=covid_time_series)
+application.jinja_env.globals.update(getCovidTimeSeries=get_covid_time_series)
 application.jinja_env.globals.update(countryOptions=country_options)
 
 
-@cache.cached(timeout=300)
+@cache.cached()
 def index():
     return render_template('index.html')
 
 
-@cache.cached(timeout=300)
+@cache.cached()
 def about():
     return render_template('about.html')
 
 
-@cache.cached(timeout=300)
+@cache.cached()
 def donate():
     return render_template('donate.html')
 
@@ -81,7 +82,7 @@ application.add_url_rule('/about', 'about', about)
 application.add_url_rule('/donate', 'donate', donate)
 
 # Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
-# to be left here...
+# to be left here....
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.

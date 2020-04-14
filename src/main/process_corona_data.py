@@ -4,6 +4,7 @@ import warnings
 import re
 from pathlib import Path
 from collections import Counter
+import json
 
 from src.flask.settings import RUNNING_LOCALLY
 
@@ -239,50 +240,52 @@ def display_covid_cases(cases=True, period='Total'):
         return str(dates)
 
 
-def covid_time_series(data_type, difference=False, country=None):
+def get_covid_time_series(data_type, difference):
     """
 
-    :param str data_type: 'confirmed', 'deaths' or 'recovered'
-    :param str or None country: Country to get data for. Default is None which return data for every country.
+    :param data_type:
+    :param difference:
     :return:
     """
+    if RUNNING_LOCALLY:
+        file_path = "../../data/json/corona/{}"
+    else:
+        file_path = "coronavirus-webapp/data/json/corona/{}"
 
     data_type = data_type.upper()
 
-    if data_type not in ['CONFIRMED', 'DEATHS', 'RECOVERED']:
-        raise ValueError("Invalid type. Must be 'confirmed', 'deaths', 'recovered'")
-
-    confirmed, recovered, deaths = get_corona_data()
-
     if data_type == 'CONFIRMED':
-        data = confirmed
+        if not (os.path.exists(file_path.format("confirmed-covid-time-series.txt")) or
+                os.path.exists(file_path.format("confirmed-covid-time-series.txt"))):
+            print("data not downloaded. downloading.")
+            update_covid_time_series('confirmed')
+
     elif data_type == 'DEATHS':
-        data = deaths
+        if not (os.path.exists(file_path.format("deaths-covid-time-series.txt")) or
+                os.path.exists(file_path.format("deaths-covid-time-series.txt"))):
+            print("data not downloaded. downloading.")
+            update_covid_time_series('deaths')
+
+    elif data_type == 'RECOVERED':
+        if not (os.path.exists(file_path.format("recovered-covid-time-series.txt")) or
+                os.path.exists(file_path.format("recovered-covid-time-series.txt"))):
+            print("data not downloaded. downloading.")
+            update_covid_time_series('recovered')
     else:
-        data = recovered
-
-    # This gets UK data by default.
-    country_data = data_for_country(data, country, province='None')
-
-    # Get a list of only the date columns
-    date_pat = re.compile('\d{1,2}/\d{1,2}/\d{1,2}')
-    cols = country_data.columns.tolist()
-    date_cols = [col for col in cols if date_pat.match(col)]
-
-    data = country_data[['Country/Region'] + date_cols].T.reset_index()
-    data.columns = data.iloc[0].tolist()
-    data = data.drop(0, axis=0)
-    data = data.rename(columns={'Country/Region': 'Date'}).reset_index(drop=True)
+        raise ValueError("Invalid data type to get covid time series")
 
     if difference is True:
-        data_to_difference = data.loc[:, [col for col in data.columns if col != 'Date']]
-        differenced = data_to_difference.diff()
-        # First row will be NA values after differencing. Drop that so it doesn't cause problems later when trying to
-        # graph the data
-        differenced['Date'] = data['Date']
-        data = differenced.drop(1, axis=0).reset_index(drop=True);
-
-    return data.to_json()
+        with open(file_path.format("{}-covid-time-series-diff.txt").format(data_type.lower())) as f:
+            file = json.load(f)
+            # It is easier if this is returned as a string. So read the JSON file, and then dump it again to get into
+            # string format AND ensure it's valid JSON.
+            str_rep = json.dumps(file)
+        return str_rep
+    else:
+        with open(file_path.format("{}-covid-time-series.txt").format(data_type.lower())) as f:
+            file = json.load(f)
+            str_rep = json.dumps(file)
+        return str_rep
 
 
 def country_options():

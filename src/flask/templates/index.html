@@ -20,12 +20,12 @@
         let heartDiseaseData = {{ getPHEData(indicator=273, differenced=False, dev=False) }}
         let depressionData = {{ getPHEData(indicator=848, differenced=False, dev=False) }}
         let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=False) }}
-        let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False, country=None) |tojson|safe }}
-        let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False, country=None) |tojson|safe }}
-        let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False, country=None) |tojson|safe }}
-        let confirmedCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='confirmed', difference=True, country=None) |tojson|safe }}
-        let deathCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='deaths', difference=True, country=None) |tojson|safe }}
-        let recoveredCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='recovered', difference=True, country=None) |tojson|safe }}
+        let confirmedCovidTimeSeries = {{ getCovidTimeSeries(data_type='confirmed', difference=False) |tojson|safe }}
+        let deathCovidTimeSeries = {{ getCovidTimeSeries(data_type='deaths', difference=False) |tojson|safe }}
+        let recoveredCovidTimeSeries = {{ getCovidTimeSeries(data_type='recovered', difference=False) |tojson|safe }}
+        let confirmedCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='confirmed', difference=True) |tojson|safe }}
+        let deathCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='deaths', difference=True) |tojson|safe }}
+        let recoveredCovidTimeSeriesDiff = {{ getCovidTimeSeries(data_type='recovered', difference=True) |tojson|safe }}
         let countriesList = {{ countryOptions() |tojson|safe }}
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}" defer></script>
@@ -44,7 +44,6 @@
             </h1>
         </div>
     </div>
-
 
     <div class="row content text-center align-items-center mb-5">
         <div class="col align-items-center text-center">
