@@ -126,6 +126,12 @@ body {
     }
 }
 
+.card-body .card-para strong{
+    font-weight: bolder;
+    font-size: inherit;
+    font-variant: inherit;
+}
+
 .accordian-header-text {
     font-family: Inter;
     font-size: 3vw;

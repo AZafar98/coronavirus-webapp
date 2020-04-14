@@ -94,14 +94,21 @@ function setDefaultPage() {
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 }
 
+// Populate the dropdown with all the countries
 countryOptions = [];
 countriesList.forEach(function(country) {
     const option = "<option " + "value='" + country + "'>" + country + "</option>";
     countryOptions.push(option)
 });
+
 $('select[name=countries]').html(countryOptions);
 $('.selectpicker').selectpicker('refresh');
 
+// $('#test').qtip({
+//     content: {
+//         text: 'I have a nice little callout pointer... nifty huh?'
+//     }
+// });
 
 //Initialise tooltips
 $(function () {

@@ -16,7 +16,7 @@
 <div class="container-fluid align-items-center">
     <div class="row">
         <div class="col-sm-8 mx-auto mb-5">
-            <img src="{{ url_for('static', filename='images/covid-live-logo.png') }}"
+            <img src="{{ url_for('static', filename='images/covid-about-image.png') }}"
                  class="img-fluid mx-auto rounded d-block"
                  alt="About Page Image">
         </div>
@@ -27,14 +27,14 @@
             <div class="card-header accordion-heading">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed accordian-header-text" type="button" data-toggle="collapse"
-                            data-target="#graph-interpret"
-                            aria-expanded="false" aria-controls="graph-interpret">
+                            data-target="#about-1"
+                            aria-expanded="false" aria-controls="about-1">
                         <i class="fa" aria-hidden="true"></i>
                         Why we built COVID-19 Live
                     </button>
                 </h2>
             </div>
-            <div id="graph-interpret" class="collapse" aria-labelledby="graph-explain-heading"
+            <div id="about-1" class="collapse" aria-labelledby="about-heading-1"
                  data-parent="#about-accordian">
                 <div class="card-body">
                     <p class="card-para">
@@ -77,9 +77,49 @@
             <div id="generic-about-2" class="collapse" aria-labelledby="about-heading-2"
                  data-parent="#about-accordian">
                 <div class="card-body">
-                    <p class="card-para">
-                        Soon. Hopefully.
-                    </p>
+                    <dl class="row mt-2">
+                        <dt class="col-sm-6">COVID-19 Data</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    We have tried to visualise the worldwide COVID-19 data in a simple and easy to
+                                    understand way.
+                                </p>
+                                <p class="card-para">
+                                    In order to better understand the pandemic and it's progression, it is useful to
+                                    look at both
+                                    the total number of reported cases in a country, and also the trend in new reported
+                                    cases/deaths
+                                    per day.
+                                </p>
+                                <p class="card-para">
+                                    If the number of new reports per day is still increasing, it is likely that the
+                                    country has not
+                                    yet reached the worst of the pandemic. Once this curve starts to decline it means
+                                    that less
+                                    people were infected today than yesterday. A continuing downward trend, therefore,
+                                    can suggest
+                                    that the pandemic is better under control.
+                                </p>
+                            </dd>
+                        </div>
+
+                        <dt class="col-sm-6">Public Health Data</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    We have displayed a selection of other data relating to public health issues in the
+                                    UK.
+                                    We are not suggesting this is compared to COVID-19 directly.
+                                </p>
+                                <p class="card-para">
+                                    The data is meant to offer perspective and make you aware of the scale of these
+                                    issues. We want you to understand why it is important to tackle these issues, and
+                                    for you to spread the knowledge and message.
+                                </p>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
         </div>
@@ -99,8 +139,30 @@
                  data-parent="#about-accordian">
                 <div class="card-body">
                     <p class="card-para">
-                        We just need something useful.
+                        There are two types of COVID-19 data available to view. Either <strong>Total reports</strong> or
+                        <strong>New reports per day</strong>.
                     </p>
+                    <dl class="row mt-2">
+                        <dt class="col-sm-6">Total reports</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    The total number of reports in the country each day. This is an cumulative measure.
+                                    New reports per day
+                                </p>
+                            </dd>
+                        </div>
+
+                        <dt class="col-sm-6">New reports per day</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    The number of new reports each day. I.e. totalReportsToday - totalReportsYesterday
+                                    gives the number of new reports today.
+                                </p>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
         </div>
@@ -119,9 +181,47 @@
             <div id="generic-about-4" class="collapse" aria-labelledby="about-heading-4"
                  data-parent="#about-accordian">
                 <div class="card-body">
-                    <p class="card-para">
-                        So people might actually want to read it.
+                    <p class="card-para para-lead">
+                        Whilst these numbers are accurate to the best of our knowledge, they do not tell the full story.
+                        Only those who have been tested <strong>AND</strong> returned a positive result for COVID-19 are
+                        captured in these numbers.
                     </p>
+                    <p class="card-para para-lead">
+                        These are the best factual numbers available to us, however the reality of the situation is that
+                        many more people will have suffered than these numbers suggest.
+                    </p>
+                    <dl class="row mt-2">
+                        <dt class="col-sm-6">Confirmed cases</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    The number of confirmed COVID-19 cases in a country. This is generally defined as
+                                    the number of people who have been tested for COVID-19 and returned a positive test.
+                                </p>
+                            </dd>
+                        </div>
+
+                        <dt class="col-sm-6">Deaths</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    The number of deaths attributed to COVID-19 in a country. This is generally defined
+                                    as the number of people who have died and tested positive for COVID-19.
+                                </p>
+                            </dd>
+                        </div>
+
+                        <dt class="col-sm-6">Recovered cases</dt>
+                        <div class="row mx-2">
+                            <dd class="col card-para">
+                                <p class="card-para">
+                                    The number of confirmed recoveries from COVID-19 in a country. This is generally
+                                    defined as the number of people who have tested positive for COVID-19 and
+                                    subsequently recovered.
+                                </p>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
         </div>
@@ -141,8 +241,19 @@
                  data-parent="#about-accordian">
                 <div class="card-body">
                     <p class="card-para">
-                        Or just some useful information.
+                        The COVID-19 data is taken directly from the <a target="_blank"
+                                                                        href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data">
+                        John Hopkins University and Medicine Github Repository.</a>
                     </p>
+                    <p class="card-para">
+                        The public health data is from Public Health England and the Office for National Statistics.
+                        Click the button below for detailed information about the data.
+                    </p>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm modalButton" data-toggle="modal"
+                            data-target="#dataModal">
+                        Data details
+                    </button>
                 </div>
             </div>
         </div>
@@ -162,14 +273,101 @@
                  data-parent="#about-accordian">
                 <div class="card-body">
                     <p class="card-para">
-                        Or something else entirely.
+                        Yes! All the code for this webapp is available on <a target="_blank" href="https://github.com/AZafar98/coronavirus-webapp">
+                        GitHub. </a> Comments, suggestions and improvements are welcomed.
                     </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title accordion-heading" id="dataModalTitle">About the data used</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>A note about the data...</strong>
+                <p class="card-para">
+                    The COVID-19 data is as-compiled by the John Hopkins University. These figures are not a true
+                    representaion of the scale of the COVID-19 outbreak as they only represent the instances where a
+                    positive test is present.
+                    <br>
+                <p class="card-para">
+                    The data is sourced from <abbr title="Public Health England" class="initialism">PHE</abbr>
+                    and the <abbr title="Office for National Statistics" class="initialism">ONS</abbr>.
+                    <br>
+                    <small class="text-muted">
+                        Data from <abbr title="Public Health England" class="initialism">PHE</abbr> has been sourced
+                        using
+                        the fingertips_py Python package.
+                        <br>
+                        The <abbr title="Office of National Statistics" class="initialism">ONS</abbr> data has been
+                        taken
+                        from reports and thus is not directly accessible to the user.
+                    </small>
+                </p>
+
+                <strong>Heart Disease (PHE) </strong>
+                <p class="card-para">The percentage of patients with coronary heart disease, as recorded on practice
+                    disease register
+                    "Coronary heart disease (CHD) is the single most common cause of premature death in the
+                    UK. The research evidence relating to the management of CHD is well established and if
+                    implemented can reduce the risk of death from CHD and improve the quality of life for
+                    patients. This indicator set focuses on the management of patients with established CHD
+                    consistent with clinical priorities in the four nations."
+                    <br>
+                    <small class="text-muted">PHE Fingertips Indicator ID 273 </small>
+                </p>
+
+                <strong>Depression (PHE) </strong>
+                <p class="card-para">The percentage of patients aged 18 and over with
+                    depression, as recorded on practice disease registers.CCG: The recorded depression
+                    prevalence is the number of people with depression recorded on their practice register
+                    within a CCG, as a proportion of the practice list size of the CCG aged 18 years or over
+                    <br>
+                    <small class="text-muted">PHE Fingertips Indicator ID 848 </small>
+                </p>
 
 
+                <strong>Road casualties (ONS) </strong>
+                <p class="card-para">TBC
+                </p>
+
+                <strong>Loneliness (ONS) </strong>
+                <p class="card-para"> Community Life Survey, 2016 to 2017, there were 5% of
+                    adults (aged 16 years and over) in England reporting feeling lonely “often/always”
+                    <br>
+                    <small class="text-muted"><a target="_blank"
+                                                 href="https://www.ons.gov.uk/peoplepopulationandcommunity/wellbeing/articles/lonelinesswhatcharacteristicsandcircumstancesareassociatedwithfeelinglonely/2018-04-10">ONS
+                        loneliness report</a></small>
+                </p>
+
+                <strong>Domestic Abuse (PHE) </strong>
+                <p class="card-para">Domestic abuse-related incidents and crimes
+                    recorded by the police, crude rates per 1,000.
+                    Tackling domestic abuse as a public health issue is vital for ensuring that some of the
+                    most vulnerable people in our society receive the support, understanding and treatment
+                    they deserve. The more we can focus in on interventions that are effective, the more we
+                    can treat victims and prevent future re-victimisation. It is also the government's
+                    strategic ambition, as set out in Ending Violence against Women and Girls, Strategy 2016
+                    \u2013 2020, to do what it can to contribute to a cohesive and comprehensive response."
+                    <br>
+                    <small class="text-muted">PHE Fingertips Indicator ID 92863 </small>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
