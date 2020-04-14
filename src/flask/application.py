@@ -20,14 +20,16 @@ if RUNNING_LOCALLY:
         "DEBUG": True,
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": '../../cache/',
-        "CACHE_DEFAULT_TIMEOUT": 300
+        "CACHE_DEFAULT_TIMEOUT": 300,
+        "CACHE_THRESHOLD": 10
     }
 else:
     config = {
         "DEBUG": False,
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": 'coronavirus-webapp/cache',
-        "CACHE_DEFAULT_TIMEOUT": 300
+        "CACHE_DEFAULT_TIMEOUT": 300,
+        "CACHE_THRESHOLD": 100
     }
 
 application.config.from_mapping(config)
