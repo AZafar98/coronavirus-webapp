@@ -20,7 +20,7 @@ if RUNNING_LOCALLY:
         "DEBUG": True,
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": '../../cache/',
-        "CACHE_DEFAULT_TIMEOUT": 300,
+        "CACHE_DEFAULT_TIMEOUT": 10,
         "CACHE_THRESHOLD": 10
     }
 else:
@@ -28,7 +28,7 @@ else:
         "DEBUG": False,
         "CACHE_TYPE": 'filesystem',
         "CACHE_DIR": 'coronavirus-webapp/cache',
-        "CACHE_DEFAULT_TIMEOUT": 300,
+        "CACHE_DEFAULT_TIMEOUT": 3600,
         "CACHE_THRESHOLD": 100
     }
 
