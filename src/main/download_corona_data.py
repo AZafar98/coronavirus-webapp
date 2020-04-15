@@ -58,6 +58,8 @@ def aggregate_duplicate_countries(data):
     count_countries = Counter(countries)
     duplicates = [country for country, count in count_countries.items() if count > 1]
 
+    summarised_data = pd.DataFrame(columns=data.columns)
+
     for duplicate_country in duplicates:
         temp_data = data.loc[data['Country/Region'] == duplicate_country, :]
         temp_data = temp_data.sum(axis=0)
@@ -65,10 +67,14 @@ def aggregate_duplicate_countries(data):
         temp_data['Country/Region'] = duplicate_country
 
         # Drop all of the old data before inserting the aggregated data
-        data = data.loc[data['Country/Region'] != duplicate_country, :]
+        # data = data.loc[data['Country/Region'] != duplicate_country, :]
 
         temp_data = temp_data.to_frame().T
-        data = pd.concat([data, temp_data], axis=0)
+        # data = pd.concat([data, temp_data], axis=0)
+        summarised_data = pd.concat([summarised_data, temp_data], axis=0)
+
+    data = data.loc[~data['Country/Region'].isin(duplicates), :]
+    data = pd.concat([data, summarised_data], axis=0)
 
     return data
 
