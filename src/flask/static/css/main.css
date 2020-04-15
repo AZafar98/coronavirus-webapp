@@ -299,6 +299,51 @@ body {
     color: #D02F46;
 }
 
+.donateButton {
+    display:block;
+    padding: 1vh 1vw;
+    border: 1.5px solid #ED8182;
+    border-radius: 4px;
+    text-align: center;
+    background-color: inherit;
+    color: #ED8182;
+    cursor: auto;
+    text-transform: uppercase;
+    font-size: 4.5vw;
+    margin-right: 2vw;
+    margin-top: 0.5vh;
+}
+
+@media only screen and (min-width: 768px) {
+    .donateButton {
+        font-size: 1.25vw;
+    }
+}
+
+.donateButton:hover {
+    background-color: inherit;
+    border: 1.5px solid #D02F46;
+    color: #D02F46;
+}
+
+.donateButton:focus {
+    background-color: inherit;
+    border: 1.5px solid #D02F46;
+    color: #D02F46;
+}
+
+.donate-footer{
+    background-color: inherit;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 25vh;
+    object-fit: cover;
+}
+
+
+
 /*.bootstrap-select > .dropdown-toggle:active {*/
 /*    border: 1.5px solid #D02F46;*/
 /*    color: #D02F46;*/
