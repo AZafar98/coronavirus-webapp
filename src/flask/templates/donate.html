@@ -12,99 +12,203 @@
 {%block title %} COVID-19 Live - Donate {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <img src="{{ url_for('static', filename='images/rsz1_thank-you-nhs.jpg') }}"
-                 class="img-fluid mx-auto rounded d-block" alt="About Page Image">
+<div class="container-fluid bg-img">
+    <div class="row justify-content-center mb-5">
+        <div class="col-sm-12">
+            <h3 class="donate-header">How you can help</h3>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12">
+                <h5 class="donate-subheader">We’ve listed some charities you can support during the crisis. <br> They’re all doing amazing work ✨</h5>
+            </div>
         </div>
     </div>
 
 
-
-    <div class="card-deck my-3 text-center">
-        <div class="card mb-4 box-shadow">
-            <a target="_blank" href="https://fareshare.org.uk/help-us/">
-                <img src="{{ url_for('static', filename='images/fs-logo.png') }}" class="card-img-top"
-                     alt="FareShare - Fighting hunger. Tackling food waste.">
-            </a>
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">FareShare</h4>
-            </div>
-            <div class="card-body">
-                <!--                <h5 class="card-title">FareShare</h5>-->
-                <p class="card-text">FareShare is the UK’s national network of charitable food redistributors, made
-                    up of 17 independent organisations. Together, we take good quality surplus food from right
-                    across the food industry and get it to almost 11,000 frontline charities and community
-                    groups.
-                </p>
-                <p class="card-text">
-                    During this crisis, it is more important than ever to support vulnerable people. Help FareShare to
-                    deliver more food to those most in need.
-                </p>
-            </div>
-            <div class="card-footer donate-footer">
-                <a target="_blank" href="https://fareshare.org.uk/help-us/" class="btn btn-primary btn-block donateButton">Support
-                    FareShare</a>
+    <div class="card-deck row-cols-1 row-cols-md-2 my-3 justify-content-center text-center">
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank"
+                   href="https://www.crisis.org.uk/">
+                    <img src="{{ url_for('static', filename='images/crisis-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Crisis</h4>
+                    <p class="card-text mb-3">
+                        People who are homeless are especially exposed to COVID-19. But together we can get vital care
+                        and protection to them
+                    </p>
+                    <a target="_blank"
+                       href="https://www.crisis.org.uk/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
             </div>
         </div>
 
-        <div class="col-sm-4 d-flex justify-content-center text-center">
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+        <div class="card mb-4 box-shadow">
+            <a target="_blank" href="https://fareshare.org.uk/help-us/">
+                <img src="{{ url_for('static', filename='images/fareshare-logo.png') }}" class="card-img-top"
+                     alt="FareShare - Fighting hunger. Tackling food waste.">
+            </a>
+            <div class="card-body d-flex flex-column">
+                <h4 class="card-title">FareShare</h4>
+                <p class="card-text mb-3">
+                    During this time of crisis, help us deliver more food to the frontline organisations providing a
+                    lifeline to those most at risk
+                </p>
+                <a target="_blank" href="https://fareshare.org.uk/help-us/" class="btn mt-auto mb-3
+                 donateButton">Support</a>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
             <div class="card mb-4 box-shadow">
                 <a target="_blank" href="https://www.mealsforthenhs.com/">
-                    <img src="{{ url_for('static', filename='images/meals-for-nhs.png') }}" class="card-img-top"
+                    <img src="{{ url_for('static', filename='images/meals-for-nhs-logo.png') }}" class="card-img-top"
                          alt="FareShare - Fighting hunger. Tackling food waste.">
                 </a>
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Meals for the NHS</h4>
-                </div>
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Meals for the NHS</h4>
                     <!--                <h5 class="card-title">Meals for the NHS</h5>-->
-                    <p class="card-text">
-                        Help buy meals for the NHS staff fighting COVID-19
-                        After 18-hour shifts trying to save our lives from COVID-19, NHS Hospital Staff are faced
-                        with canteens that shut at 5pm .
+                    <p class="card-text mb-3">
+                        Raising money to deliver free meals to frontline NHS heroes, supporting local restaurants in the
+                        process. 💙
                     </p>
-                    <p class="card-text">
-                        NHS workers are currently being pushed to their limits. Helping to buy meals for the staff is a
-                        small gesture on your part but it has a huge impact on the staff.
-                    </p>
-                </div>
-                <div class="card-footer donate-footer">
                     <a target="_blank" href="https://www.mealsforthenhs.com/"
-                       class="btn align-self-end btn-block btn-primary donateButton">Support
-                        the NHS</a>
+                       class="btn mt-auto mb-3 donateButton">Support</a>
                 </div>
             </div>
         </div>
 
         <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
             <div class="card mb-4 box-shadow">
-                <a target="_blank" href="https://campaign.refuge.org.uk/page/58366/donate/1?ea.tracking.id=EMER-landing">
-                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                <a target="_blank" href="https://www.mind.org.uk/">
+                    <img src="{{ url_for('static', filename='images/mind-logo.png') }}" class="card-img-top img-fluid"
                          alt="FareShare - Fighting hunger. Tackling food waste.">
                 </a>
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Refuge</h4>
-                </div>
-                <div class="card-body">
-                    <!--                <h5 class="card-title">FareShare</h5>-->
-                    <p class="card-text">On any given day Refuge supports more than 6,000 clients, helping them rebuild
-                        their lives and overcome many different forms of violence and abuse; for example domestic
-                        violence, sexual violence, so-called ‘honour’-based violence, human trafficking and modern
-                        slavery, and female genital mutilation.
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Mind</h4>
+                    <p class="card-text mb-3">
+                        The coronavirus pandemic is having a huge impact on our mental health. Help to protect, support
+                        and save lives.
                     </p>
-                    <p class="card-text">
-                        With domestic violence incidents increasing during the lockdown, it is important now more than
-                        ever to support Refuge.
-                    </p>
-                </div>
-                <div class="card-footer donate-footer">
-                    <a target="_blank" href="https://campaign.refuge.org.uk/page/58366/donate/1?ea.tracking.id=EMER-landing"
-                       class="btn btn-primary btn-block donateButton">Support Refuge</a>
+                    <a target="_blank" href="https://www.mind.org.uk/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank" href="https://www.refuge.org.uk/">
+                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Refuge</h4>
+                    <p class="card-text mb-3">
+                        Staying at home increases the risk of domestic abuse for everyone. Supporting Refuge is
+                        important now more than
+                        ever.
+                    </p>
+                    <a target="_blank" href="https://www.refuge.org.uk/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank" href="https://www.samaritans.org/">
+                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Samaritans</h4>
+                    <p class="card-text mb-3">
+                        Coronavirus is impacting all us. This crisis is the biggest challenge Samaritans have
+                        ever faced. Show your support today.
+                    </p>
+                    <a target="_blank" href="https://www.samaritans.org/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank" href="https://www.trusselltrust.org/">
+                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">The Trussel Trust</h4>
+                    <p class="card-text mb-3">
+                        We support a nationwide network of food banks and provide emergency food to people locked in
+                        poverty.
+                    </p>
+                    <a target="_blank" href="https://www.trusselltrust.org/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank" href="https://ageuk.org.uk">
+                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Age UK</h4>
+                    <p class="card-text mb-3">
+                        Please help us to be there for older people who desperately need us during this crisis.
+                    </p>
+                    <a target="_blank" href="https://ageuk.org.uk"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank" href="https://www.nhscharitiestogether.co.uk/">
+                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">NHS Charities Together</h4>
+                    <p class="card-text mb-3">
+                        We are working with NHS England and our member NHS Charities on a nationally co-ordinated
+                        response.
+                    </p>
+                    <a target="_blank" href="https://www.nhscharitiestogether.co.uk/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 d-flex flex-column justify-content-center text-center">
+            <div class="card mb-4 box-shadow">
+                <a target="_blank" href="https://www.beautybanks.org.uk/">
+                    <img src="{{ url_for('static', filename='images/refuge-logo.png') }}" class="card-img-top img-fluid"
+                         alt="FareShare - Fighting hunger. Tackling food waste.">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Beauty Banks</h4>
+                    <p class="card-text mb-3">
+                        We are working with NHS England and our member NHS Charities on a nationally co-ordinated
+                        response.
+                    </p>
+                    <a target="_blank" href="https://www.beautybanks.org.uk/"
+                       class="btn mt-auto mb-3 donateButton">Support</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <!--https://fareshare.org.uk/help-us/-->
