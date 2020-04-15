@@ -62,17 +62,17 @@ application.jinja_env.globals.update(getCovidTimeSeries=get_covid_time_series)
 application.jinja_env.globals.update(countryOptions=country_options)
 
 
-@cache.cached()
+# @cache.cached()
 def index():
     return render_template('index.html')
 
 
-@cache.cached()
+# @cache.cached()
 def about():
     return render_template('about.html')
 
 
-@cache.cached()
+# @cache.cached()
 def donate():
     return render_template('donate.html')
 
