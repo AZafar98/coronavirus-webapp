@@ -24,6 +24,7 @@ body {
 .bg-img {
     background-image: url('../images/donate_bg.svg');
     background-size: 100%;
+    text-align: -moz-center;
     text-align: -webkit-center;
     background-repeat: no-repeat;
 }

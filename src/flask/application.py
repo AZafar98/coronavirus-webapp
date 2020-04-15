@@ -62,17 +62,17 @@ application.jinja_env.globals.update(getCovidTimeSeries=get_covid_time_series)
 application.jinja_env.globals.update(countryOptions=country_options)
 
 
-# @cache.cached()
+@cache.cached()
 def index():
     return render_template('index.html')
 
 
-# @cache.cached()
+@cache.cached()
 def about():
     return render_template('about.html')
 
 
-# @cache.cached()
+@cache.cached()
 def donate():
     return render_template('donate.html')
 
@@ -82,7 +82,7 @@ application.add_url_rule('/about', 'about', about)
 application.add_url_rule('/donate', 'donate', donate)
 
 # Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
-# to be left here....
+# to be left here...
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
