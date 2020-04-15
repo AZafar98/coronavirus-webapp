@@ -78,7 +78,7 @@ function legendFormatter(data) {
         if (!series.isVisible) return;
         var labeledData = series.labelHTML + ': ' + series.yHTML;
         if (series.isHighlighted) {
-            labeledData = '<b>' + labeledData + '</b>';
+            labeledData = '<strong>' + labeledData + '</strong>';
         }
         html += '<br>' + series.dashHTML + ' ' + labeledData;
     });
@@ -289,14 +289,16 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
                 drawGrid: false
             }
         },
-        highlightSeriesOpts: {'strokeWidth': 2},
+        highlightSeriesOpts: {'strokeWidth': 3},
+        strokeWidth: 2,
+        strokeBorderWidth: 1,
         legendFormatter: legendFormatter,
         labelsDiv: document.getElementById('covidLegend'),
         hideOverlayOnMouseOut: true,
         labelsSeparateLines: true,
         xRangePad: 50,
         titleHeight: 50,
-        colors: ['#00429d', '#4771b2', '#73a2c6', '#a5d5d8', '#ffffe0', '#ffbcaf', '#f4777f', '#cf3759', '#93003a']
+        colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6']
 
     }
 );
