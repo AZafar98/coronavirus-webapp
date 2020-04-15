@@ -13,16 +13,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid align-items-center">
-    <div class="row">
-        <div class="col-sm-8 mx-auto mb-5">
-            <img src="{{ url_for('static', filename='images/stay-home-save-lives.jpg') }}"
-                 class="img-fluid mx-auto rounded d-block"
-                 alt="About Page Image">
+<div class="container-fluid bg-about-img">
+        <div class="row justify-content-center mb-5">
+            <div class="col-sm-12">
+                <h3 class="donate-header">About</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-12">
+                    <h5 class="donate-subheader">We’ve listed some FAQs and useful info for you.</h5>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="accordion mx-3 mt-2" id="about-accordian">
+    <div class="accordion mt-2" id="about-accordian">
         <div class="card">
             <div class="card-header accordion-heading">
                 <h2 class="mb-0">
@@ -62,6 +65,34 @@
             </div>
         </div>
 
+        <div class="card">
+            <div class="card-header accordion-heading accordian-header-text" id="about-heading-6">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed accordian-header-text" type="button" data-toggle="collapse"
+                            data-target="#generic-about-6"
+                            aria-expanded="false" aria-controls="graph-interpret">
+                        <i class="fa" aria-hidden="true"></i>
+                        Where can I view the code?
+                    </button>
+                </h2>
+            </div>
+            <div id="generic-about-6" class="collapse" aria-labelledby="about-heading-6"
+                 data-parent="#about-accordian">
+                <div class="card-body">
+                    <p class="card-para">
+                        We believe open source is a force for good. It inspires and drives the world of technology and
+                        can bring about real innovation.
+                    </p>
+
+                    <p class="card-para">
+                        In this spirit, all the code for this webapp is available on <a target="_blank"
+                                                                                        href="https://github.com/AZafar98/coronavirus-webapp">
+                        GitHub </a> so you can build your own COVID-19 related tools! Comments, suggestions and
+                        improvements are welcomed.
+                    </p>
+                </div>
+            </div>
+        </div>
 
         <div class="card">
             <div class="card-header accordion-heading" id="about-heading-2">
@@ -70,56 +101,46 @@
                             data-target="#generic-about-2"
                             aria-expanded="false" aria-controls="graph-interpret">
                         <i class="fa" aria-hidden="true"></i>
-                        How should I use this tool?
+                        How should I use the site?
                     </button>
                 </h2>
             </div>
             <div id="generic-about-2" class="collapse" aria-labelledby="about-heading-2"
                  data-parent="#about-accordian">
                 <div class="card-body">
-                    <dl class="row mt-2">
-                        <dt class="col-sm-6">COVID-19 Data</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    We have tried to visualise the worldwide COVID-19 data in a simple and easy to
-                                    understand way.
-                                </p>
-                                <p class="card-para">
-                                    In order to better understand the pandemic and it's progression, it is useful to
-                                    look at both
-                                    the total number of reported cases in a country, and also the trend in new reported
-                                    cases/deaths
-                                    per day.
-                                </p>
-                                <p class="card-para">
-                                    If the number of new reports per day is still increasing, it is likely that the
-                                    country has not
-                                    yet reached the worst of the pandemic. Once this curve starts to decline it means
-                                    that less
-                                    people were infected today than yesterday. A continuing downward trend, therefore,
-                                    can suggest
-                                    that the pandemic is better under control.
-                                </p>
-                            </dd>
-                        </div>
+                    <span class="inline-title">COVID-19 Data</span>
+                    <p class="card-para mx-2 mt-1">
+                        We have tried to visualise the worldwide COVID-19 data in a simple and easy to
+                        understand way.
+                    </p>
+                    <p class="card-para mx-2">
+                        In order to better understand the pandemic and it's progression, it is useful to
+                        look at both
+                        the total number of reported cases in a country, and also the trend in new reported
+                        cases/deaths
+                        per day.
+                    </p>
+                    <p class="card-para mx-2">
+                        If the number of new reports per day is still increasing, it is likely that the
+                        country has not
+                        yet reached the worst of the pandemic. Once this curve starts to decline it means
+                        that less
+                        people were infected today than yesterday. A continuing downward trend, therefore,
+                        can suggest
+                        that the pandemic is better under control.
+                    </p>
 
-                        <dt class="col-sm-6">Public Health Data</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    We have displayed a selection of other data relating to public health issues in the
-                                    UK.
-                                    We are not suggesting this is compared to COVID-19 directly.
-                                </p>
-                                <p class="card-para">
-                                    The data is meant to offer perspective and make you aware of the scale of these
-                                    issues. We want you to understand why it is important to tackle these issues, and
-                                    for you to spread the knowledge and message.
-                                </p>
-                            </dd>
-                        </div>
-                    </dl>
+                    <span class="inline-title">Public Health Data</span>
+                    <p class="card-para mx-2 mt-1">
+                        We have displayed a selection of other data relating to public health issues in the
+                        UK.
+                        We are not suggesting this is compared to COVID-19 directly.
+                    </p>
+                    <p class="card-para mx-2">
+                        The data is meant to offer perspective and make you aware of the scale of these
+                        issues. We want you to understand why it is important to tackle these issues, and
+                        for you to spread the knowledge and message.
+                    </p>
                 </div>
             </div>
         </div>
@@ -131,38 +152,41 @@
                             data-target="#generic-about-3"
                             aria-expanded="false" aria-controls="graph-interpret">
                         <i class="fa" aria-hidden="true"></i>
-                        What do the types of COVID-19 data mean?
+                        What do the types and categories of COVID-19 data mean?
                     </button>
                 </h2>
             </div>
             <div id="generic-about-3" class="collapse" aria-labelledby="about-heading-3"
                  data-parent="#about-accordian">
                 <div class="card-body">
-                    <p class="card-para">
-                        There are two types of COVID-19 data available to view. Either <strong>Total reports</strong> or
-                        <strong>New reports per day</strong>.
+                    <span class="inline-title">Data types</span>
+                    <p class="card-para mx-2 mt-1">
+                    <span class="inline-title">Total Reports: </span>The total number of reports in the country each day. This is an cumulative measure.
                     </p>
-                    <dl class="row mt-2">
-                        <dt class="col-sm-6">Total reports</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    The total number of reports in the country each day. This is an cumulative measure.
-                                    New reports per day
-                                </p>
-                            </dd>
-                        </div>
+                    <p class="card-para mx-2">
+                        <span class="inline-title">New reports per day: </span>The number of new reports each day. I.e.
+                        totalReportsToday - totalReportsYesterday
+                        gives the number of new reports today.
+                    </p>
 
-                        <dt class="col-sm-6">New reports per day</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    The number of new reports each day. I.e. totalReportsToday - totalReportsYesterday
-                                    gives the number of new reports today.
-                                </p>
-                            </dd>
-                        </div>
-                    </dl>
+                    <span class="inline-title">Data categories</span>
+                    <p class="card-para mx-2 mt-1">
+                        <span class="inline-title">Confirmed cases: </span> The number of confirmed COVID-19 cases in a
+                        country. This is generally defined as
+                        the number of people who have been tested for COVID-19 and returned a positive test.
+                    </p>
+                    <p class="card-para mx-2">
+                        <span class="inline-title">Deaths: </span> The number of deaths attributed to COVID-19 in a
+                        country. This is generally defined
+                        as the number of people who have died and tested positive for COVID-19.
+                    </p>
+                    <p class="card-para mx-2">
+                        <span class="inline-title">Recovered cases: </span> The number of confirmed recoveries from
+                        COVID-19 in a country. This is generally
+                        defined as the number of people who have tested positive for COVID-19 and
+                        subsequently recovered.
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -174,70 +198,11 @@
                             data-target="#generic-about-4"
                             aria-expanded="false" aria-controls="graph-interpret">
                         <i class="fa" aria-hidden="true"></i>
-                        What do the categories of COVID-19 data mean?
+                        About the data
                     </button>
                 </h2>
             </div>
             <div id="generic-about-4" class="collapse" aria-labelledby="about-heading-4"
-                 data-parent="#about-accordian">
-                <div class="card-body">
-                    <p class="card-para para-lead">
-                        Whilst these numbers are accurate to the best of our knowledge, they do not tell the full story.
-                        Only those who have been tested <strong>AND</strong> returned a positive result for COVID-19 are
-                        captured in these numbers.
-                    </p>
-                    <p class="card-para para-lead">
-                        These are the best factual numbers available to us, however the reality of the situation is that
-                        many more people will have suffered than these numbers suggest.
-                    </p>
-                    <dl class="row mt-2">
-                        <dt class="col-sm-6">Confirmed cases</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    The number of confirmed COVID-19 cases in a country. This is generally defined as
-                                    the number of people who have been tested for COVID-19 and returned a positive test.
-                                </p>
-                            </dd>
-                        </div>
-
-                        <dt class="col-sm-6">Deaths</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    The number of deaths attributed to COVID-19 in a country. This is generally defined
-                                    as the number of people who have died and tested positive for COVID-19.
-                                </p>
-                            </dd>
-                        </div>
-
-                        <dt class="col-sm-6">Recovered cases</dt>
-                        <div class="row mx-2">
-                            <dd class="col card-para">
-                                <p class="card-para">
-                                    The number of confirmed recoveries from COVID-19 in a country. This is generally
-                                    defined as the number of people who have tested positive for COVID-19 and
-                                    subsequently recovered.
-                                </p>
-                            </dd>
-                        </div>
-                    </dl>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header accordion-heading" id="about-heading-5">
-                <h2 class="mb-0">
-                    <button class="btn btn-link collapsed accordian-header-text" type="button" data-toggle="collapse"
-                            data-target="#generic-about-5"
-                            aria-expanded="false" aria-controls="graph-interpret">
-                        <i class="fa" aria-hidden="true"></i>
-                        Where is the data from?
-                    </button>
-                </h2>
-            </div>
-            <div id="generic-about-5" class="collapse" aria-labelledby="about-heading-5"
                  data-parent="#about-accordian">
                 <div class="card-body">
                     <p class="card-para">
@@ -259,22 +224,26 @@
         </div>
 
         <div class="card">
-            <div class="card-header accordion-heading accordian-header-text" id="about-heading-6">
+            <div class="card-header accordion-heading" id="about-heading-5">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed accordian-header-text" type="button" data-toggle="collapse"
-                            data-target="#generic-about-6"
+                            data-target="#generic-about-5"
                             aria-expanded="false" aria-controls="graph-interpret">
                         <i class="fa" aria-hidden="true"></i>
-                        Can I view the code?
+                        How can I show my support?
                     </button>
                 </h2>
             </div>
-            <div id="generic-about-6" class="collapse" aria-labelledby="about-heading-6"
+            <div id="generic-about-5" class="collapse" aria-labelledby="about-heading-5"
                  data-parent="#about-accordian">
                 <div class="card-body">
                     <p class="card-para">
-                        Yes! All the code for this webapp is available on <a target="_blank" href="https://github.com/AZafar98/coronavirus-webapp">
-                        GitHub. </a> Comments, suggestions and improvements are welcomed.
+                        You can view our <a target="_blank" href=" {{ url_for('donate') }}">donate page </a> to see a
+                        range of charities you can support during this crisis.
+                    </p>
+                    <p class="card-para">
+                        We also encourage you to help as much as you can within your local community, besides donating
+                        money.
                     </p>
                 </div>
             </div>
