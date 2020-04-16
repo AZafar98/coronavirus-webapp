@@ -93,6 +93,7 @@ function zoomGraphX(minDate, maxDate) {
 
 // Set the default values to UK and Total and render the graph with UK confirmed cases (COVID line graph)
 function setDefaultPage() {
+    $(".bootstrap-select .bs-actionsbox .bs-select-all").prop('disabled', true);
     $('#dataFreqSelect').selectpicker('val', 'total');
     $('#covidTypeSelect').selectpicker('val', 'confirmed');
     $('#countrySelector').selectpicker('val', 'United Kingdom');
@@ -109,19 +110,6 @@ countriesList.forEach(function(country) {
 
 $('select[name=countries]').html(countryOptions);
 $('.selectpicker').selectpicker('refresh');
-
-// $('#test').qtip({
-//     content: {
-//         text: 'I have a nice little callout pointer... nifty huh?'
-//     }
-// });
-
-//Initialise tooltips
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip({html:true,
-      trigger: 'hover focus',
-      delay: {"show": 500, "hide": 1000 }})
-});
 
 setDefaultPage();
 let getDyGraphData = SetDyGraphData(confirmedTimeSeries, ['United Kingdom']);
@@ -364,7 +352,7 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
         labelsDiv: document.getElementById('covidLegend'),
         hideOverlayOnMouseOut: true,
         labelsSeparateLines: true,
-        xRangePad: 50,
+        xRangePad: 25,
         titleHeight: 50,
         colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6']
 
