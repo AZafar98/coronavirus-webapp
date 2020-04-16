@@ -580,6 +580,12 @@ canvas{
     }
 }
 
+@media only screen and (max-width: 768px) {
+    #covidTimeSeries * {
+        max-width: 85vw;
+    }
+}
+
 #graph-select-menus .fa-question-circle {
     float: right;
     margin-bottom: 0.75vh;
