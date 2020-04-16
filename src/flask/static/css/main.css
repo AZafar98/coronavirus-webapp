@@ -447,7 +447,7 @@ a {
         display: initial;
         font-size: 1.25vw;
         margin-right: auto;
-        padding: 1vh 2vw;
+        padding: 0.5vh 2vw;
         font-weight: 900;
     }
 }
@@ -612,9 +612,11 @@ hr.footer-rule {
 
 [data-toggle="collapse"] .fa:before {
     content: "\f068 ";
+    color: #D02F46;
 
 }
 
 [data-toggle="collapse"].collapsed .fa:before {
     content: "\f067";
+    color: #D02F46;
 }

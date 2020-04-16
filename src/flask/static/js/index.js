@@ -316,6 +316,9 @@ let options = {
         padding: 15,
         text: 'Other public health issues in the UK'
     },
+    animation: {
+        duration: 0
+    },
     responsive: true,
     maintainAspectRatio: false
 };
