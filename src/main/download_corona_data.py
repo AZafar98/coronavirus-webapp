@@ -45,6 +45,24 @@ def download_corona_data():
     deaths_data = pd.read_csv(DEATHS_URL)
     recovered_data = pd.read_csv(RECOVERED_URL)
 
+    # This is necessary so JS doesn't throw errors when trying to graph these later
+    def clean_countries(data):
+        countries = data.loc[:, 'Country/Region'].tolist()
+        bad_chars = ['*', ',', '\'']
+
+        clean_countries = []
+        for country in countries:
+            cleaned_country = ''.join([char for char in country if char not in bad_chars])
+            clean_countries.append(cleaned_country)
+
+        data['Country/Region'] = clean_countries
+
+        return data
+
+    confirmed_data = clean_countries(confirmed_data)
+    deaths_data = clean_countries(deaths_data)
+    recovered_data = clean_countries(recovered_data)
+
     # Save the data locally so it doesn't have to be accessed from GitHub every time.
     confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
     deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
