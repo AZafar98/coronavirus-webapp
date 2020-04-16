@@ -447,7 +447,7 @@ a {
         display: initial;
         font-size: 1.25vw;
         margin-right: auto;
-        padding: 0.5vh 2vw;
+        padding: 0.5vh 1vw;
         font-weight: 900;
     }
 }
@@ -478,7 +478,7 @@ a {
     border: none;
 }
 
-.card:hover {
+.donate-cards:hover {
     box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .1);
     transform: scale(1.01);
     transition: 0.3s cubic-bezier(.215, .61, .355, 1);
