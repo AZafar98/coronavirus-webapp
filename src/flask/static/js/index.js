@@ -85,6 +85,12 @@ function legendFormatter(data) {
     return html;
 }
 
+function zoomGraphX(minDate, maxDate) {
+    covidGraph.updateOptions({
+        dateWindow: [minDate, maxDate]
+    })
+}
+
 // Set the default values to UK and Total and render the graph with UK confirmed cases (COVID line graph)
 function setDefaultPage() {
     $('#dataFreqSelect').selectpicker('val', 'total');
@@ -326,6 +332,8 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
     {
         labels: dyGraphLabels,
         showRangeSelector: true,
+        //Allow drag to zoom as well as range selector
+        interactionModel: Dygraph.defaultInteractionModel,
         legend: 'always',
         // ylabel: 'Number of cases',
         title: 'COVID-19 Comparisons',
@@ -359,3 +367,13 @@ let covidGraph = new Dygraph(document.getElementById('covidTimeSeries'),
 
     }
 );
+
+let maxDate = new Date();
+// let minDate = new Date();
+//Show data from 7th March. For most countries, the data is very flat and uninteresting before this date.
+let minDate = Date.parse('03/07/20');
+//Since we only have data up to the previous day, max date is yesterday
+maxDate.setDate(maxDate.getDate() - 1 );
+//Show the last 3 weeks of data by default
+// minDate.setDate(maxDate.getDate() - 21);
+zoomGraphX(minDate, maxDate);
