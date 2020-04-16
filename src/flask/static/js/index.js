@@ -122,6 +122,63 @@ let getDyGraphData = SetDyGraphData(confirmedTimeSeries, ['United Kingdom']);
 let dyGraphLabels = getDyGraphData.Labels;
 let dyGraphData = getDyGraphData.Data;
 
+
+//Thanks to https://github.com/JZafar1/Static-Analysis-of-Smart-Contracts/blob/master/src/main/java/ui/js/generateUI.js
+/**
+ *
+ * @param classID the class of the div the tooltip is to be added to
+ * @param hiddenDivID the class of the div containing the text to be added to tooltip
+ */
+function addToolTip(classID, hiddenDivID) {
+    //Create a tooltip for each line of output
+    $("#" + classID).qtip({
+        content: {
+            //Get text content from hidden div
+            text: $("#" + hiddenDivID)
+        },
+        show: {
+            event: 'mouseover'
+        },
+        hide: {
+            fixed: true,
+            delay: 500
+        },
+        effect: {
+            function(pos) {
+                $(this).animate(pos, {
+                    duration: 1000,
+                    queue: false
+                });
+            }
+        },
+        position: {
+            my: 'top left',
+            at: 'bottom right',
+            target: $('#' + classID),
+            viewport: $(window),
+            adjust: {
+                method: 'shift flipinvert'
+            }
+        },
+        adjust: {
+            mouse: true,
+            resize: true
+        },
+        style: {
+            classes: 'qtip-bootstrap qtip-rounded',
+            tip: {
+                corner: 'top left',
+                mimic: 'left'
+            }
+        }
+    })
+        .attr('title', 'Help');
+}
+
+addToolTip('tooltip1', 'tooltipText1');
+addToolTip('tooltip2', 'tooltipText2');
+addToolTip('tooltip3', 'tooltipText3');
+
 // Add styling to the selected button even when out of focus.
 $(".timeRangeButton").on('click', function (e) {
     $(".timeRangeButton").removeClass('buttonActive');
