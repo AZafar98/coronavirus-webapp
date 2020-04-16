@@ -63,17 +63,18 @@ a {
     font-style: normal;
     font-weight: 600;
     font-variant: all-small-caps;
+    text-decoration: none;
 }
 /* change the brand and text color */
 .navbar-custom .navbar-brand {
     color: #D02F46;
     margin-left: 0;
+    text-decoration: none;
 }
 /* We want the navbar indented only on big screens - not on mobile. */
 @media only screen and (min-width: 768px) {
     .navbar-custom .navbar-brand {
         margin-left: 1.5rem;
-        text-decoration: none;
     }
 }
 
