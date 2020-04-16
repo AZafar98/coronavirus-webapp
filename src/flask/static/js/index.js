@@ -314,7 +314,7 @@ let options = {
         fontSize: 20,
         fontFamily: "'Inter', 'Helvetica Neue'",
         padding: 15,
-        text: 'What else is bad in the world?'
+        text: 'Other public health issues in the UK'
     },
     responsive: true,
     maintainAspectRatio: false

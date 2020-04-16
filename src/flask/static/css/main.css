@@ -21,29 +21,43 @@ body {
     }
 }
 
+a {
+    color: #D02F46;
+    text-decoration: underline;
+}
+
+
 .bg-donate-img {
-    background-image: url('../images/donate_bg.svg');
-    background-size: 100%;
     text-align: -moz-center;
     text-align: -webkit-center;
+}
+
+@media only screen and (min-width: 768px) {
+    .bg-donate-img {
+    background-image: url('../images/donate_bg.svg');
+    background-size: 100%;
     background-repeat: no-repeat;
+    }
 }
 
 @media only screen and (min-width: 768px) {
     .bg-donate-img .text-center {
-        max-width: 70vw;
+        max-width: 60vw;
     }
 }
 
 .bg-about-img {
-    background-image: url('../images/about_bg.svg');
-    background-size: 100%;
     text-align: -moz-center;
     text-align: -webkit-center;
-    background-repeat: no-repeat;
 }
 
 @media only screen and (min-width: 768px) {
+    .bg-about-img {
+        background-image: url('../images/about_bg.svg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
     .bg-about-img .text-center {
         max-width: 60vw;
     }
@@ -64,8 +78,8 @@ body {
 /* We want the navbar indented only on big screens - not on mobile. */
 @media only screen and (min-width: 768px) {
     .navbar-custom .navbar-brand {
-        /*margin-left: 5vw;*/
         margin-left: 1.5rem;
+        text-decoration: none;
     }
 }
 
@@ -75,7 +89,9 @@ body {
 /* change the link color */
 .navbar-custom .navbar-nav .nav-link {
     color: #ED8182;
+    text-decoration: none;
 }
+
 /* change the color of active or hovered links */
 .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:hover .nav-link {
@@ -110,26 +126,46 @@ body {
 
 .donate-header {
     font-family: Roboto, sans-serif;
-    font-weight: 900;
+    font-weight: 600;
     font-style: normal;
     line-height: 150%;
-    font-size: 7vw;
+    font-size: 6vw;
+    margin-bottom: 0;
+    background-color: #FFF8F6;
+    display: inline;
 }
 
 .donate-subheader {
     font-family: Roboto, sans-serif;
     line-height: 150%;
     font-style: normal;
+    /*max-width: 60vw;*/
     font-size: 3vw;
-    max-width: 50vw;
+    color: #434343;
+    background-color: #FFF8F6;
+    display: table;
+    padding: 0.1vh;
 }
+
+@media only screen and (min-width: 768px) {
+    .donate-header {
+        font-size: 4vw;
+        margin-bottom: 1rem;
+        max-width: 50vw;
+    }
+
+    .donate-subheader {
+        display: block;
+    }
+}
+
 
 @media only screen and (min-width: 768px) {
     .donate-subheader {
         font-family: Roboto, sans-serif;
         line-height: 150%;
         font-style: normal;
-        font-size: 1.75vw
+        font-size: 1.5vw
     }
 }
 
@@ -139,6 +175,10 @@ body {
 
 .card-title {
     font-weight: 900;
+}
+
+.card-img-top {
+    border-radius: 7px;
 }
 
 #covidNumberTitle {
@@ -172,6 +212,7 @@ body {
 
 .card-body {
     text-align: left;
+    background-color: #FFF8F6
 }
 
 .card-body strong {
@@ -197,8 +238,8 @@ body {
 .accordian-header-text {
     font-family: Roboto, sans-serif;
     font-size: 3vw;
-    color: #D02F46;
-    font-weight: 900;
+    color: #000000;
+    font-weight: 500;
 }
 
 @media only screen and (min-width: 768px) {
@@ -210,7 +251,7 @@ body {
 }
 
 .accordian-header-text:hover {
-    color: black;
+    color: #D02F46;
 }
 
 .accordion-heading {
@@ -285,7 +326,7 @@ body {
 
 @media only screen and (min-width: 768px) {
     #covidCountStrapline {
-        font-size: 2.5vw;
+        font-size: 2vw;
     }
 }
 
@@ -325,6 +366,7 @@ body {
     margin-right: 2vw;
     /*margin-top: min(5px, 1vh);*/
     margin-top: 0.5vh;
+    text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {
@@ -397,6 +439,7 @@ body {
     margin-right: 2vw;
     margin-top: 0.5vh;
     cursor: pointer;
+    text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {
@@ -404,7 +447,7 @@ body {
         display: initial;
         font-size: 1.25vw;
         margin-right: auto;
-        padding: 1vh 4vw;
+        padding: 1vh 2vw;
         font-weight: 900;
     }
 }
@@ -431,7 +474,15 @@ body {
     object-fit: cover;
 }
 
+.donate-cards {
+    border: none;
+}
 
+.card:hover {
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .1);
+    transform: scale(1.01);
+    transition: 0.3s cubic-bezier(.215, .61, .355, 1);
+}
 
 /*.bootstrap-select > .dropdown-toggle:active {*/
 /*    border: 1.5px solid #D02F46;*/

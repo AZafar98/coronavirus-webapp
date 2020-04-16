@@ -22,13 +22,13 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@_AliZafar" />
 
-
 {% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
 
     <!--    Favicon-->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
 
     <!--    Bootstrap and jQuery-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -72,7 +72,7 @@
     <!--    Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Michroma&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -104,10 +104,15 @@
 
 <!--TODO: Make this footer stick to the bottom of the page. Currently it displays where content ends.-->
 
-<div class="align-items-center my-3" id="page-footer">
-    <div class="container-fluid text-center" id="footer-text">
+<div class="my-3" id="page-footer">
+    <div class="container-fluid" id="footer-text">
         <hr class="footer-rule">
-        <span>AZ & FA</span>
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <a href="https://twitter.com/_AliZafar" target="_blank"> Ali Zafar</a>
+                & <a href="https://twitter.com/furquan101" target="_blank">Furquan Ahmad</a>
+            </div>
+        </div>
     </div>
 </div>
 </body>
