@@ -52,12 +52,6 @@ a {
 }
 
 @media only screen and (min-width: 768px) {
-    .bg-about-img {
-        background-image: url('../images/about_bg.svg');
-        background-size: 100%;
-        background-repeat: no-repeat;
-    }
-
     .bg-about-img .text-center {
         max-width: 60vw;
     }
