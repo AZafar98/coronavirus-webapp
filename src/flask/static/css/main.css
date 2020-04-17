@@ -119,12 +119,49 @@ a {
     }
 }
 
-.donate-header {
+.page-header {
     font-family: Roboto, sans-serif;
     font-weight: 600;
     font-style: normal;
     line-height: 150%;
     font-size: 6vw;
+    margin-bottom: 0;
+    background-color: #FFF8F6;
+    display: inline;
+    text-align: center;
+}
+
+.page-subheader {
+    font-family: Roboto, sans-serif;
+    line-height: 150%;
+    font-style: normal;
+    /*max-width: 60vw;*/
+    font-size: 3vw;
+    color: #434343;
+    background-color: #FFF8F6;
+    display: table;
+    padding: 0.1vh;
+}
+
+@media only screen and (min-width: 768px) {
+    .page-header {
+        font-size: 4vw;
+        margin-bottom: 1rem;
+        max-width: 50vw;
+    }
+
+    .page-subheader {
+        display: block;
+
+    }
+}
+
+.donate-header {
+    font-family: Roboto, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 150%;
+    font-size: 9vw;
     margin-bottom: 0;
     background-color: #FFF8F6;
     display: inline;
@@ -135,7 +172,7 @@ a {
     line-height: 150%;
     font-style: normal;
     /*max-width: 60vw;*/
-    font-size: 3vw;
+    font-size: 4vw;
     color: #434343;
     background-color: #FFF8F6;
     display: table;
@@ -178,7 +215,7 @@ a {
 
 #covidNumberTitle {
     /*font-size: clamp(25px, 17vw, 200px);*/
-    font-size: 13vw;
+    font-size: 17vw;
     text-align-last: center;
 }
 
@@ -232,7 +269,7 @@ a {
 
 .accordian-header-text {
     font-family: Roboto, sans-serif;
-    font-size: 3vw;
+    font-size: 4vw;
     color: #000000;
     font-weight: 500;
 }
@@ -313,7 +350,7 @@ a {
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    font-size: 4vw;
+    font-size: 5vw;
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: #ED8182;
@@ -326,8 +363,7 @@ a {
 }
 
 .otherSubtitle {
-    /*font-size: clamp(15px, 2vw, 125px);*/
-    font-size: 4vw;
+    font-size: 6vw;
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
@@ -357,7 +393,7 @@ a {
     color: #ED8182;
     cursor: auto;
     text-transform: uppercase;
-    font-size: 2.5vw;
+    font-size: 3vw;
     margin-right: 2vw;
     /*margin-top: min(5px, 1vh);*/
     margin-top: 0.5vh;
@@ -506,7 +542,7 @@ canvas{
     margin: 0 auto;
 }
 
-#covid-graph-container, #graph-container {
+#covid-graph-container {
     max-width: 95vw;
     max-height: 100vh;
     background: #FFF8F6;
@@ -517,8 +553,31 @@ canvas{
     padding-bottom: 5vh;
 }
 
+#graph-container {
+    max-width: 95vw;
+    max-height: 60vh;
+    background: #FFF8F6;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding-right: 2vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
 @media only screen and (min-width: 768px) {
-    #covid-graph-container, #graph-container {
+    #covid-graph-container {
+        max-width: 75vw;
+        max-height: 80vh;
+        background: #FFF8F6;
+        box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+        padding-right: 2vw;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        min-height: 50vh;
+    }
+
+    #graph-container {
         max-width: 75vw;
         max-height: 80vh;
         background: #FFF8F6;
