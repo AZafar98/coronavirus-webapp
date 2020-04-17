@@ -1,5 +1,5 @@
 # COVID-19 Live
-### [View the WebApp](www.covid19-live.co.uk)
+### [View the WebApp](https://www.covid19-live.co.uk)
 
 ## Running the app locally
 If you wish to run the webapp yourself, clone the repository and run `application.py` (`src/flask/application.py`)
