@@ -7,7 +7,15 @@ from collections import Counter
 
 # add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
-project_home = '/home/Azafar98/coronavirus-webapp'
+
+ENV = 'DEV'
+# ENV = 'PROD'
+
+if ENV == 'PROD':
+    project_home = '/home/Azafar98/prod/coronavirus-webapp'
+else:
+    project_home = '/home/Azafar98/dev/coronavirus-webapp'
+
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
 

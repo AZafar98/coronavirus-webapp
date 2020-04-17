@@ -8,6 +8,9 @@ import json
 
 from src.flask.settings import RUNNING_LOCALLY
 
+ENV = 'DEV'
+# ENV = 'PROD'
+
 
 def download_corona_data():
     """
@@ -50,7 +53,11 @@ def get_corona_data():
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
+
 
     if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
             os.path.exists(file_path.format("deaths_cases.txt")) or
@@ -250,7 +257,10 @@ def get_covid_time_series(data_type, difference):
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
 
     data_type = data_type.upper()
 

@@ -11,6 +11,9 @@ from src.flask.settings import RUNNING_LOCALLY
 # area_type_id = 15 in England
 # area_type_id = 113 is parliamentary constituencies
 
+ENV = 'DEV'
+# ENV = 'PROD'
+
 
 def data_paths(indicator):
 
@@ -22,12 +25,17 @@ def data_paths(indicator):
         phe_meta_path = Path("../../data/json/phe/{}_META".format(indicator))
         all_data_path = Path("../../data/json/phe/{}_ALL_DATA".format(indicator))
     else:
+        if ENV == 'PROD':
+            path_str = '/home/Azafar98/prod/coronavirus-webapp/data/json/phe/{}_DATA'
+        else:
+            path_str = '/home/Azafar98/dev/coronavirus-webapp/data/json/phe/{}_DATA'
+
         # Make sure the required path exists. Create it if not.
         Path("coronavirus-webapp/data/json/phe").mkdir(parents=True, exist_ok=True)
 
-        phe_data_path = Path("coronavirus-webapp/data/json/phe/{}_DATA".format(indicator))
-        phe_meta_path = Path("coronavirus-webapp/data/json/phe/{}_META".format(indicator))
-        all_data_path = Path("coronavirus-webapp/data/json/phe/{}_ALL_DATA".format(indicator))
+        phe_data_path = Path(path_str.format(indicator))
+        phe_meta_path = Path(path_str.format(indicator))
+        all_data_path = Path(path_str.format(indicator))
 
     return phe_data_path, phe_meta_path, all_data_path
 
@@ -238,7 +246,10 @@ def write_data_to_json(data, name):
     if RUNNING_LOCALLY:
         OUT_PATH = "../../data/json/phe/{}"
     else:
-        OUT_PATH = "coronavirus-webapp/data/json/phe/{}"
+        if ENV == 'PROD':
+            OUT_PATH = '/home/Azafar98/prod/coronavirus-webapp/data/json/phe/{}'
+        else:
+            OUT_PATH = '/home/Azafar98/dev/coronavirus-webapp/data/json/phe/{}'
 
     data.to_json(OUT_PATH.format(name))
 
