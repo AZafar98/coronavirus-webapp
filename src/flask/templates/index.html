@@ -108,8 +108,9 @@
             </div>
             <div class="form-group">
                 <select data-style="bg-white px-4 py-3 shadow-sm" class="selectpicker form-control show-tick"
-                        multiple data-live-search="true" liveSearchPlaceholder="Search for a country..."
-                        data-selected-text-format="count > 3" data-max-options="9"
+                        multiple data-live-search="true" data-live-search-placeholder="Search for a country..."
+                        data-selected-text-format="count > 3" data-max-options="15"
+                        data-max-options-text = "Max 15 countries selected"
                         data-count-selected-text= "{0} countries selected" title="Countries to compare"
                         data-actions-box="true" id="countrySelector" name="countries">
                 </select>
@@ -121,9 +122,9 @@
         <div class="col mx-auto mt-5" id="covid-graph-container">
             <div class="row">
                 <div class="col-sm-12 mt-3 w-100" id="covidTimeSeries"></div>
-                <div class="col" id="covidLegend"></div>
             </div>
             <div class="row">
+                <div class="col" id="covidLegend">test1</div>
                 test
             </div>
         </div>

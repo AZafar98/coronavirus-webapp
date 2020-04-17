@@ -508,7 +508,7 @@ canvas{
 
 #covid-graph-container, #graph-container {
     max-width: 95vw;
-    max-height: 50vh;
+    max-height: 100vh;
     background: #FFF8F6;
     box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -520,7 +520,7 @@ canvas{
 @media only screen and (min-width: 768px) {
     #covid-graph-container, #graph-container {
         max-width: 75vw;
-        max-height: 75vh;
+        max-height: 80vh;
         background: #FFF8F6;
         box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
         border-radius: 30px;
