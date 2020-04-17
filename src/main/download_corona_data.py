@@ -16,8 +16,7 @@ from src.flask.settings import RUNNING_LOCALLY
 
 # This is to redeploy the webapp after the data has been downloaded.
 def update():
-    os.utime('/var/www/azafar98_pythonanywhere_com_wsgi.py')
-
+    os.utime('/var/www/www_covid19-live_co_uk_wsgi.py')
 
 def download_corona_data():
     """
