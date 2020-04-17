@@ -14,3 +14,5 @@ For info about why this app was created, see the [about page](https://www.covid1
 ## Suggestions and Improvements
 
 Suggestions, thoughts and improvements are welcome. Contact the creators via Twitter. [Ali Zafar](https://twitter.com/_AliZafar) and [Furquan Ahmad](https://twitter.com/furquan101)
+
+Interested in the design process? Check out our designers [Figma profile!](https://www.figma.com/@furquan101)
