@@ -156,7 +156,7 @@ def british_date_format(date):
     return pd.to_datetime(date).strftime("%d/%m/%y")
 
 
-def get_latest_figures(data, period='TOTAL'):
+def get_latest_figures(data, period='TOTAL', pct_change=False):
     """
     Calculate relevant figures to show to user
     :param pd.DataFrame data:
@@ -182,45 +182,63 @@ def get_latest_figures(data, period='TOTAL'):
 
         date = british_date_format(date_cols[-1])
 
+        pct = 0
+
         # Also return the dates the data is from so we can display this
-        return cases, date
+        return cases, date, pct
 
     if period.upper() == '24H':
         # Now need to calculate the difference between the two most recent data points
-        dates = date_cols[-2:]
+        dates = date_cols[-3:]
         total_df = data.loc[:, dates]
 
         # New cases in the period is just the difference between the first and last columns since the data is aggregated
-        new_cases_df = total_df.iloc[:, -1] - total_df.iloc[:, 0]
+        new_cases_df = total_df.iloc[:, -1] - total_df.iloc[:, 1]
 
         new_cases_sum = new_cases_df.sum(axis=0)
+
+        if pct_change:
+            prev_period = total_df.iloc[:, -2] - total_df.iloc[:, 0]
+            prev_period_sum = prev_period.sum(axis=0)
+
+            pct = round(((new_cases_sum - prev_period_sum)/prev_period_sum)*100, 1)
+        else:
+            pct = 0
 
         date1, date2 = british_date_format(date_cols[-2]), british_date_format(date_cols[-1])
 
         dates_used = ' - '.join([date1, date2])
 
         # Also return the dates the data is from so we can display this
-        return new_cases_sum, dates_used
+        return new_cases_sum, dates_used, pct
 
     if period.upper() == '7DAYS':
         # Now need to calculate the difference between the two most recent data points
-        dates = date_cols[-7:]
+        dates = date_cols[-8:]
         total_df = data.loc[:, dates]
 
         # New cases in the period is just the difference between the first and last columns since the data is aggregated
-        new_cases_df = total_df.iloc[:, -1] - total_df.iloc[:, 0]
+        new_cases_df = total_df.iloc[:, -1] - total_df.iloc[:, 1]
 
         new_cases_sum = new_cases_df.sum(axis=0)
+
+        if pct_change:
+            prev_period = total_df.iloc[:, -2] - total_df.iloc[:, 0]
+            prev_period_sum = prev_period.sum(axis=0)
+
+            pct = round(((new_cases_sum - prev_period_sum) / prev_period_sum) * 100, 1)
+        else:
+            pct = 0
 
         date1, date2 = british_date_format(date_cols[-7]), british_date_format(date_cols[-1])
 
         dates_used = ' - '.join([date1, date2])
 
         # Also return the dates the data is from so we can display this
-        return new_cases_sum, dates_used
+        return new_cases_sum, dates_used, pct
 
 
-def display_covid_cases(cases=True, period='Total'):
+def display_covid_cases(cases=True, period='Total', pct_change=False):
     """
 
     :param bool cases: If True, return number of cases in period. If False, return dates used for that period.
@@ -238,11 +256,13 @@ def display_covid_cases(cases=True, period='Total'):
     if period not in ['TOTAL', '24H', '7DAYS']:
         raise ValueError("Invalid time period. Must be either 'TOTAL', '24H', or '7DAYS'")
 
-    uk_cases, dates = get_latest_figures(uk_data, period=period)
+    uk_cases, dates, pct = get_latest_figures(uk_data, period=period, pct_change=pct_change)
 
     if cases is True:
         # return f'{uk_cases:,}'.strip()
         return uk_cases
+    elif pct_change is True:
+        return pct
     else:
         return str(dates)
 
@@ -315,3 +335,6 @@ locally, but uncommenting the function call below will just overwrite those)
 """
 
 # download_corona_data()
+test = display_covid_cases(period='7DAYS', pct_change=True)
+test2 = display_covid_cases(period='24h', pct_change=True)
+test3 = display_covid_cases(period='total', pct_change=True)
