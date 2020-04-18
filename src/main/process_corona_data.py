@@ -335,6 +335,3 @@ locally, but uncommenting the function call below will just overwrite those)
 """
 
 # download_corona_data()
-test = display_covid_cases(period='7DAYS', pct_change=True)
-test2 = display_covid_cases(period='24h', pct_change=True)
-test3 = display_covid_cases(period='total', pct_change=True)
