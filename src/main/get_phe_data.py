@@ -11,8 +11,8 @@ from src.flask.settings import RUNNING_LOCALLY
 # area_type_id = 15 in England
 # area_type_id = 113 is parliamentary constituencies
 
-ENV = 'DEV'
-# ENV = 'PROD'
+# ENV = 'DEV'
+ENV = 'PROD'
 
 
 def data_paths(indicator):

@@ -8,8 +8,8 @@ import json
 
 from src.flask.settings import RUNNING_LOCALLY
 
-ENV = 'DEV'
-# ENV = 'PROD'
+# ENV = 'DEV'
+ENV = 'PROD'
 
 
 def download_corona_data():
