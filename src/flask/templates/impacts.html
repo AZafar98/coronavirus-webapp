@@ -30,10 +30,10 @@
         <div class="container-fluid text-left">
             <div class="row">
                 <div class="col-sm-8">
-                    <h1 class="display-4">Over 5 million people have been diagnosed as depressed in the UK.</h1>
+                    <h1 class="display-4">Over 5 million people have been diagnosed with depression in the UK.</h1>
                     <p class="lead">
                         During the pandemic, as people spend more time alone and away from friends we need
-                        to be more aware of how to support each other.
+                        to be more aware of how how we can support each other.
                     </p>
                 </div>
                 <div class="col-sm-4 justify-content-right">
@@ -43,10 +43,11 @@
                         <div class="card-body">
                             <h5 class="card-title">Mind</h5>
                             <p class="card-text">
-                                Mind provide information, support and real stories to help you cope
-                                during these challenging times.
+                                This is a mental health emergency. Help us reach more people feeling trapped, isolated
+                                and alone with our peer support networks and advice on staying well.
                             </p>
-                            <a target="_blank" href="https://www.mind.org.uk/">Visit Mind</a>
+                            <a target="_blank" href="https://www.mind.org.uk/"
+                               class="btn mt-auto mb-3 donateButton">Visit Mind</a>
                         </div>
                     </div>
                 </div>
@@ -61,8 +62,8 @@
                     <h1 class="display-4">There were over 1 million reported incidents of domestic abuse in
                         2018/19.</h1>
                     <p class="lead">
-                        Some of the most vulnerable people in our society are at greater risk now they are
-                        forced to stay at home. It is important they receive the support, understanding and treatment
+                        Some of the most vulnerable people in our society are at greater risk now they
+                        cannot leave their home. It is important they receive the support, understanding and treatment
                         they deserve.
                     </p>
                 </div>
@@ -91,8 +92,10 @@
             <div class="row">
                 <div class="col-sm-8">
                     <h1 class="display-4">1.8 million people are registered as having chronic heart disease.</h1>
-                    <p class="lead">Heart disease is the single most common cause of premature death in the UK. <br>
-                        You can support research to develop cures and treatments for these chronic conditions.</p>
+                    <p class="lead">
+                        Heart disease is the single most common cause of premature death in the UK. <br>
+                        You can support research to develop cures and treatments for these chronic conditions.
+                    </p>
                 </div>
                 <div class="col-sm-4 justify-content-right">
                     <div class="card">
@@ -121,7 +124,7 @@
                     <h1 class="display-4">Loneliness is a real issue.</h1>
                     <p class="lead">
                         Over 2.5 million people reported feeling lonely "often/always",
-                        according to the 2016/17 Community Life Survey. We all need somebody to talk to, especially in
+                        according to the ONS 2016/17 Community Life Survey. We all need somebody to talk to, especially in
                         troubling times.
                     </p>
                 </div>
@@ -132,11 +135,13 @@
                         <div class="card-body">
                             <h5 class="card-title">Supportline</h5>
                             <p class="card-text">
-                                SupportLine provides a confidential telephone helpline offering emotional support to any
+                                SupportLine is particularly aimed at those who are isolated, at risk, vulnerable and
+                                victims of any form of abuse.
+                                They provide a confidential telephone helpline offering emotional support to any
                                 individual on any issue.
                             </p>
                             <a target="_blank" href="https://www.supportline.org.uk/about/about-supportline/"
-                               class="btn mt-auto mb-3 donateButton">Visit NCDV</a>
+                               class="btn mt-auto mb-3 donateButton">Supportline</a>
 
                         </div>
                     </div>
@@ -144,6 +149,38 @@
             </div>
         </div>
     </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-left ml-0">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1 class="display-4">Mental health problems affect 1 in 4 of us every year.</h1>
+                    <p class="lead">
+                        Nobody should feel ashamed. By sharing our experiences together, we can end the stigma. <br>
+                        Checking in with friends, family and colleagues is more important than ever during the
+                        coronavirus outbreak.
+                    </p>
+                </div>
+                <div class="col-sm-4 justify-content-right">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='images/time-to-change-logo.jpg') }}" class="card-img-top"
+                             alt="British Heart Foundation logo">
+                        <div class="card-body">
+                            <h5 class="card-title">Time to change</h5>
+                            <p class="card-text">
+                                Around 1 in 4 people will experience a mental health problem this year yet the shame and
+                                silence can be as bad as the mental health problem itself. Your attitude to mental
+                                health could change someone’s life.
+                            </p>
+                            <a target="_blank" href="https://www.bhf.org.uk/"
+                               class="btn mt-auto mb-3 donateButton">Time to Change</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
