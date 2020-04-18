@@ -8,8 +8,8 @@ import json
 
 from src.flask.settings import RUNNING_LOCALLY
 
-ENV = 'DEV'
-# ENV = 'PROD'
+# ENV = 'DEV'
+ENV = 'PROD'
 
 
 def download_corona_data():
@@ -26,8 +26,13 @@ def download_corona_data():
         Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
         OUT_PATH = "../../data/json/corona/{}"
     except PermissionError:
+        if ENV == 'PROD':
+            Path("/home/Azafar98/prod/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+            OUT_PATH = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            Path("/home/Azafar98/dev/home/Azafar98/prod/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+            OUT_PATH = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
         Path("coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
-        OUT_PATH = "coronavirus-webapp/data/json/corona/{}"
 
     CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
     DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
@@ -201,7 +206,7 @@ def get_latest_figures(data, period='TOTAL', pct_change=False):
             prev_period = total_df.iloc[:, -2] - total_df.iloc[:, 0]
             prev_period_sum = prev_period.sum(axis=0)
 
-            pct = round(((new_cases_sum - prev_period_sum)/prev_period_sum)*100, 1)
+            pct = round(((new_cases_sum - prev_period_sum)/prev_period_sum)*100)
         else:
             pct = 0
 
@@ -226,7 +231,7 @@ def get_latest_figures(data, period='TOTAL', pct_change=False):
             prev_period = total_df.iloc[:, -2] - total_df.iloc[:, 0]
             prev_period_sum = prev_period.sum(axis=0)
 
-            pct = round(((new_cases_sum - prev_period_sum) / prev_period_sum) * 100, 1)
+            pct = round(((new_cases_sum - prev_period_sum) / prev_period_sum) * 100)
         else:
             pct = 0
 

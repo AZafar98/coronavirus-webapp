@@ -8,8 +8,8 @@ from collections import Counter
 # add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
 
-ENV = 'DEV'
-# ENV = 'PROD'
+# ENV = 'DEV'
+ENV = 'PROD'
 
 if ENV == 'PROD':
     project_home = '/home/Azafar98/prod/coronavirus-webapp'
@@ -26,6 +26,7 @@ from src.flask.settings import RUNNING_LOCALLY
 def update():
     os.utime('/var/www/www_covid19-live_co_uk_wsgi.py')
 
+
 def download_corona_data():
     """
     Get the data straight from the Git repo, since the API has stopped working
@@ -40,8 +41,12 @@ def download_corona_data():
         Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
         OUT_PATH = "../../data/json/corona/{}"
     except PermissionError:
-        Path("coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
-        OUT_PATH = "coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            Path("/home/Azafar98/prod/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+            OUT_PATH = "/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}"
+        else:
+            Path("/home/Azafar98/dev/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+            OUT_PATH = "/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}"
 
     CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
     DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
@@ -111,7 +116,10 @@ def get_corona_data():
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "/home/Azafar98/coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
 
     if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
             os.path.exists(file_path.format("deaths_cases.txt")) or
@@ -173,7 +181,10 @@ def update_covid_time_series(data_type):
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "/home/Azafar98/coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
 
     data.to_json(file_path.format("{}-covid-time-series.txt").format(data_type.lower()))
     differenced.to_json(file_path.format("{}-covid-time-series-diff.txt").format(data_type.lower()))

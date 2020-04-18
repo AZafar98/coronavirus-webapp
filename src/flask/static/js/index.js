@@ -192,11 +192,11 @@ document.getElementById("timeRangeButton1").onclick = function () {
 document.getElementById("timeRangeButton2").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases7Days);
     if (cases7DaysPct > 0) {
-        document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>" +
-            "(" + cases7DaysPct + "\%" + ")</span>";
+        document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>"
+             + cases7DaysPct + "% on previous 7 day period</span>";
     } else {
-        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>" +
-            "(" + cases7DaysPct + "\%" + ")</span>";
+        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>"
+            + cases7DaysPct + "% on previous 7 day period</span>";
     }
 
     // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
@@ -208,11 +208,11 @@ document.getElementById("timeRangeButton3").onclick = function () {
     document.getElementById("pctChange").innerHTML = cases24HPct;
 
     if (cases24HPct > 0) {
-        document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>" +
-            "(" + cases24HPct + "\%" + ")</span>";
+        document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>"
+            + cases24HPct + "% on previous day</span>";
     } else {
-        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>" +
-            "(" + cases24HPct + "\%" + ")</span>";
+        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>"
+            + cases24HPct + "% on previous day</span>";
     }
     // document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
 };
