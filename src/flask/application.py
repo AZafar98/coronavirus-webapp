@@ -6,7 +6,14 @@ import sys
 from datetime import datetime, timedelta
 
 # This is purely for PythonAnywhere - not necessary if running locally
-project_home = '/home/Azafar98/coronavirus-webapp'
+ENV = 'DEV'
+# ENV = 'PROD'
+
+if ENV == 'PROD':
+    project_home = '/home/Azafar98/prod/coronavirus-webapp'
+else:
+    project_home = '/home/Azafar98/dev/coronavirus-webapp'
+
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
 
@@ -87,7 +94,7 @@ application.add_url_rule('/donate', 'donate', donate)
 application.add_url_rule('/impacts', 'impacts', impacts)
 
 # Run the app. This if block is only entered when running on local machine, so application.debug = True *should* be fine
-# to be left here.....
+# to be left here....
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
