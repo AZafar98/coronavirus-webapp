@@ -214,7 +214,7 @@ a {
 
 #pctChange {
     font-family: Inter, sans-serif;
-    font-size: 5vw;
+    font-size: 4.5vw;
     vertical-align: middle;
     margin-left: 2vw;
     display: block;
@@ -227,7 +227,7 @@ a {
     }
 
     #pctChange {
-        font-size: 2vw;
+        font-size: 1.75vw;
     }
 }
 

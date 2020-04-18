@@ -206,7 +206,7 @@ def get_latest_figures(data, period='TOTAL', pct_change=False):
             prev_period = total_df.iloc[:, -2] - total_df.iloc[:, 0]
             prev_period_sum = prev_period.sum(axis=0)
 
-            pct = round(((new_cases_sum - prev_period_sum)/prev_period_sum)*100, 1)
+            pct = round(((new_cases_sum - prev_period_sum)/prev_period_sum)*100)
         else:
             pct = 0
 
@@ -231,7 +231,7 @@ def get_latest_figures(data, period='TOTAL', pct_change=False):
             prev_period = total_df.iloc[:, -2] - total_df.iloc[:, 0]
             prev_period_sum = prev_period.sum(axis=0)
 
-            pct = round(((new_cases_sum - prev_period_sum) / prev_period_sum) * 100, 1)
+            pct = round(((new_cases_sum - prev_period_sum) / prev_period_sum) * 100)
         else:
             pct = 0
 
