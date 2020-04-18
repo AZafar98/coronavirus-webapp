@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{%block head %}
+{{ super() }}
+<meta property="og:title" content="COVID-19 wider impacts"/>
+<meta property="og:url" content="https://www.covid19-live.co.uk/impacts/"/>
+<meta property="og:description" content="Understand how COVID-19 is affecting all of us."/>
+<meta property="twitter:description" content="Understand how COVID-19 is affecting all of us."/>
+{% endblock %}
+
+
+{%block title %} COVID-19 Live - Donate {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row text-center mb-5">
+        <div class="col-sm-12">
+            <h3 class="page-header">The bigger picture</h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <span class="page-subheader">COVID-19 is affecting us in a variety of ways.</span>
+                <span class="page-subheader mt-0"> Here are some examples, and how you can get support if you're struggling.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-left">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1 class="display-4">Over 5 million people have been diagnosed as depressed in the UK.</h1>
+                    <p class="lead">
+                        During the pandemic, as people spend more time alone and away from friends we need
+                        to be more aware of how to support each other.
+                    </p>
+                </div>
+                <div class="col-sm-4 justify-content-right">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='images/mind-logo.png') }}" class="card-img-top"
+                             alt="Mind logo">
+                        <div class="card-body">
+                            <h5 class="card-title">Mind</h5>
+                            <p class="card-text">
+                                Mind provide information, support and real stories to help you cope
+                                during these challenging times.
+                            </p>
+                            <a target="_blank" href="https://www.mind.org.uk/">Visit Mind</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid mr-0">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='images/ncdv-logo.png') }}" class="card-img-top"
+                             alt="NCDV Logo">
+                        <div class="card-body">
+                            <h5 class="card-title">Help and advice</h5>
+                            <p class="card-text">
+                                The National Center for Domestic Violence are a free, fast emergency injunction service
+                                to survivors of domestic violence
+                                regardless of their financial circumstances, race, gender or sexual orientation.
+                            </p>
+                            <a target="_blank" href="https://www.ncdv.org.uk/"
+                               class="btn mt-auto mb-3 donateButton">Visit NCDV</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 text-right">
+                    <h1 class="display-4">There were over 1 million reported incidents of domestic abuse in
+                        2018/19.</h1>
+                    <p class="lead">
+                        Some of the most vulnerable people in our society are at greater risk now they are
+                        forced to stay at home. It is important they receive the support, understanding and treatment
+                        they deserve.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-left ml-0">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1 class="display-4">1.8 million people are registered as having chronic heart disease.</h1>
+                    <p class="lead">Heart disease is the single most common cause of premature death in the UK. <br>
+                        You can support research to develop cures and treatments for these chronic conditions.</p>
+                </div>
+                <div class="col-sm-4 justify-content-right">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='images/bhf-logo.png') }}" class="card-img-top"
+                             alt="British Heart Foundation logo">
+                        <div class="card-body">
+                            <h5 class="card-title">British Heart Foundation</h5>
+                            <p class="card-text">
+                                Our vision is a world free from the fear of heart and circulatory
+                                diseases. We raise money to research cures and treatments, so we can beat heartbreak
+                                forever.
+                            </p>
+                            <a target="_blank" href="https://www.bhf.org.uk/"
+                               class="btn mt-auto mb-3 donateButton">Visit BHF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-right mr-0">
+            <div class="row">
+                <div class="col-sm-4 justify-content-right">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='images/supportline-logo.jpg') }}" class="card-img-top"
+                             alt="Supprtline logo">
+                        <div class="card-body">
+                            <h5 class="card-title">Supportline</h5>
+                            <p class="card-text">
+                                SupportLine provides a confidential telephone helpline offering emotional support to any
+                                individual on any issue.
+                            </p>
+                            <a target="_blank" href="https://www.supportline.org.uk/about/about-supportline/"
+                               class="btn mt-auto mb-3 donateButton">Visit NCDV</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h1 class="display-4">Loneliness is a real issue.</h1>
+                    <p class="lead">
+                        Over 2.5 million people reported feeling lonely "often/always",
+                        according to the 2016/17 Community Life Survey. We all need somebody to talk to, especially in
+                        troubling times.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
