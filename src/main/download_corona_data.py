@@ -116,7 +116,10 @@ def get_corona_data():
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "/home/Azafar98/coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
 
     if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
             os.path.exists(file_path.format("deaths_cases.txt")) or
@@ -178,7 +181,10 @@ def update_covid_time_series(data_type):
     if RUNNING_LOCALLY:
         file_path = "../../data/json/corona/{}"
     else:
-        file_path = "/home/Azafar98/coronavirus-webapp/data/json/corona/{}"
+        if ENV == 'PROD':
+            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
+        else:
+            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
 
     data.to_json(file_path.format("{}-covid-time-series.txt").format(data_type.lower()))
     differenced.to_json(file_path.format("{}-covid-time-series-diff.txt").format(data_type.lower()))
