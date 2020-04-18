@@ -98,6 +98,7 @@ function setDefaultPage() {
     $('#covidTypeSelect').selectpicker('val', 'confirmed');
     $('#countrySelector').selectpicker('val', 'United Kingdom');
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
+    document.getElementById("pctChange").innerHTML = "";
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 }
 
@@ -180,20 +181,39 @@ $(".timeRangeButton").on('click', function (e) {
 });
 
 //Clicking the 'Total' button
-    document.getElementById("timeRangeButton1").onclick = function () {
+document.getElementById("timeRangeButton1").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(totalCases);
+    document.getElementById("pctChange").innerHTML = "";
+
     // document.getElementById("dataDate").innerHTML = "As of " + totalCasesDate;
 };
 
 // Clicking the '7 Days' button
 document.getElementById("timeRangeButton2").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases7Days);
+    if (cases7DaysPct > 0) {
+        document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>" +
+            "(" + cases7DaysPct + "\%" + ")</span>";
+    } else {
+        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>" +
+            "(" + cases7DaysPct + "\%" + ")</span>";
+    }
+
     // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
 };
 
 //Clicking the '24 hours' button.
 document.getElementById("timeRangeButton3").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases24H);
+    document.getElementById("pctChange").innerHTML = cases24HPct;
+
+    if (cases24HPct > 0) {
+        document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>" +
+            "(" + cases24HPct + "\%" + ")</span>";
+    } else {
+        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>" +
+            "(" + cases24HPct + "\%" + ")</span>";
+    }
     // document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
 };
 

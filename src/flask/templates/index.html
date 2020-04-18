@@ -15,8 +15,11 @@
 {%block scripts %}
     <script type="text/javascript" defer>
         let totalCases = {{ displayCovidCases(cases=True, period='Total') }};
+        let totalPct = {{ displayCovidCases(cases=False, period='total', pct_change=True) }}
         let cases24H = {{ displayCovidCases(cases=True, period='24h') }};
+        let cases24HPct = {{ displayCovidCases(cases=False, period='24h', pct_change=True) }}
         let cases7Days = {{ displayCovidCases(cases=True, period='7days') }};
+        let cases7DaysPct = {{ displayCovidCases(cases=False, period='7DAYS', pct_change=True) }}
         let heartDiseaseData = {{ getPHEData(indicator=273, differenced=False, dev=False) }}
         let depressionData = {{ getPHEData(indicator=848, differenced=False, dev=False) }}
         let domesticAbuseData = {{ getPHEData(indicator=92863, differenced=False, dev=False) }}
@@ -38,7 +41,7 @@
     <div class="row content text-center align-items-center mt-5 mb-1">
         <div class="col" id="covidCount">
             <h1 id="covidNumberTitle">
-                <span id="covidNumber"></span>
+                <span id="covidNumber"></span><span id="pctChange"></span>
                 <small id="covidCountStrapline" class="mt-3">United Kingdom COVID-19 cases</small>
             </h1>
         </div>

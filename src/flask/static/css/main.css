@@ -212,9 +212,21 @@ a {
     text-align-last: center;
 }
 
+#pctChange {
+    font-size: 3vw;
+    vertical-align: middle;
+    margin-left: 2vw;
+    display: block;
+}
+
+
 @media only screen and (min-width: 768px) {
     #covidNumberTitle {
         font-size: 8vw;
+    }
+
+    #pctChange {
+        font-size: 1.5vw;
     }
 }
 
@@ -262,9 +274,10 @@ a {
 
 .accordian-header-text {
     font-family: Roboto, sans-serif;
-    font-size: 4vw;
+    font-size: 4.5vw;
     color: #000000;
     font-weight: 500;
+    text-align: left;
 }
 
 @media only screen and (min-width: 768px) {
