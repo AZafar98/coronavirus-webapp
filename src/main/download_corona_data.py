@@ -8,8 +8,8 @@ from collections import Counter
 # add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
 
-# ENV = 'DEV'
-ENV = 'PROD'
+ENV = 'DEV'
+# ENV = 'PROD'
 
 if ENV == 'PROD':
     project_home = '/home/Azafar98/prod/coronavirus-webapp'
