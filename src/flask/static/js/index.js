@@ -196,7 +196,7 @@ document.getElementById("timeRangeButton2").onclick = function () {
              + cases7DaysPct + "% on previous 7 days</span>";
     } else {
         document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>"
-            + cases7DaysPct + "% on previous 7 days</span>";
+            + -(cases7DaysPct) + "% on previous 7 days</span>";
     }
 
     // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
@@ -212,7 +212,7 @@ document.getElementById("timeRangeButton3").onclick = function () {
             + cases24HPct + "% on previous day</span>";
     } else {
         document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>"
-            + cases24HPct + "% on previous day</span>";
+            + -(cases24HPct) + "% on previous day</span>";
     }
     // document.getElementById("dataDate").innerHTML = "New cases in the 24H period " + cases24HDate;
 };
