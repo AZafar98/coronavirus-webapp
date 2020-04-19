@@ -193,10 +193,10 @@ document.getElementById("timeRangeButton2").onclick = function () {
     document.getElementById("covidNumber").innerHTML = numberWithCommas(cases7Days);
     if (cases7DaysPct > 0) {
         document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-caret-up'></i>"
-             + cases7DaysPct + "% on previous 7 day period</span>";
+             + cases7DaysPct + "% on previous 7 days</span>";
     } else {
         document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-caret-down'></i>"
-            + cases7DaysPct + "% on previous 7 day period</span>";
+            + cases7DaysPct + "% on previous 7 days</span>";
     }
 
     // document.getElementById("dataDate").innerHTML = "New cases in the 7 day period " + cases7DaysDate;
