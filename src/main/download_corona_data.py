@@ -36,21 +36,11 @@ def set_base_file_path(RUNNING_LOCALLY, ENV):
             raise ValueError("Invalid environment type. Must be 'DEV' or 'PROD'.")
 
 
-# ENV = 'DEV'
-# # ENV = 'PROD'
-
-# if ENV == 'PROD':
-#     project_home = '/home/Azafar98/prod/coronavirus-webapp'
-# else:
-#     project_home = '/home/Azafar98/dev/coronavirus-webapp'
-
 project_home = set_base_file_path(RUNNING_LOCALLY, ENV)
 # add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
-
-# from src.flask.settings import RUNNING_LOCALLY
 
 
 # This is to redeploy the webapp after the data has been downloaded.
@@ -96,7 +86,7 @@ def download_corona_data():
             cleaned_country = ''.join([char for char in country if char not in bad_chars])
             clean_countries_list.append(cleaned_country)
 
-        data['Country/Region'] = clean_countries
+        data['Country/Region'] = clean_countries_list
 
         return data
 
@@ -143,12 +133,9 @@ def get_corona_data():
     :return:
     """
     if RUNNING_LOCALLY:
-        file_path = "../../data/json/corona/{}"
+        file_path = project_home + '/{}'
     else:
-        if ENV == 'PROD':
-            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
-        else:
-            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
+        file_path = project_home + '/data/json/corona/{}'
 
     if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
             os.path.exists(file_path.format("deaths_cases.txt")) or
@@ -208,12 +195,9 @@ def update_covid_time_series(data_type):
     differenced = differenced.drop(1, axis=0).reset_index(drop=True)
 
     if RUNNING_LOCALLY:
-        file_path = "../../data/json/corona/{}"
+        file_path = project_home + '/{}'
     else:
-        if ENV == 'PROD':
-            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
-        else:
-            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
+        file_path = project_home + '/data/json/corona/{}'
 
     data.to_json(file_path.format("{}-covid-time-series.txt").format(data_type.lower()))
     differenced.to_json(file_path.format("{}-covid-time-series-diff.txt").format(data_type.lower()))
