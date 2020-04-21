@@ -195,7 +195,7 @@ document.getElementById("timeRangeButton2").onclick = function () {
         document.getElementById("pctChange").innerHTML = "<span style='color:#8b0000'><i class='fas fa-arrow-alt-circle-up'></i>"
              + cases7DaysPct + "% on previous 7 days</span>";
     } else {
-        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-arrow-alt-circle-up'></i>"
+        document.getElementById("pctChange").innerHTML = "<span style='color:#008000'><i class='fas fa-arrow-alt-circle-down'></i>"
             + -(cases7DaysPct) + "% on previous 7 days</span>";
     }
 
