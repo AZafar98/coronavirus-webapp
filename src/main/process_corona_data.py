@@ -76,13 +76,13 @@ def get_corona_data():
         if download == 0:
             with open(file_path.format("confirmed_cases.txt")) as c, open(file_path.format("recovered_cases.txt")) as r, \
                     open(file_path.format("deaths_cases.txt")) as d:
-                confirmed = c.readlines()
-                recovered = r.readline()
-                deaths = d.readlines()
+                confirmed = json.loads((c.readlines())[0])
+                recovered = json.loads((r.readlines())[0])
+                deaths = json.loads((d.readlines())[0])
             # Successful download.
-            confirmed_df = pd.read_json(confirmed[0])
-            recovered_df = pd.read_json(recovered[0])
-            deaths_df = pd.read_json(deaths[0])
+            confirmed_df = pd.DataFrame.from_dict(confirmed)
+            recovered_df = pd.DataFrame.from_dict(recovered)
+            deaths_df = pd.DataFrame.from_dict(deaths)
         else:
             # Download failed
             raise RuntimeError("Data failed to download. Exiting process.")
@@ -90,17 +90,16 @@ def get_corona_data():
     else:
         with open(file_path.format("confirmed_cases.txt")) as c, open(file_path.format("recovered_cases.txt")) as r, \
                 open(file_path.format("deaths_cases.txt")) as d:
-            confirmed = c.readlines()
-            recovered = r.readlines()
-            deaths = d.readlines()
+            confirmed = json.loads((c.readlines())[0])
+            recovered = json.loads((r.readlines())[0])
+            deaths = json.loads((d.readlines())[0])
         # Successful download.
-        confirmed_df = pd.read_json(confirmed[0])
-        recovered_df = pd.read_json(recovered[0])
-        deaths_df = pd.read_json(deaths[0])
+        confirmed_df = pd.DataFrame.from_dict(confirmed)
+        recovered_df = pd.DataFrame.from_dict(recovered)
+        deaths_df = pd.DataFrame.from_dict(deaths)
 
     return confirmed_df, recovered_df, deaths_df
 
-get_corona_data()
 
 def aggregate_duplicate_countries(data):
     countries = data['Country/Region'].tolist()
