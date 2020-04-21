@@ -42,8 +42,6 @@ def set_base_file_path(RUNNING_LOCALLY, ENV):
             raise ValueError("Invalid environment type. Must be 'DEV' or 'PROD'.")
 
 
-# ENV = 'DEV'
-# # ENV = 'PROD'
 project_home = set_base_file_path(RUNNING_LOCALLY, ENV)
 
 

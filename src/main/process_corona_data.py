@@ -6,48 +6,53 @@ from pathlib import Path
 from collections import Counter
 import json
 
-from src.flask.settings import RUNNING_LOCALLY
 
-ENV = 'DEV'
-# ENV = 'PROD'
+def set_env():
+    curr_wd = os.getcwd()
+    if 'dev' in curr_wd:
+        ENV = 'DEV'
+    elif 'prod' in curr_wd:
+        ENV = 'PROD'
+    else:
+        ENV = None
+    return ENV
 
 
-def download_corona_data():
+ENV = set_env()
+if ENV is None:
+    RUNNING_LOCALLY = True
+else:
+    RUNNING_LOCALLY = False
+
+
+def set_base_file_path(RUNNING_LOCALLY, ENV):
+    if RUNNING_LOCALLY:
+        return "../../data/json/corona"
+    else:
+        if ENV.upper() == 'PROD':
+            return "/home/Azafar98/prod/coronavirus-webapp"
+        elif ENV.upper() == 'DEV':
+            return "/home/Azafar98/dev/coronavirus-webapp"
+        else:
+            raise ValueError("Invalid environment type. Must be 'DEV' or 'PROD'.")
+
+
+project_home = set_base_file_path(RUNNING_LOCALLY, ENV)
+
+
+def _download_corona_data():
     """
-    Get the data straight from the Git repo, since the API has stopped working
-
-    The data is updated once per day, so this function should be run daily.
+    If not downloaded, call the function in download_corona_data.py
     :return:
     """
+    import sys
+    if project_home not in sys.path:
+        sys.path = [project_home] + sys.path
 
-    # Make sure the required path exists. Create it if not.
-    # On PythonAnywhere, the paths are a bit different.
-    try:
-        Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
-        OUT_PATH = "../../data/json/corona/{}"
-    except PermissionError:
-        if ENV == 'PROD':
-            Path("/home/Azafar98/prod/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
-            OUT_PATH = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
-        else:
-            Path("/home/Azafar98/dev/home/Azafar98/prod/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
-            OUT_PATH = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
-        Path("coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
+    from src.main.download_corona_data import _run
 
-    CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
-    DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
-    RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
-
-    confirmed_data = pd.read_csv(CONFIRMED_URL)
-    deaths_data = pd.read_csv(DEATHS_URL)
-    recovered_data = pd.read_csv(RECOVERED_URL)
-
-    # Save the data locally so it doesn't have to be accessed from GitHub every time.
-    confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
-    deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
-    recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
-
-    return 0
+    download = _run()
+    return download
 
 
 def get_corona_data():
@@ -56,21 +61,17 @@ def get_corona_data():
     :return:
     """
     if RUNNING_LOCALLY:
-        file_path = "../../data/json/corona/{}"
+        file_path = project_home + '/{}'
     else:
-        if ENV == 'PROD':
-            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
-        else:
-            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
+        file_path = project_home + '/data/json/corona/{}'
 
-
-    if not (os.path.exists(file_path.format("confirmed_cases.txt")) or
-            os.path.exists(file_path.format("deaths_cases.txt")) or
-            os.path.exists(file_path.format("recovered_cases.txt"))):
+    if not (os.path.exists(file_path.format("confirmed_cases.txt"))) or not \
+        (os.path.exists(file_path.format("deaths_cases.txt"))) or not \
+        (os.path.exists(file_path.format("recovered_cases.txt"))):
 
         print("corona data not downloaded. Downloading.")
 
-        download = download_corona_data()
+        download = _download_corona_data()
 
         if download == 0:
             # Successful download.
@@ -280,12 +281,9 @@ def get_covid_time_series(data_type, difference):
     :return:
     """
     if RUNNING_LOCALLY:
-        file_path = "../../data/json/corona/{}"
+        file_path = project_home + '/{}'
     else:
-        if ENV == 'PROD':
-            file_path = '/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}'
-        else:
-            file_path = '/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}'
+        file_path = project_home + '/data/json/corona/{}'
 
     data_type = data_type.upper()
 
@@ -333,10 +331,3 @@ def country_options():
     countries = sorted(countries)
 
     return countries
-
-"""
-COVID data is updated on GitHub daily. To download it, uncomment the line below. (or delete the existing files saved
-locally, but uncommenting the function call below will just overwrite those)
-"""
-
-# download_corona_data()

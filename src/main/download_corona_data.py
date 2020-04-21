@@ -205,16 +205,21 @@ def update_covid_time_series(data_type):
     return 0
 
 
-if not RUNNING_LOCALLY:
-    download = download_corona_data()
-    update_covid_time_series('confirmed')
-    update_covid_time_series('deaths')
-    update_covid_time_series('recovered')
+def _run():
+    if not RUNNING_LOCALLY:
+        download = download_corona_data()
+        update_covid_time_series('confirmed')
+        update_covid_time_series('deaths')
+        update_covid_time_series('recovered')
 
-    if download == 0:
-        update()
-else:
-    download_corona_data()
-    update_covid_time_series('confirmed')
-    update_covid_time_series('deaths')
-    update_covid_time_series('recovered')
+        if download == 0:
+            update()
+    else:
+        download_corona_data()
+        update_covid_time_series('confirmed')
+        update_covid_time_series('deaths')
+        update_covid_time_series('recovered')
+
+    return 0
+
+_run()
