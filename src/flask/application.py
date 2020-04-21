@@ -3,21 +3,45 @@ from flask_caching import Cache
 from src.main.process_corona_data import display_covid_cases, get_covid_time_series, country_options
 from src.main.get_phe_data import get_phe_data_for_flask
 import sys
+import os
 from datetime import datetime, timedelta
 
 # This is purely for PythonAnywhere - not necessary if running locally
-ENV = 'DEV'
-# ENV = 'PROD'
 
-if ENV == 'PROD':
-    project_home = '/home/Azafar98/prod/coronavirus-webapp'
+def set_env():
+    curr_wd = os.getcwd()
+    if 'dev' in curr_wd:
+        ENV = 'DEV'
+    elif 'prod' in curr_wd:
+        ENV = 'PROD'
+    else:
+        ENV = None
+    return ENV
+
+
+ENV = set_env()
+if ENV is None:
+    RUNNING_LOCALLY = True
 else:
-    project_home = '/home/Azafar98/dev/coronavirus-webapp'
+    RUNNING_LOCALLY = False
+
+
+def set_base_file_path(RUNNING_LOCALLY, ENV):
+    if RUNNING_LOCALLY:
+        return "../../data/json/corona"
+    else:
+        if ENV.upper() == 'PROD':
+            return "/home/Azafar98/prod/coronavirus-webapp"
+        elif ENV.upper() == 'DEV':
+            return "/home/Azafar98/dev/coronavirus-webapp"
+        else:
+            raise ValueError("Invalid environment type. Must be 'DEV' or 'PROD'.")
+
+
+project_home = set_base_file_path(RUNNING_LOCALLY, ENV)
 
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
-
-from src.flask.settings import RUNNING_LOCALLY
 
 # Create an 'application' callable
 application = Flask(__name__)
