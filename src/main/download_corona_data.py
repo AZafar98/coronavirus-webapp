@@ -5,21 +5,52 @@ import sys
 import re
 from collections import Counter
 
+
+def set_env():
+    curr_wd = os.getcwd()
+    if 'dev' in curr_wd:
+        ENV = 'DEV'
+    elif 'prod' in curr_wd:
+        ENV = 'PROD'
+    else:
+        ENV = None
+    return ENV
+
+
+ENV = set_env()
+if ENV is None:
+    RUNNING_LOCALLY = True
+else:
+    RUNNING_LOCALLY = False
+
+
+def set_base_file_path(RUNNING_LOCALLY, ENV):
+    if RUNNING_LOCALLY:
+        return "../../data/json/corona"
+    else:
+        if ENV.upper() == 'PROD':
+            return "/home/Azafar98/prod/coronavirus-webapp"
+        elif ENV.upper() == 'DEV':
+            return "/home/Azafar98/dev/coronavirus-webapp"
+        else:
+            raise ValueError("Invalid environment type. Must be 'DEV' or 'PROD'.")
+
+
+# ENV = 'DEV'
+# # ENV = 'PROD'
+
+# if ENV == 'PROD':
+#     project_home = '/home/Azafar98/prod/coronavirus-webapp'
+# else:
+#     project_home = '/home/Azafar98/dev/coronavirus-webapp'
+
+project_home = set_base_file_path(RUNNING_LOCALLY, ENV)
 # add your project directory to the sys.path.
 # This is purely for PythonAnywhere - not necessary if running locally
-
-ENV = 'DEV'
-# ENV = 'PROD'
-
-if ENV == 'PROD':
-    project_home = '/home/Azafar98/prod/coronavirus-webapp'
-else:
-    project_home = '/home/Azafar98/dev/coronavirus-webapp'
-
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
 
-from src.flask.settings import RUNNING_LOCALLY
+# from src.flask.settings import RUNNING_LOCALLY
 
 
 # This is to redeploy the webapp after the data has been downloaded.
@@ -37,35 +68,33 @@ def download_corona_data():
 
     # Make sure the required path exists. Create it if not.
     # On PythonAnywhere, the paths are a bit different.
-    try:
-        Path("../../data/json/corona").mkdir(parents=True, exist_ok=True)
-        OUT_PATH = "../../data/json/corona/{}"
-    except PermissionError:
-        if ENV == 'PROD':
-            Path("/home/Azafar98/prod/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
-            OUT_PATH = "/home/Azafar98/prod/coronavirus-webapp/data/json/corona/{}"
-        else:
-            Path("/home/Azafar98/dev/coronavirus-webapp/data/json/corona").mkdir(parents=True, exist_ok=True)
-            OUT_PATH = "/home/Azafar98/dev/coronavirus-webapp/data/json/corona/{}"
+    # base_path = set_base_file_path(RUNNING_LOCALLY, ENV)
+    if RUNNING_LOCALLY:
+        Path(project_home).mkdir(parents=True, exist_ok=True)
+        file_path = project_home + '/{}'
+    else:
+        file_path = project_home + '/data/json/corona'
+        Path(file_path).mkdir(parents=True, exist_ok=True)
+        file_path = file_path + '/{}'
 
-    CONFIRMED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
-    DEATHS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
-    RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
+    confirmed_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+    deaths_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+    recovered_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
 
 
-    confirmed_data = pd.read_csv(CONFIRMED_URL)
-    deaths_data = pd.read_csv(DEATHS_URL)
-    recovered_data = pd.read_csv(RECOVERED_URL)
+    confirmed_data = pd.read_csv(confirmed_url)
+    deaths_data = pd.read_csv(deaths_url)
+    recovered_data = pd.read_csv(recovered_url)
 
     # This is necessary so JS doesn't throw errors when trying to graph these later
     def clean_countries(data):
         countries = data.loc[:, 'Country/Region'].tolist()
         bad_chars = ['*', ',', '\'']
 
-        clean_countries = []
+        clean_countries_list = []
         for country in countries:
             cleaned_country = ''.join([char for char in country if char not in bad_chars])
-            clean_countries.append(cleaned_country)
+            clean_countries_list.append(cleaned_country)
 
         data['Country/Region'] = clean_countries
 
@@ -76,9 +105,9 @@ def download_corona_data():
     recovered_data = clean_countries(recovered_data)
 
     # Save the data locally so it doesn't have to be accessed from GitHub every time.
-    confirmed_data.to_json(OUT_PATH.format("confirmed_cases.txt"))
-    deaths_data.to_json(OUT_PATH.format("deaths_cases.txt"))
-    recovered_data.to_json(OUT_PATH.format("recovered_cases.txt"))
+    confirmed_data.to_json(file_path.format("confirmed_cases.txt"))
+    deaths_data.to_json(file_path.format("deaths_cases.txt"))
+    recovered_data.to_json(file_path.format("recovered_cases.txt"))
 
     return 0
 
