@@ -141,7 +141,7 @@ a {
     }
 
     .page-subheader {
-        font-size: 2.5vw;
+        font-size: 1.5vw;
     }
 }
 
@@ -174,15 +174,12 @@ a {
         margin-bottom: 1rem;
         max-width: 50vw;
     }
-
-    .donate-subheader {
-        display: block;
-    }
 }
 
 
 @media only screen and (min-width: 768px) {
     .donate-subheader {
+        display: block;
         font-family: Roboto, sans-serif;
         line-height: 150%;
         font-style: normal;
@@ -510,10 +507,6 @@ a {
 @media only screen and (min-width: 768px) {
     .jumbotron-fluid .display-4 {
         font-size: 3.5rem;
-    }
-
-    .jumbotron-fluid .card {
-        max-width: 75%;
     }
 }
 

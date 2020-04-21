@@ -74,21 +74,33 @@ def get_corona_data():
         download = _download_corona_data()
 
         if download == 0:
+            with open(file_path.format("confirmed_cases.txt")) as c, open(file_path.format("recovered_cases.txt")) as r, \
+                    open(file_path.format("deaths_cases.txt")) as d:
+                confirmed = c.readlines()
+                recovered = r.readline()
+                deaths = d.readlines()
             # Successful download.
-            confirmed_df = pd.read_json(file_path.format("confirmed_cases.txt"))
-            recovered_df = pd.read_json(file_path.format("recovered_cases.txt"))
-            deaths_df = pd.read_json(file_path.format("deaths_cases.txt"))
+            confirmed_df = pd.read_json(confirmed[0])
+            recovered_df = pd.read_json(recovered[0])
+            deaths_df = pd.read_json(deaths[0])
         else:
             # Download failed
             raise RuntimeError("Data failed to download. Exiting process.")
 
     else:
-        confirmed_df = pd.read_json(file_path.format("confirmed_cases.txt"))
-        recovered_df = pd.read_json(file_path.format("recovered_cases.txt"))
-        deaths_df = pd.read_json(file_path.format("deaths_cases.txt"))
+        with open(file_path.format("confirmed_cases.txt")) as c, open(file_path.format("recovered_cases.txt")) as r, \
+                open(file_path.format("deaths_cases.txt")) as d:
+            confirmed = c.readlines()
+            recovered = r.readlines()
+            deaths = d.readlines()
+        # Successful download.
+        confirmed_df = pd.read_json(confirmed[0])
+        recovered_df = pd.read_json(recovered[0])
+        deaths_df = pd.read_json(deaths[0])
 
     return confirmed_df, recovered_df, deaths_df
 
+get_corona_data()
 
 def aggregate_duplicate_countries(data):
     countries = data['Country/Region'].tolist()
@@ -288,20 +300,20 @@ def get_covid_time_series(data_type, difference):
     data_type = data_type.upper()
 
     if data_type == 'CONFIRMED':
-        if not (os.path.exists(file_path.format("confirmed-covid-time-series.txt")) or
-                os.path.exists(file_path.format("confirmed-covid-time-series.txt"))):
+        if not (os.path.exists(file_path.format("confirmed-covid-time-series.txt"))) or not \
+                (os.path.exists(file_path.format("confirmed-covid-time-series.txt"))):
             print("data not downloaded. Not downloading.")
             # update_covid_time_series('confirmed')
 
     elif data_type == 'DEATHS':
-        if not (os.path.exists(file_path.format("deaths-covid-time-series.txt")) or
-                os.path.exists(file_path.format("deaths-covid-time-series.txt"))):
+        if not (os.path.exists(file_path.format("deaths-covid-time-series.txt"))) or not\
+                (os.path.exists(file_path.format("deaths-covid-time-series.txt"))):
             print("data not downloaded. Not downloading.")
             # update_covid_time_series('deaths')
 
     elif data_type == 'RECOVERED':
-        if not (os.path.exists(file_path.format("recovered-covid-time-series.txt")) or
-                os.path.exists(file_path.format("recovered-covid-time-series.txt"))):
+        if not (os.path.exists(file_path.format("recovered-covid-time-series.txt"))) or not\
+                (os.path.exists(file_path.format("recovered-covid-time-series.txt"))):
             print("data not downloaded. Not downloading.")
             # update_covid_time_series('recovered')
     else:
@@ -309,15 +321,15 @@ def get_covid_time_series(data_type, difference):
 
     if difference is True:
         with open(file_path.format("{}-covid-time-series-diff.txt").format(data_type.lower())) as f:
-            file = json.load(f)
+            file = f.readlines()
             # It is easier if this is returned as a string. So read the JSON file, and then dump it again to get into
             # string format AND ensure it's valid JSON.
-            str_rep = json.dumps(file)
+            str_rep = file[0]
         return str_rep
     else:
         with open(file_path.format("{}-covid-time-series.txt").format(data_type.lower())) as f:
-            file = json.load(f)
-            str_rep = json.dumps(file)
+            file = f.readlines()
+            str_rep = file[0]
         return str_rep
 
 
