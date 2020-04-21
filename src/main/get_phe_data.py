@@ -2,7 +2,7 @@
 import pandas as pd
 import fingertips_py as ftp
 from pathlib import Path
-
+import os
 from src.flask.settings import RUNNING_LOCALLY
 
 # Indicator ID 848 refers to Depression: Recorded prevalence (aged 18+)
@@ -11,31 +11,59 @@ from src.flask.settings import RUNNING_LOCALLY
 # area_type_id = 15 in England
 # area_type_id = 113 is parliamentary constituencies
 
-ENV = 'DEV'
-# ENV = 'PROD'
+
+def set_env():
+    curr_wd = os.getcwd()
+    if 'dev' in curr_wd:
+        ENV = 'DEV'
+    elif 'prod' in curr_wd:
+        ENV = 'PROD'
+    else:
+        ENV = None
+    return ENV
+
+
+ENV = set_env()
+if ENV is None:
+    RUNNING_LOCALLY = True
+else:
+    RUNNING_LOCALLY = False
+
+
+def set_base_file_path(RUNNING_LOCALLY, ENV):
+    if RUNNING_LOCALLY:
+        return "../../data/json/phe"
+    else:
+        if ENV.upper() == 'PROD':
+            return "/home/Azafar98/prod/coronavirus-webapp"
+        elif ENV.upper() == 'DEV':
+            return "/home/Azafar98/dev/coronavirus-webapp"
+        else:
+            raise ValueError("Invalid environment type. Must be 'DEV' or 'PROD'.")
+
+
+# ENV = 'DEV'
+# # ENV = 'PROD'
+project_home = set_base_file_path(RUNNING_LOCALLY, ENV)
 
 
 def data_paths(indicator):
 
     if RUNNING_LOCALLY:
         # Make sure the required path exists. Create it if not.
-        Path("../../data/json/phe").mkdir(parents=True, exist_ok=True)
+        Path(project_home).mkdir(parents=True, exist_ok=True)
 
-        phe_data_path = Path("../../data/json/phe/{}_DATA".format(indicator))
-        phe_meta_path = Path("../../data/json/phe/{}_META".format(indicator))
-        all_data_path = Path("../../data/json/phe/{}_ALL_DATA".format(indicator))
+        phe_data_path = Path(project_home + "/{}_DATA".format(indicator))
+        phe_meta_path = Path(project_home + "/{}_META".format(indicator))
+        all_data_path = Path(project_home + "/{}_ALL_DATA".format(indicator))
     else:
-        if ENV == 'PROD':
-            path_str = '/home/Azafar98/prod/coronavirus-webapp/data/json/phe/{}_DATA'
-        else:
-            path_str = '/home/Azafar98/dev/coronavirus-webapp/data/json/phe/{}_DATA'
-
-        # Make sure the required path exists. Create it if not.
+        file_path = project_home + '/data/json/phe'
         Path("coronavirus-webapp/data/json/phe").mkdir(parents=True, exist_ok=True)
+        file_path = file_path + '/{}_DATA'
 
-        phe_data_path = Path(path_str.format(indicator))
-        phe_meta_path = Path(path_str.format(indicator))
-        all_data_path = Path(path_str.format(indicator))
+        phe_data_path = Path(file_path.format(indicator))
+        phe_meta_path = Path(file_path.format(indicator))
+        all_data_path = Path(file_path.format(indicator))
 
     return phe_data_path, phe_meta_path, all_data_path
 
@@ -244,14 +272,11 @@ def write_data_to_json(data, name):
 
     # TODO: Regex check for invalid file name.
     if RUNNING_LOCALLY:
-        OUT_PATH = "../../data/json/phe/{}"
+        file_path = project_home + '/{}'
     else:
-        if ENV == 'PROD':
-            OUT_PATH = '/home/Azafar98/prod/coronavirus-webapp/data/json/phe/{}'
-        else:
-            OUT_PATH = '/home/Azafar98/dev/coronavirus-webapp/data/json/phe/{}'
+        file_path = project_home + '/data/json/phe'
 
-    data.to_json(OUT_PATH.format(name))
+    data.to_json(file_path.format(name))
 
 
 """
@@ -268,3 +293,4 @@ def get_phe_data_for_flask(indicator, differenced, dev=True):
     data, meta, all_data = get_data(indicator, dev=dev, england_only=True, use_json=True)
     summary_data = extract_summary_figure(data, json=False)
     return get_figure_for_flask(summary_data, differenced=differenced)
+
