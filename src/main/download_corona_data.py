@@ -8,10 +8,11 @@ from collections import Counter
 
 def set_env():
     curr_wd = os.getcwd()
-    if 'dev' in curr_wd:
-        ENV = 'DEV'
-    elif 'prod' in curr_wd:
-        ENV = 'PROD'
+    if 'Azafar98' in curr_wd:
+        if os.path.exists('/home/Azafar98/prod'):
+            ENV = 'PROD'
+        elif os.path.exists('/home/Azafar98/dev'):
+            ENV = 'DEV'
     else:
         ENV = None
     return ENV
